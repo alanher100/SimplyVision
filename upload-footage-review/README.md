@@ -1,9 +1,9 @@
 # Upload Footage / Footage Review
 
-##Overview
+## Overview
 
-##Jira Stories
+## Jira Stories
 
-#Planned Features
+## Planned Features
 
-#Current Status
+## Current Status
