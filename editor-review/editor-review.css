@@ -1,0 +1,380 @@
+/* Main colors used throughout the page */
+:root {
+    --orange: #F75F26;
+    --charcoal: #222326;
+    --white: #FFFFFF;
+    --light-gray: #F5F5F5;
+    --text-gray: #666666;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--white);
+    color: #111111;
+    min-height: 100vh;
+}
+
+/* Sidebar navigation styling */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 155px;
+    min-width: 155px;
+    height: 100vh;
+    background: var(--charcoal);
+    color: var(--white);
+    padding: 0 10px 15px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+/* SimplyVision logo styling */
+.logo {
+    width: calc(100% + 20px);
+    height: 90px;
+    min-height: 90px;
+    margin: 0 -10px;
+    padding: 0;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.logo img {
+    display: block;
+    width: 105%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+.sidebar_label {
+    color: #888;
+    font-size: 9px;
+    letter-spacing: 1px;
+    margin: 12px 8px;
+}
+
+.sidebar_nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar_nav a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 12px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+.sidebar_nav a:hover,
+.sidebar_nav a.active {
+    background: var(--orange);
+}
+
+.count {
+    background: var(--charcoal);
+    color: var(--white);
+    border-radius: 12px;
+    font-size: 9px;
+    min-width: 18px;
+    padding: 3px 5px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.sidebar_bottom {
+    margin-top: auto;
+}
+
+.storage_heading {
+    background: #303135;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+.storage_bar {
+    height: 4px;
+    background: #555;
+    border-radius: 5px;
+}
+
+.storage_bar div {
+    height: 100%;
+    background: var(--orange);
+}
+
+.sidebar_bottom small {
+    color: #888;
+    font-size: 9px;
+}
+
+.profile_section {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.profile_icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+}
+
+.profile {
+    font-weight: bold;
+    font-size: 9px;
+    margin-bottom: 3px;
+}
+
+/* Main page layout */
+.main_content {
+    margin-left: 155px;
+    padding: 28px;
+    min-width: 0;
+}
+
+.page_header h1 {
+    font-size: 26px;
+    margin-bottom: 4px;
+}
+
+.page_header p {
+    font-size: 13px;
+    color: var(--text-gray);
+}
+
+/* Review status cards: Pending, Approve, Correction, Reject cards */
+.summary_cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 190px));
+    gap: 22px;
+    margin: 28px 0 30px;
+    width: 100%;
+    max-width: 1050px;
+}
+
+.summary_card {
+    border: 1px solid var(--orange);
+    border-radius: 9px;
+    padding: 0 12px 14px;
+    overflow: hidden;
+    min-width: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.card_image {
+    display: block;
+    width: calc(100% + 24px);
+    height: 72px;
+    margin: 0 -12px 24px;
+    object-fit: cover;
+    object-position: center;
+    border-bottom: 1px solid var(--orange);
+}
+
+.card_action {
+    width: 100%;
+    min-height: 30px;
+    margin: 0;
+    padding: 7px 8px;
+    border: none;
+    border-radius: 6px;
+    background: var(--orange);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    font-size: 10px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.card_action:hover,
+.review_button:hover {
+    filter: brightness(0.92);
+}
+
+/* Pending review list */
+.pending_section h2 {
+    font-size: 14px;
+    margin: 0 0 20px 6px;
+}
+
+.clip_list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.clip_row {
+    border: 1px solid var(--orange);
+    min-height: 67px;
+    display: grid;
+    grid-template-columns: 128px minmax(70px, 1.2fr)
+        minmax(45px, 0.8fr) minmax(45px, 0.8fr)
+        minmax(50px, 0.8fr) 72px;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    background: var(--white);
+    min-width: 0;
+}
+
+.clip_thumbnail {
+    height: 65px;
+    width: 100%;
+    background: var(--light-gray);
+    border-right: 1px solid var(--orange);
+}
+
+.review_button {
+    justify-self: center;
+    margin: 0 8px 0 0;
+    padding: 9px 12px;
+    border: none;
+    border-radius: 6px;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* Keyboard focus for future interactions */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #111111;
+    outline-offset: 2px;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 900px) {
+    .main_content {
+        padding: 22px;
+    }
+
+    .summary_cards {
+        grid-template-columns: repeat(2, minmax(0, 150px));
+        gap: 14px;
+    }
+
+    .clip_row {
+        grid-template-columns: 90px minmax(70px, 1fr)
+            minmax(45px, 0.7fr) 72px;
+        padding-right: 8px;
+        gap: 8px;
+    }
+
+    .clip_row span:nth-of-type(3),
+    .clip_row span:nth-of-type(4) {
+        display: none;
+    }
+
+    .review_button {
+        margin-right: 0;
+    }
+}
+
+/* Small screens */
+@media (max-width: 550px) {
+    .sidebar {
+        width: 110px;
+        padding: 0 7px 10px;
+    }
+
+    .logo {
+        height: 75px;
+        min-height: 75px;
+        margin: 0 -7px 14px;
+        padding: 0;
+    }
+
+    .logo img {
+        width: 100%;
+        height: 73px;
+        max-width: none;
+        object-fit: contain;
+    }
+
+    .sidebar_nav a {
+        font-size: 9px;
+        padding: 9px 5px;
+    }
+
+    .main_content {
+        margin-left: 110px;
+        padding: 14px;
+    }
+
+    .page_header h1 {
+        font-size: 21px;
+    }
+
+    .page_header p {
+        font-size: 11px;
+    }
+
+    .summary_cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .summary_card {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .card_image {
+        width: calc(100% + 16px);
+        margin-left: -8px;
+        margin-right: -8px;
+    }
+
+    .card_action {
+        font-size: 9px;
+        padding: 7px 5px;
+    }
+
+    .clip_list {
+        gap: 15px;
+    }
+
+    .clip_row {
+        grid-template-columns: 65px minmax(0, 1fr) 58px;
+        gap: 8px;
+        font-size: 10px;
+    }
+
+    .clip_row span:not(:first-of-type) {
+        display: none;
+    }
+
+    .clip_thumbnail {
+        height: 65px;
+    }
+
+    .review_button {
+        padding: 8px 6px;
+        font-size: 10px;
+    }
+}
