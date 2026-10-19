@@ -25,11 +25,12 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 144px;
+    width: 155px;
+    min-width: 155px;
     height: 100vh;
     background: var(--charcoal);
     color: var(--white);
-    padding: 0 12px 12px;
+    padding: 0 10px 15px;
     display: flex;
     flex-direction: column;
     z-index: 10;
@@ -37,49 +38,47 @@ body {
 
 /* SimplyVision logo styling */
 .logo {
-    height: 87px;
-    min-height: 87px;
-    margin: 0 -12px 16px;
+    width: calc(100% + 20px);
+    height: 90px;
+    min-height: 90px;
+    margin: 0 -10px;
+    padding: 0;
     background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    flex-shrink: 0;
     overflow: hidden;
 }
 
 .logo img {
     display: block;
-    width: 180%;
+    width: 105%;
     max-width: none;
-    height: 180px;
+    height: auto;
     object-fit: contain;
     object-position: center;
 }
 
 .sidebar_label {
-    color: #AAAAAA;
-    font-size: 8px;
+    color: #888;
+    font-size: 9px;
     letter-spacing: 1px;
-    margin: 0 0 8px;
+    margin: 12px 8px;
 }
 
 .sidebar_nav {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
 }
 
 .sidebar_nav a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4px;
+    color: #ddd;
     text-decoration: none;
-    color: var(--white);
-    font-size: 10px;
-    padding: 10px 8px;
-    border-radius: 7px;
+    padding: 12px 10px;
+    border-radius: 5px;
+    font-size: 11px;
 }
 
 .sidebar_nav a:hover,
@@ -100,35 +99,29 @@ body {
 
 .sidebar_bottom {
     margin-top: auto;
-    background: #303034;
-    border-radius: 7px;
-    padding: 9px 8px;
-    font-size: 9px;
 }
 
 .storage_heading {
-    display: flex;
-    justify-content: space-between;
-    gap: 4px;
+    background: #303135;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 10px;
 }
 
 .storage_bar {
     height: 4px;
-    background: #555555;
-    margin: 7px 0;
-    border-radius: 4px;
-    overflow: hidden;
+    background: #555;
+    border-radius: 5px;
 }
 
 .storage_bar div {
-    width: 68%;
     height: 100%;
     background: var(--orange);
 }
 
 .sidebar_bottom small {
-    color: #AAAAAA;
-    font-size: 8px;
+    color: #888;
+    font-size: 9px;
 }
 
 .profile_section {
@@ -154,7 +147,7 @@ body {
 
 /* Main page layout */
 .main_content {
-    margin-left: 144px;
+    margin-left: 155px;
     padding: 28px;
     min-width: 0;
 }
