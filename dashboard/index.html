@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SimplyVision | Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo"><span class="script">Simply</span><span class="vision">VISION</span></div>
+    <nav>
+      <p class="label">Workspace</p>
+      <a class="active" href="index.html">Dashboard</a>
+      <a href="#">Upload Footage</a>
+      <a href="#">AI Processing <b>3</b></a>
+      <a href="#">Candidate Clips <b>12</b></a>
+      <a href="#">Editor Review <b>5</b></a>
+      <a href="#">Video Library</a>
+    </nav>
+    <div class="profile">
+      <span class="avatar"></span>
+      <div><strong>Simply Basketball</strong><small>Media operations</small></div>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+      <div>
+        <h1>Dashboard</h1>
+        <p>Overview of your footage and what needs to review</p>
+      </div>
+      <button class="btn">+ Upload Footage</button>
+    </header>
+
+    <section class="cards">
+      <div class="card"><span>Footage Uploaded</span><strong>24</strong></div>
+      <div class="card"><span>AI Processing</span><strong>3</strong></div>
+      <div class="card"><span>Awaiting Review</span><strong>9</strong></div>
+      <div class="card"><span>Approved</span><strong>14</strong></div>
+    </section>
+
+    <section class="panels">
+      <div class="panel">
+        <h2>Recent Footage</h2>
+        <div class="row"><span class="name">Sac High vs. Elk Grove (Varsity)</span><span class="date">Oct 2, 2026</span><span class="badge processing">Processing</span></div>
+        <div class="row"><span class="name">Summer League: Hawks vs. Lions</span><span class="date">Sep 28, 2026</span><span class="badge review">Needs Review</span></div>
+        <div class="row"><span class="name">Rocklin vs. Folsom (JV)</span><span class="date">Sep 25, 2026</span><span class="badge approved">Approved</span></div>
+        <div class="row"><span class="name">Tournament Game 3</span><span class="date">Sep 18, 2026</span><span class="badge failed">Failed</span></div>
+      </div>
+
+      <div class="panel">
+        <h2>Needs Review</h2>
+        <div class="row"><span class="name">Jersey #23 unclear<small>Hawks vs. Lions. AI confidence 61%</small></span><button class="btn small">Review</button></div>
+        <div class="row"><span class="name">Possible rebound at 0:42<small>Rocklin vs. Folsom. AI confidence 64%</small></span><button class="btn small">Review</button></div>
+        <div class="row"><span class="name">Possible assist at 1:15<small>Davis vs. Woodland. AI confidence 68%</small></span><button class="btn small">Review</button></div>
+      </div>
+    </section>
+
+    <section class="tiles">
+      <a class="tile" href="#"><strong>Games</strong><span>Browse all games</span></a>
+      <a class="tile" href="#"><strong>Players</strong><span>View player profiles</span></a>
+      <a class="tile" href="#"><strong>Statistics</strong><span>Points, rebounds, assists</span></a>
+      <a class="tile" href="#"><strong>Video Results</strong><span>Highlights and clips</span></a>
+    </section>
+  </main>
+</body>
+</html>
