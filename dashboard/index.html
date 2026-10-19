@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimplyVision | Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <!-- SimplyVision logo at top-left -->
+        <div class="sidebar-brand">
+            <img src="../frontend/assets/simplyvision-logo.png" alt="SimplyVision Logo">
+        </div>
+
+        <p class="nav-heading">WORKSPACE</p>
+
+        <nav>
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">Upload Footage</a>
+            <a href="#">AI Processing <span class="count">3</span></a>
+            <a href="#">Editor Review <span class="count">5</span></a>
+            <a href="#">Candidate Clips <span class="count">12</span></a>
+            <a href="#">Video Library</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="storage">
+                <p>Storage <span>68%</span></p>
+                <div class="storage-track"><div></div></div>
+                <small>34.2 GB of 50 GB used</small>
+            </div>
+            <p class="account">🟠 Simply Basketball</p>
+        </div>
+    </aside>
+
+    <div class="workspace">
+        <header class="top-header">
+            <div class="heading">
+                <h1>Dashboard</h1>
+                <p>Overview of your footage and what needs review.</p>
+            </div>
+            <button class="queue-btn" type="button">+ Upload Footage</button>
+        </header>
+
+        <main class="content">
+            <section class="cards">
+                <div class="card"><span>Footage Uploaded</span><strong>24</strong></div>
+                <div class="card"><span>AI Processing</span><strong>3</strong></div>
+                <div class="card"><span>Awaiting Review</span><strong>9</strong></div>
+                <div class="card"><span>Approved</span><strong>14</strong></div>
+            </section>
+
+            <section class="panels">
+                <div class="panel">
+                    <h2>Recent Footage</h2>
+                    <div class="row"><span class="name">Sac High vs. Elk Grove (Varsity)</span><span class="date">Oct 2, 2026</span><span class="badge processing">Processing</span></div>
+                    <div class="row"><span class="name">Summer League: Hawks vs. Lions</span><span class="date">Sep 28, 2026</span><span class="badge review">Needs Review</span></div>
+                    <div class="row"><span class="name">Rocklin vs. Folsom (JV)</span><span class="date">Sep 25, 2026</span><span class="badge approved">Approved</span></div>
+                    <div class="row"><span class="name">Tournament Game 3</span><span class="date">Sep 18, 2026</span><span class="badge failed">Failed</span></div>
+                </div>
+
+                <div class="panel">
+                    <h2>Needs Review</h2>
+                    <div class="row"><span class="name">Jersey #23 unclear<small>Hawks vs. Lions. AI confidence 61%</small></span><button class="review-btn" type="button">Review</button></div>
+                    <div class="row"><span class="name">Possible rebound at 0:42<small>Rocklin vs. Folsom. AI confidence 64%</small></span><button class="review-btn" type="button">Review</button></div>
+                    <div class="row"><span class="name">Possible assist at 1:15<small>Davis vs. Woodland. AI confidence 68%</small></span><button class="review-btn" type="button">Review</button></div>
+                </div>
+            </section>
+
+            <section class="tiles">
+                <a class="tile" href="#"><strong>Games</strong><span>Browse all games</span></a>
+                <a class="tile" href="#"><strong>Players</strong><span>View player profiles</span></a>
+                <a class="tile" href="#"><strong>Statistics</strong><span>Points, rebounds, assists</span></a>
+                <a class="tile" href="#"><strong>Video Results</strong><span>Highlights and clips</span></a>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

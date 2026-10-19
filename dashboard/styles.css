@@ -1,0 +1,185 @@
+:root {
+    --orange: #df6939;
+    --dark: #222326;
+    --background: #f5f6f8;
+    --border: #d7d7d7;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #222;
+    background: var(--background);
+    display: flex;
+    min-height: 100vh;
+    font-size: 13px;
+}
+
+button { font: inherit; cursor: pointer; }
+
+/* Sidebar (same structure and sizing as Candidate Clips) */
+
+.sidebar {
+    width: 155px;
+    min-width: 155px;
+    min-height: 100vh;
+    background: var(--dark);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 15px;
+    flex-shrink: 0;
+}
+
+.sidebar-brand {
+    width: calc(100% + 20px);
+    height: 115px;
+    margin: 0 -10px;
+    padding: 10px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sidebar-brand img {
+    width: 180px;
+    max-width: none;
+    max-height: none;
+    height: auto;
+    object-fit: contain;
+}
+
+.nav-heading {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #888;
+    margin: 12px 8px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar nav a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 12px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: var(--orange);
+    color: white;
+}
+
+.count {
+    float: right;
+    background: #222;
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.sidebar-bottom { margin-top: auto; }
+
+.storage {
+    background: #303135;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+.storage p { display: flex; justify-content: space-between; }
+
+.storage-track { height: 4px; background: #555; border-radius: 5px; }
+.storage-track div { width: 68%; height: 100%; background: var(--orange); }
+
+.storage small { display: block; margin-top: 8px; color: #aaa; font-size: 9px; }
+
+.account { font-size: 10px; }
+
+/* Workspace and header */
+
+.workspace { flex: 1; min-width: 0; }
+
+.top-header {
+    height: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-bottom: 1px solid #eee;
+    gap: 22px;
+    padding: 0 30px 0 25px;
+}
+
+.heading { flex: 1; min-width: 0; }
+.heading h1 { margin: 0 0 7px; font-size: 23px; }
+.heading p { margin: 0; color: #888; font-size: 11px; }
+
+.queue-btn {
+    background: var(--orange);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 15px;
+    font-size: 11px;
+    flex-shrink: 0;
+}
+
+/* Dashboard content */
+
+.content { padding: 20px 25px; max-width: 1250px; }
+
+.cards, .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+.card, .tile, .panel {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.card { padding: 16px; text-align: center; }
+.card span { font-size: 11px; color: #666; }
+.card strong { display: block; margin-top: 6px; font-size: 26px; }
+
+.panels { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin: 12px 0; }
+.panel { padding: 18px; }
+.panel h2 { margin: 0 0 8px; font-size: 15px; }
+
+.row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid #eee; font-size: 12px; }
+.row:last-child { border-bottom: 0; }
+.row .name { flex: 1; font-weight: bold; }
+.row .name small { display: block; margin-top: 2px; font-size: 10px; font-weight: normal; color: #888; }
+.row .date { color: #888; }
+
+.badge { padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: bold; }
+.processing { background: #dbeafe; color: #2563eb; }
+.review { background: #fef3c7; color: #d97706; }
+.approved { background: #dcfce7; color: #16a34a; }
+.failed { background: #fee2e2; color: #dc2626; }
+
+.review-btn {
+    background: var(--orange);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 7px 12px;
+    font-size: 11px;
+}
+
+a.tile { padding: 16px; color: inherit; text-decoration: none; }
+.tile strong { display: block; font-size: 13px; }
+.tile span { font-size: 10px; color: #888; }
+
+@media (max-width: 900px) {
+    .cards, .tiles { grid-template-columns: repeat(2, 1fr); }
+    .panels { grid-template-columns: 1fr; }
+}
