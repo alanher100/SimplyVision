@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimplyVision | Candidate Clips</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <!-- SimplyVision logo at top-left -->
+        <div class="sidebar-brand">
+            <img
+                src="../assets/simplyvision-logo.png"
+                alt="SimplyVision Logo"
+            >
+        </div>
+
+        <p class="nav-heading">WORKSPACE</p>
+
+        <nav>
+            <a href="#">Dashboard</a>
+            <a href="#">Upload Footage</a>
+            <a href="#">AI Processing</a>
+            <a href="#">Editor Review</a>
+            <a href="#" class="active">
+                ▥ &nbsp; Candidate Clips
+                <span class="count">12</span>
+            </a>
+            <a href="#">Video Library</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="storage">
+                <p>Storage <span>68%</span></p>
+                <div class="storage-track">
+                    <div></div>
+                </div>
+                <small>34.2 GB of 50 GB used</small>
+            </div>
+            <p class="account">🟠 Simply Basketball</p>
+        </div>
+    </aside>
+
+    <div class="workspace">
+        <header class="top-header">
+            <div class="heading">
+                <h1>Candidate Clips</h1>
+                <p>
+                    Review detected clips and confirm
+                    suggested statistics and event labels.
+                </p>
+            </div>
+
+            <button class="queue-btn" type="button">
+                + Review Queue · 12
+            </button>
+        </header>
+
+        <main class="content">
+            <section class="toolbar">
+                <input
+                    type="search"
+                    placeholder="Search clips, games, or players"
+                >
+
+                <select aria-label="Game filter">
+                    <option>All games</option>
+                </select>
+
+                <select aria-label="Player filter">
+                    <option>All players</option>
+                </select>
+
+                <select aria-label="Status filter">
+                    <option>All statuses</option>
+                    <option>Pending</option>
+                    <option>Confirmed</option>
+                    <option>Rejected</option>
+                </select>
+
+                <select aria-label="Sort order">
+                    <option>Newest first</option>
+                </select>
+            </section>
+
+            <div class="secondary-toolbar">
+                <button type="button">⇩ Export</button>
+                <button class="delete-btn" type="button">
+                    ♜ Delete
+                </button>
+            </div>
+
+            <div class="pagination">
+                <button type="button">‹</button>
+                <button class="selected" type="button">1</button>
+                <button type="button">2</button>
+                <button type="button">›</button>
+            </div>
+
+            <section class="review-area">
+                <article class="clip-card">
+                    <div class="video-placeholder">
+                        <span>▶ Basketball Clip Preview</span>
+                        <small>Temporary thumbnail</small>
+                    </div>
+
+                    <div class="clip-info">
+                        <p><strong>Marcus Reed · #11</strong></p>
+                        <p>
+                            West Campus High School vs
+                            Davis Senior High School
+                        </p>
+                        <small>
+                            Q2 · 02:14 game time · 00:12 clip
+                        </small>
+
+                        <div class="clip-footer">
+                            <span id="clipStatus" role="status">
+                                ● Needs Review
+                            </span>
+                            <span>⇩ ♧</span>
+                        </div>
+                    </div>
+                </article>
+
+                <section class="review-panel">
+
+                <!--
+                Sprint 1 UI placeholders:
+                Statistics and confidence percentages are mock data.
+                Buttons demonstrate frontend-only interactions.
+                No backend or database integration is implemented.
+                -->
+                
+                    <h2>Suggested Statistics</h2>
+
+                    <div class="panel-body">
+                        <p class="section-caption">
+                            AI-detected from this clip
+                        </p>
+
+                        <div class="stat-row">
+                            <span>+2 Points</span>
+                            <strong>92%</strong>
+                        </div>
+
+                        <div class="stat-row">
+                            <span>Made Field Goal</span>
+                            <strong>89%</strong>
+                        </div>
+
+                        <div class="stat-row">
+                            <span>Fast Break</span>
+                            <strong>81%</strong>
+                        </div>
+                    </div>
+
+                    <h2>Suggested Event Labels</h2>
+
+                    <div class="panel-body">
+                        <!-- Event labels -->
+                        <div class="tags" id="event-tags">
+                            <span>■ Made Shot</span>
+                            <span>■ 2PT</span>
+                            <span>■ Fast Break</span>
+
+                            <button
+                                class="add-btn"
+                                id="add-label-btn"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="label-form"
+                            >
+                                + Add
+                            </button>
+                        </div>
+
+                        <!-- Hidden label input -->
+                        <div
+                            class="label-form"
+                            id="label-form"
+                            hidden
+                        >
+                            <input
+                                type="text"
+                                id="new-label"
+                                placeholder="Enter event label..."
+                                aria-label="New event label"
+                                maxlength="40"
+                            >
+
+                            <button
+                                type="button"
+                                id="save-label-btn"
+                            >
+                                Add Label
+                            </button>
+
+                            <button
+                                type="button"
+                                id="cancel-label-btn"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Functional review buttons -->
+                    <div class="actions">
+                        <button
+                            id="rejectBtn"
+                            type="button"
+                        >
+                            Reject
+                        </button>
+
+                        <button
+                            id="confirmBtn"
+                            type="button"
+                        >
+                            Confirm
+                        </button>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Confirm and Reject functionality
+
+        const confirmBtn = document.getElementById("confirmBtn");
+        const rejectBtn = document.getElementById("rejectBtn");
+        const clipStatus = document.getElementById("clipStatus");
+        const reviewPanel = document.querySelector(".review-panel");
+
+        function updateClipStatus(status) {
+            if (status === "confirmed") {
+                clipStatus.textContent = "✓ Confirmed";
+                clipStatus.style.color = "#228b22";
+
+                reviewPanel.style.borderColor = "#228b22";
+
+                confirmBtn.textContent = "✓ Confirmed";
+                confirmBtn.style.background = "#d8f3dc";
+                confirmBtn.style.color = "#228b22";
+            }
+
+            if (status === "rejected") {
+                clipStatus.textContent = "✕ Rejected";
+                clipStatus.style.color = "#d93025";
+
+                reviewPanel.style.borderColor = "#d93025";
+
+                rejectBtn.textContent = "✕ Rejected";
+                rejectBtn.style.background = "#fde2e2";
+                rejectBtn.style.color = "#d93025";
+            }
+
+            // Prevent reviewing the same clip twice
+            confirmBtn.disabled = true;
+            rejectBtn.disabled = true;
+        }
+
+        confirmBtn.addEventListener("click", function () {
+            updateClipStatus("confirmed");
+        });
+
+        rejectBtn.addEventListener("click", function () {
+            updateClipStatus("rejected");
+        });
+
+
+        // Add Event Label functionality
+
+        const addBtn = document.getElementById("add-label-btn");
+        const labelForm = document.getElementById("label-form");
+        const labelInput = document.getElementById("new-label");
+        const saveBtn = document.getElementById("save-label-btn");
+        const cancelBtn = document.getElementById("cancel-label-btn");
+        const tags = document.getElementById("event-tags");
+
+        function closeLabelForm() {
+            labelInput.value = "";
+            labelForm.hidden = true;
+            addBtn.setAttribute("aria-expanded", "false");
+        }
+
+        addBtn.addEventListener("click", function () {
+            labelForm.hidden = false;
+            addBtn.setAttribute("aria-expanded", "true");
+            labelInput.focus();
+        });
+
+        saveBtn.addEventListener("click", function () {
+            const label = labelInput.value.trim();
+
+            if (label === "") {
+                alert("Please enter an event label.");
+                labelInput.focus();
+                return;
+            }
+
+            // Check for duplicate labels
+            const existingLabels = Array.from(
+                tags.querySelectorAll("span")
+            ).map(function (span) {
+                return span.textContent
+                    .replace(/^■\s*/, "")
+                    .trim()
+                    .toLowerCase();
+            });
+
+            if (existingLabels.includes(label.toLowerCase())) {
+                alert("This event label already exists.");
+                labelInput.focus();
+                return;
+            }
+
+            // Create the new event label
+            const newTag = document.createElement("span");
+            newTag.textContent = "■ " + label;
+
+            // Insert before the Add button
+            tags.insertBefore(newTag, addBtn);
+
+            closeLabelForm();
+        });
+
+        cancelBtn.addEventListener("click", function () {
+            closeLabelForm();
+        });
+
+        // Allow Enter to save and Escape to cancel
+        labelInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                saveBtn.click();
+            }
+
+            if (event.key === "Escape") {
+                closeLabelForm();
+                addBtn.focus();
+            }
+        });
+    </script>
+</body>
+</html>
+
+

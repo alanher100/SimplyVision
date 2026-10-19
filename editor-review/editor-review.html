@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Editor Review | Simply Basketball</title>
+        <link rel="stylesheet" href="editor-review.css">
+    </head>
+    <body>
+        <!-- Sidebar navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="../frontend/assets/simplyvision-logo.png"
+                     alt="SimplyVision logo">
+            </div>
+
+            <p class="sidebar_label">WORKSPACE</p>
+
+            <nav class="sidebar_nav">
+                <a href="#">Dashboard</a>
+                <a href="#">Upload Footage</a>
+                <a href="#">AI Processing <span class="count">3</span></a>
+
+                <!-- Editor Review moved above Candidate Clips -->
+                <a href="#" class="active">
+                    Editor Review <span class="count">5</span>
+                </a>
+                <a href="#">Candidate Clips <span class="count">12</span></a>
+
+                <a href="#">Video Library</a>
+            </nav>
+
+            <div class="sidebar_bottom">
+                <div class="storage_heading">
+                    <span>Storage</span>
+                    <span>68%</span>
+                </div>
+
+                <div class="storage_bar">
+                    <div></div>
+                </div>
+
+                <small>34.2 GB of 50 GB used</small>
+
+                <div class="profile_section">
+                    <div class="profile_icon"></div>
+                    <div>
+                        <p class="profile">Simply Basketball</p>
+                        <small>Media operations</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main editor review content -->
+        <main class="main_content">
+            <header class="page_header">
+                <h1>Editor Review</h1>
+                <p>Overview of your footage and what needs review.</p>
+            </header>
+
+            <!-- Review status summary cards -->
+            <section class="summary_cards">
+                <article class="summary_card">
+                    <img
+                        class="card_image"
+                        src="../frontend/assets/basketball-banner.jpg"
+                        alt="Basketball footage preview">
+
+                    <button type="button" class="card_action">
+                        <span>Pending</span>
+                        <span class="count">12</span>
+                    </button>
+                </article>
+
+                <article class="summary_card">
+                    <img
+                        class="card_image"
+                        src="../frontend/assets/basketball-banner.jpg"
+                        alt="Basketball footage preview">
+
+                    <button type="button" class="card_action">
+                        <span>Approve</span>
+                        <span class="count">8</span>
+                    </button>
+                </article>
+
+                <article class="summary_card">
+                    <img
+                        class="card_image"
+                        src="../frontend/assets/basketball-banner.jpg"
+                        alt="Basketball footage preview">
+
+                    <button type="button" class="card_action">
+                        <span>Needs Correction</span>
+                        <span class="count">3</span>
+                    </button>
+                </article>
+
+                <article class="summary_card">
+                    <img
+                        class="card_image"
+                        src="../frontend/assets/basketball-banner.jpg"
+                        alt="Basketball footage preview">
+
+                    <button type="button" class="card_action">
+                        <span>Reject</span>
+                        <span class="count">1</span>
+                    </button>
+                </article>
+            </section>
+
+            <!-- List of clips waiting for editor review -->
+            <section class="pending_section">
+                <h2>Clips Pending Review</h2>
+
+                <div class="clip_list">
+                    <article class="clip_row">
+                        <div class="clip_thumbnail"
+                             aria-label="Blank clip preview"></div>
+                        <span>Clip Name</span>
+                        <span>Team</span>
+                        <span>Date</span>
+                        <span>Status</span>
+                        <button type="button" class="review_button">
+                            Review
+                        </button>
+                    </article>
+
+                    <article class="clip_row">
+                        <div class="clip_thumbnail"
+                             aria-label="Blank clip preview"></div>
+                        <span>Clip Name</span>
+                        <span>Team</span>
+                        <span>Date</span>
+                        <span>Status</span>
+                        <button type="button" class="review_button">
+                            Review
+                        </button>
+                    </article>
+
+                    <article class="clip_row">
+                        <div class="clip_thumbnail"
+                             aria-label="Blank clip preview"></div>
+                        <span>Clip Name</span>
+                        <span>Team</span>
+                        <span>Date</span>
+                        <span>Status</span>
+                        <button type="button" class="review_button">
+                            Review
+                        </button>
+                    </article>
+
+                    <article class="clip_row">
+                        <div class="clip_thumbnail"
+                             aria-label="Blank clip preview"></div>
+                        <span>Clip Name</span>
+                        <span>Team</span>
+                        <span>Date</span>
+                        <span>Status</span>
+                        <button type="button" class="review_button">
+                            Review
+                        </button>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
