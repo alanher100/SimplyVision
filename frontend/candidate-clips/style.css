@@ -1,6 +1,5 @@
-
 :root {
-    --orange: #df6939;
+    --orange: #F75F26;
     --dark: #222326;
     --background: #f5f6f8;
     --border: #d7d7d7;
@@ -429,7 +428,7 @@ button {
     }
 
     .sidebar-brand img {
-        width: 190px;
+        width: 180px;
         max-width: none;
         max-height: none;
         height: auto;
@@ -444,10 +443,12 @@ button {
     transition: background 0.2s, color 0.2s;
 }
 
+
 .actions button:hover:not(:disabled) {
-    background: #df6939;
+    background: var(--orange);
     color: white;
 }
+
 
 .actions button:disabled {
     cursor: not-allowed;
@@ -493,4 +494,325 @@ button {
 #cancel-label-btn {
     background: #eeeeee;
     color: #555;
+}
+
+
+.add-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+
+/* Confirm and Reject notification banners */
+
+.review-message[hidden] {
+    display: none;
+}
+
+.review-message {
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 12px;
+    border-bottom: 1px solid #888;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.review-message strong {
+    font-size: 13px;
+}
+
+.review-message span {
+    font-style: italic;
+}
+
+.review-message.confirmed {
+    background: #bfe5bf;
+    color: #222;
+}
+
+.review-message.rejected {
+    background: #e5a59b;
+    color: #222;
+}
+
+
+/* All candidate clips reviewed - Soft Blue */
+.review-message.completed {
+    background-color: #E8F1FB;
+    border: 1px solid #8BB8E8;
+    color: #315A80;
+}
+
+.review-message.completed strong {
+    color: #2563A6;
+}
+
+
+/* Disabled Review Complete button */
+.actions .next-clip-btn:disabled {
+    background-color: #f0dfd5;
+    color: #D94F1D;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+
+/* Review Next Clip button */
+
+.actions .next-clip-btn {
+    background: #fff0db;
+    color: #F75F26;
+    border-radius: 20px;
+    padding: 9px 18px;
+}
+
+.actions .next-clip-btn:hover {
+    background: #F75F26;
+    color: white;
+}
+
+
+/* Add Event Label button hover effect */
+
+.add-btn {
+    transition: background 0.2s, color 0.2s;
+}
+
+.add-btn:hover:not(:disabled) {
+    background: var(--orange);
+    color: white;
+}
+
+
+/* Add Label and Cancel button interactions */
+
+#save-label-btn,
+#cancel-label-btn {
+    transition: background-color 0.2s ease,
+                transform 0.12s ease,
+                box-shadow 0.2s ease;
+}
+
+#save-label-btn:hover {
+    background: #D94F1D;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#cancel-label-btn:hover {
+    background: #d5d5d5;
+    color: #333;
+}
+
+/* Button press animation */
+#save-label-btn:active,
+#cancel-label-btn:active {
+    transform: scale(0.94);
+    box-shadow: none;
+}
+
+/* Keyboard focus indicator */
+#save-label-btn:focus-visible,
+#cancel-label-btn:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #save-label-btn,
+    #cancel-label-btn {
+        transition: none;
+    }
+}
+
+
+/* Confirm and Reject button animations */
+
+#confirmBtn,
+#rejectBtn {
+    transition: background-color 0.2s ease,
+                color 0.2s ease,
+                transform 0.12s ease,
+                box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+#confirmBtn:hover:not(:disabled),
+#rejectBtn:hover:not(:disabled) {
+    background: var(--orange);
+    color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Click animation */
+#confirmBtn:active:not(:disabled),
+#rejectBtn:active:not(:disabled) {
+    transform: scale(0.94);
+    box-shadow: none;
+}
+
+/* Keyboard focus */
+#confirmBtn:focus-visible,
+#rejectBtn:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+}
+
+/* Disabled buttons */
+#confirmBtn:disabled,
+#rejectBtn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #confirmBtn,
+    #rejectBtn {
+        transition: none;
+    }
+}
+
+
+/* Remove event label button */
+
+.remove-label {
+    border: none;
+    background: transparent;
+    color: #999;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 14px;
+    transition: color 0.2s, transform 0.12s;
+}
+
+.remove-label:hover {
+    color: #C53030;
+}
+
+.remove-label:active {
+    transform: scale(0.85);
+}
+
+.remove-label:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 2px;
+}
+
+
+/* Hide remove icons after clip review */
+
+.review-panel:has(.review-message:not([hidden])) .remove-label {
+    display: none;
+}
+
+
+/* Center event label contents */
+
+.tags span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.remove-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 14px;
+    height: 14px;
+    line-height: 1;
+}
+
+
+
+/* SimplyVision Delete Confirmation Modal */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.delete-modal-box {
+    width: 90%;
+    max-width: 420px;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.delete-modal-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #fff0e9;
+    color: #F75F26;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.delete-modal-box h2 {
+    color: #222326;
+    margin-bottom: 12px;
+    font-size: 22px;
+}
+
+.delete-modal-box p {
+    color: #666;
+    line-height: 1.5;
+}
+
+.delete-modal-note {
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.delete-modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.delete-modal-actions button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#cancel-delete {
+    background: #f3f4f6;
+    color: #222326;
+    border: 1px solid #ddd;
+}
+
+#confirm-delete {
+    background: #F75F26;
+    color: white;
+    border: none;
+}
+
+#confirm-delete:hover {
+    background: #df4d18;
 }
