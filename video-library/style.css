@@ -145,8 +145,8 @@ button {
 }
 
 .account-dot {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--orange);
   flex-shrink: 0;
@@ -156,15 +156,37 @@ button {
   flex: 1;
 }
 
-.signout {
+/* Log Out link, styled like the Dashboard's Log Out button */
+.logout-btn {
   display: block;
-  margin: 8px 2px 0;
-  font-size: 10px;
-  color: #aaa;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background: transparent;
+  color: #ddd;
+  font-size: 11px;
+  text-align: center;
   text-decoration: none;
 }
 
-.signout:hover {
+.logout-btn:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: white;
+}
+
+/* Settings gear (placeholder button) */
+.settings-icon {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.settings-icon:hover {
   color: white;
 }
 
