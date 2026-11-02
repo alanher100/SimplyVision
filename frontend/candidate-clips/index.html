@@ -19,17 +19,17 @@
 
         <p class="nav-heading">WORKSPACE</p>
 
+        
         <nav>
             <a href="#">Dashboard</a>
             <a href="#">Upload Footage</a>
-            <a href="#">AI Processing</a>
-            <a href="#">Editor Review</a>
-            <a href="#" class="active">
-                ▥ &nbsp; Candidate Clips
-                <span class="count">12</span>
-            </a>
+            <a href="#">AI Processing <span class="count">3</span></a>
+            <a href="#">Editor Review <span class="count">5</span></a>
+            <a href="#" class="active">Candidate Clips <span class="count">12</span></a>
             <a href="#">Video Library</a>
         </nav>
+
+
 
         <div class="sidebar-bottom">
             <div class="storage">
@@ -53,9 +53,12 @@
                 </p>
             </div>
 
-            <button class="queue-btn" type="button">
+            
+            <button class="queue-btn" id="review-queue-btn" type="button">
                 + Review Queue · 12
             </button>
+
+
         </header>
 
         <main class="content">
@@ -73,12 +76,14 @@
                     <option>All players</option>
                 </select>
 
-                <select aria-label="Status filter">
-                    <option>All statuses</option>
-                    <option>Pending</option>
-                    <option>Confirmed</option>
-                    <option>Rejected</option>
+                
+                <select id="status-filter" aria-label="Status filter">
+                    <option value="all">All statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="rejected">Rejected</option>
                 </select>
+
 
                 <select aria-label="Sort order">
                     <option>Newest first</option>
@@ -86,18 +91,26 @@
             </section>
 
             <div class="secondary-toolbar">
-                <button type="button">⇩ Export</button>
-                <button class="delete-btn" type="button">
+                
+                <button id="export-btn" type="button">⇩ Export</button>
+
+                
+                <button id="delete-btn" class="delete-btn" type="button">
                     ♜ Delete
                 </button>
+
+
             </div>
 
+            
             <div class="pagination">
-                <button type="button">‹</button>
-                <button class="selected" type="button">1</button>
-                <button type="button">2</button>
-                <button type="button">›</button>
+                <button id="prev-clip" type="button">‹</button>
+                <button class="selected" data-clip-index="0" type="button">1</button>
+                <button data-clip-index="1" type="button">2</button>
+                <button data-clip-index="2" type="button">3</button>
+                <button id="next-clip" type="button">›</button>
             </div>
+
 
             <section class="review-area">
                 <article class="clip-card">
@@ -107,14 +120,15 @@
                     </div>
 
                     <div class="clip-info">
-                        <p><strong>Marcus Reed · #11</strong></p>
-                        <p>
-                            West Campus High School vs
-                            Davis Senior High School
-                        </p>
-                        <small>
-                            Q2 · 02:14 game time · 00:12 clip
-                        </small>
+                        
+                    <p><strong id="clip-player">Marcus Reed · #11</strong></p>
+                    <p id="clip-game">
+                        West Campus High School vs Davis Senior High School
+                    </p>
+                    <small id="clip-time">
+                        Q2 · 02:14 game time · 00:12 clip
+                    </small>
+
 
                         <div class="clip-footer">
                             <span id="clipStatus" role="status">
@@ -125,7 +139,12 @@
                     </div>
                 </article>
 
-                <section class="review-panel">
+                <section class="review-panel">    
+                <div id="review-message" class="review-message" role="status" hidden>
+                    <strong id="review-message-title"></strong>
+                    <span id="review-message-description"></span>
+                </div>
+
 
                 <!--
                 Sprint 1 UI placeholders:
@@ -141,6 +160,8 @@
                             AI-detected from this clip
                         </p>
 
+                        <div id="clip-stats">
+
                         <div class="stat-row">
                             <span>+2 Points</span>
                             <strong>92%</strong>
@@ -155,16 +176,21 @@
                             <span>Fast Break</span>
                             <strong>81%</strong>
                         </div>
-                    </div>
+
+                        </div> <!-- closes clip-stats -->
+                        </div> <!-- closes panel-body -->
+                    
 
                     <h2>Suggested Event Labels</h2>
 
                     <div class="panel-body">
                         <!-- Event labels -->
                         <div class="tags" id="event-tags">
-                            <span>■ Made Shot</span>
-                            <span>■ 2PT</span>
-                            <span>■ Fast Break</span>
+                            
+                            <span>■ Made Shot <button type="button" class="remove-label" aria-label="Remove Made Shot">×</button></span>
+                            <span>■ 2PT <button type="button" class="remove-label" aria-label="Remove 2PT">×</button></span>
+                            <span>■ Fast Break <button type="button" class="remove-label" aria-label="Remove Fast Break">×</button></span>
+
 
                             <button
                                 class="add-btn"
@@ -228,124 +254,35 @@
         </main>
     </div>
 
-    <script>
-        // Confirm and Reject functionality
+    
 
-        const confirmBtn = document.getElementById("confirmBtn");
-        const rejectBtn = document.getElementById("rejectBtn");
-        const clipStatus = document.getElementById("clipStatus");
-        const reviewPanel = document.querySelector(".review-panel");
+    
+    <!-- SimplyVision Delete Confirmation -->
+    <div id="delete-modal" class="modal-overlay" hidden>
+        <div class="delete-modal-box">
+            <div class="delete-modal-icon">!</div>
+            <h2>Delete Candidate Clip?</h2>
+            <p id="delete-modal-message">
+                Are you sure you want to delete this clip?
+            </p>
+            <p class="delete-modal-note">
+                Clip deletion will be available in Sprint 3.
+            </p>
+            <div class="delete-modal-actions">
+                <button type="button" id="cancel-delete">
+                    Cancel
+            </button>
+                <button type="button" id="confirm-delete">
+                    Delete Clip
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        function updateClipStatus(status) {
-            if (status === "confirmed") {
-                clipStatus.textContent = "✓ Confirmed";
-                clipStatus.style.color = "#228b22";
+    <script src="script.js"></script>
 
-                reviewPanel.style.borderColor = "#228b22";
-
-                confirmBtn.textContent = "✓ Confirmed";
-                confirmBtn.style.background = "#d8f3dc";
-                confirmBtn.style.color = "#228b22";
-            }
-
-            if (status === "rejected") {
-                clipStatus.textContent = "✕ Rejected";
-                clipStatus.style.color = "#d93025";
-
-                reviewPanel.style.borderColor = "#d93025";
-
-                rejectBtn.textContent = "✕ Rejected";
-                rejectBtn.style.background = "#fde2e2";
-                rejectBtn.style.color = "#d93025";
-            }
-
-            // Prevent reviewing the same clip twice
-            confirmBtn.disabled = true;
-            rejectBtn.disabled = true;
-        }
-
-        confirmBtn.addEventListener("click", function () {
-            updateClipStatus("confirmed");
-        });
-
-        rejectBtn.addEventListener("click", function () {
-            updateClipStatus("rejected");
-        });
-
-
-        // Add Event Label functionality
-
-        const addBtn = document.getElementById("add-label-btn");
-        const labelForm = document.getElementById("label-form");
-        const labelInput = document.getElementById("new-label");
-        const saveBtn = document.getElementById("save-label-btn");
-        const cancelBtn = document.getElementById("cancel-label-btn");
-        const tags = document.getElementById("event-tags");
-
-        function closeLabelForm() {
-            labelInput.value = "";
-            labelForm.hidden = true;
-            addBtn.setAttribute("aria-expanded", "false");
-        }
-
-        addBtn.addEventListener("click", function () {
-            labelForm.hidden = false;
-            addBtn.setAttribute("aria-expanded", "true");
-            labelInput.focus();
-        });
-
-        saveBtn.addEventListener("click", function () {
-            const label = labelInput.value.trim();
-
-            if (label === "") {
-                alert("Please enter an event label.");
-                labelInput.focus();
-                return;
-            }
-
-            // Check for duplicate labels
-            const existingLabels = Array.from(
-                tags.querySelectorAll("span")
-            ).map(function (span) {
-                return span.textContent
-                    .replace(/^■\s*/, "")
-                    .trim()
-                    .toLowerCase();
-            });
-
-            if (existingLabels.includes(label.toLowerCase())) {
-                alert("This event label already exists.");
-                labelInput.focus();
-                return;
-            }
-
-            // Create the new event label
-            const newTag = document.createElement("span");
-            newTag.textContent = "■ " + label;
-
-            // Insert before the Add button
-            tags.insertBefore(newTag, addBtn);
-
-            closeLabelForm();
-        });
-
-        cancelBtn.addEventListener("click", function () {
-            closeLabelForm();
-        });
-
-        // Allow Enter to save and Escape to cancel
-        labelInput.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                saveBtn.click();
-            }
-
-            if (event.key === "Escape") {
-                closeLabelForm();
-                addBtn.focus();
-            }
-        });
-    </script>
-</body>
+    </body>
 </html>
 
 
