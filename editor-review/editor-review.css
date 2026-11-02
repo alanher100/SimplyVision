@@ -1,70 +1,71 @@
-/* Main colors used throughout the page */
 :root {
     --orange: #F75F26;
     --charcoal: #222326;
     --white: #FFFFFF;
-    --light-gray: #F5F5F5;
-    --text-gray: #666666;
+    --red: #C53030;
+    --background: #FAFAFA;
+    --border: #D5D5D5;
+    --text-gray: #777777;
 }
 
 * {
     box-sizing: border-box;
+}
+
+html,
+body {
     margin: 0;
-    padding: 0;
+    min-height: 100%;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--white);
-    color: #111111;
     min-height: 100vh;
+    display: flex;
+    background: var(--background);
+    color: var(--charcoal);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
 }
 
-/* Sidebar navigation styling */
+/* Sidebar */
+
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 155px;
     min-width: 155px;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 0 10px 15px;
     background: var(--charcoal);
     color: var(--white);
-    padding: 0 10px 15px;
     display: flex;
     flex-direction: column;
-    z-index: 10;
+    flex-shrink: 0;
 }
 
-/* SimplyVision logo styling */
 .logo {
     width: calc(100% + 20px);
-    height: 90px;
-    min-height: 90px;
+    height: 115px;
     margin: 0 -10px;
-    padding: 0;
+    padding: 10px;
     background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
     flex-shrink: 0;
-    overflow: hidden;
 }
 
 .logo img {
-    display: block;
-    width: 105%;
+    width: 190px;
     max-width: none;
     height: auto;
     object-fit: contain;
-    object-position: center;
 }
 
 .sidebar_label {
-    color: #888;
+    margin: 12px 8px;
+    color: #888888;
     font-size: 9px;
     letter-spacing: 1px;
-    margin: 12px 8px;
 }
 
 .sidebar_nav {
@@ -74,27 +75,28 @@ body {
 }
 
 .sidebar_nav a {
-    color: #ddd;
-    text-decoration: none;
     padding: 12px 10px;
     border-radius: 5px;
+    color: #DDDDDD;
+    text-decoration: none;
     font-size: 11px;
 }
 
 .sidebar_nav a:hover,
 .sidebar_nav a.active {
     background: var(--orange);
+    color: var(--white);
 }
 
 .count {
+    float: right;
+    min-width: 18px;
+    padding: 2px 5px;
+    border-radius: 10px;
     background: var(--charcoal);
     color: var(--white);
-    border-radius: 12px;
     font-size: 9px;
-    min-width: 18px;
-    padding: 3px 5px;
     text-align: center;
-    white-space: nowrap;
 }
 
 .sidebar_bottom {
@@ -102,25 +104,32 @@ body {
 }
 
 .storage_heading {
-    background: #303135;
     padding: 10px;
     border-radius: 5px;
+    background: #303135;
+    display: flex;
+    justify-content: space-between;
     font-size: 10px;
 }
 
 .storage_bar {
     height: 4px;
-    background: #555;
+    margin-top: 8px;
     border-radius: 5px;
+    background: #555555;
 }
 
 .storage_bar div {
+    width: 68%;
     height: 100%;
+    border-radius: 5px;
     background: var(--orange);
 }
 
 .sidebar_bottom small {
-    color: #888;
+    display: block;
+    margin-top: 8px;
+    color: #AAAAAA;
     font-size: 9px;
 }
 
@@ -128,7 +137,8 @@ body {
     display: flex;
     align-items: center;
     gap: 7px;
-    margin-top: 12px;
+    margin-top: 15px;
+    font-size: 10px;
 }
 
 .profile_icon {
@@ -140,237 +150,239 @@ body {
 }
 
 .profile {
+    margin: 0 0 3px;
     font-weight: bold;
-    font-size: 9px;
-    margin-bottom: 3px;
 }
 
-/* Main page layout */
-.main_content {
-    margin-left: 155px;
-    padding: 28px;
+/* Main workspace */
+
+.workspace {
+    flex: 1;
     min-width: 0;
 }
 
-.page_header h1 {
-    font-size: 26px;
-    margin-bottom: 4px;
+/* Header */
+
+.top-header {
+    min-height: 115px;
+    padding: 0 30px 0 25px;
+    border-bottom: 1px solid #EEEEEE;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
 }
 
-.page_header p {
-    font-size: 13px;
+.heading {
+    flex: 1;
+    min-width: 0;
+}
+
+.heading h1 {
+    margin: 0 0 7px;
+    font-size: 23px;
+}
+
+.heading p {
+    margin: 0;
     color: var(--text-gray);
+    font-size: 11px;
 }
 
-/* Review status cards: Pending, Approve, Correction, Reject cards */
+.queue-btn,
+.review_button,
+.card_action {
+    border: none;
+    border-radius: 5px;
+    background: var(--orange);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.queue-btn {
+    padding: 12px 15px;
+    font-size: 11px;
+    flex-shrink: 0;
+}
+
+/* Main content */
+
+.content {
+    max-width: 1250px;
+    padding: 20px 25px;
+}
+
 .summary_cards {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 190px));
-    gap: 22px;
-    margin: 28px 0 30px;
-    width: 100%;
-    max-width: 1050px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
 .summary_card {
-    border: 1px solid var(--orange);
-    border-radius: 9px;
-    padding: 0 12px 14px;
     overflow: hidden;
-    min-width: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
 }
 
 .card_image {
     display: block;
-    width: calc(100% + 24px);
-    height: 72px;
-    margin: 0 -12px 24px;
+    width: 100%;
+    height: 95px;
     object-fit: cover;
-    object-position: center;
-    border-bottom: 1px solid var(--orange);
 }
 
 .card_action {
-    width: 100%;
-    min-height: 30px;
-    margin: 0;
-    padding: 7px 8px;
-    border: none;
-    border-radius: 6px;
-    background: var(--orange);
-    color: var(--white);
+    width: calc(100% - 20px);
+    margin: 10px;
+    padding: 9px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 4px;
-    font-size: 10px;
+    font-size: 11px;
     text-align: left;
-    cursor: pointer;
 }
 
-.card_action:hover,
-.review_button:hover {
-    filter: brightness(0.92);
+.card_action .count {
+    color: var(--white);
 }
 
-/* Pending review list */
+/* Pending review section */
+
+.pending_section {
+    min-height: 300px;
+    padding: 25px;
+    border: 1px solid #888888;
+    border-radius: 6px;
+    background: var(--white);
+}
+
 .pending_section h2 {
-    font-size: 14px;
-    margin: 0 0 20px 6px;
+    margin: 0 0 18px;
+    font-size: 17px;
 }
 
 .clip_list {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 10px;
 }
 
 .clip_row {
-    border: 1px solid var(--orange);
-    min-height: 67px;
+    min-height: 72px;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--background);
     display: grid;
-    grid-template-columns: 128px minmax(70px, 1.2fr)
-        minmax(45px, 0.8fr) minmax(45px, 0.8fr)
-        minmax(50px, 0.8fr) 72px;
+    grid-template-columns:
+        110px
+        minmax(100px, 1.3fr)
+        minmax(80px, 1fr)
+        minmax(80px, 1fr)
+        minmax(80px, 1fr)
+        75px;
     align-items: center;
     gap: 12px;
-    font-size: 12px;
-    background: var(--white);
-    min-width: 0;
+    font-size: 11px;
 }
 
 .clip_thumbnail {
-    height: 65px;
     width: 100%;
-    background: var(--light-gray);
-    border-right: 1px solid var(--orange);
+    height: 55px;
+    border-radius: 4px;
+    background: #292929;
 }
 
 .review_button {
-    justify-self: center;
-    margin: 0 8px 0 0;
+    justify-self: end;
     padding: 9px 12px;
-    border: none;
-    border-radius: 6px;
-    background: var(--orange);
-    color: var(--white);
     font-size: 11px;
-    cursor: pointer;
 }
 
-/* Keyboard focus for future interactions */
+button:hover {
+    background: #D94F1D;
+}
+
 button:focus-visible,
 a:focus-visible {
-    outline: 2px solid #111111;
+    outline: 2px solid var(--orange);
     outline-offset: 2px;
 }
 
-/* Responsive layout for smaller screens */
-@media (max-width: 900px) {
-    .main_content {
-        padding: 22px;
-    }
+/* Responsive layout */
 
+@media (max-width: 900px) {
     .summary_cards {
-        grid-template-columns: repeat(2, minmax(0, 150px));
-        gap: 14px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .clip_row {
-        grid-template-columns: 90px minmax(70px, 1fr)
-            minmax(45px, 0.7fr) 72px;
-        padding-right: 8px;
-        gap: 8px;
+        grid-template-columns: 90px minmax(100px, 1fr) 75px;
     }
 
+    .clip_row span:nth-of-type(2),
     .clip_row span:nth-of-type(3),
     .clip_row span:nth-of-type(4) {
         display: none;
     }
-
-    .review_button {
-        margin-right: 0;
-    }
 }
 
-/* Small screens */
-@media (max-width: 550px) {
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+    }
+
     .sidebar {
-        width: 110px;
-        padding: 0 7px 10px;
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
     }
 
     .logo {
-        height: 75px;
-        min-height: 75px;
-        margin: 0 -7px 14px;
-        padding: 0;
+        height: 90px;
     }
 
     .logo img {
-        width: 100%;
-        height: 73px;
-        max-width: none;
-        object-fit: contain;
+        width: 110px;
+        max-height: 75px;
     }
 
-    .sidebar_nav a {
-        font-size: 9px;
-        padding: 9px 5px;
-    }
-
-    .main_content {
-        margin-left: 110px;
-        padding: 14px;
-    }
-
-    .page_header h1 {
-        font-size: 21px;
-    }
-
-    .page_header p {
-        font-size: 11px;
-    }
-
-    .summary_cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        margin-top: 20px;
-    }
-
-    .summary_card {
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-    .card_image {
-        width: calc(100% + 16px);
-        margin-left: -8px;
-        margin-right: -8px;
-    }
-
-    .card_action {
-        font-size: 9px;
-        padding: 7px 5px;
-    }
-
-    .clip_list {
-        gap: 15px;
-    }
-
-    .clip_row {
-        grid-template-columns: 65px minmax(0, 1fr) 58px;
-        gap: 8px;
-        font-size: 10px;
-    }
-
-    .clip_row span:not(:first-of-type) {
+    .sidebar_bottom {
         display: none;
     }
 
+    .top-header {
+        min-height: 110px;
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+
+    .heading h1 {
+        font-size: 20px;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    .summary_cards {
+        gap: 10px;
+    }
+
+    .pending_section {
+        padding: 15px;
+    }
+
+    .clip_row {
+        grid-template-columns: 65px minmax(0, 1fr) 65px;
+        gap: 8px;
+    }
+
     .clip_thumbnail {
-        height: 65px;
+        height: 48px;
     }
 
     .review_button {
