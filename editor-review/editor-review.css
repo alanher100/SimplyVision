@@ -389,4 +389,30 @@ a:focus-visible {
         padding: 8px 6px;
         font-size: 10px;
     }
+
+    .page_view {
+    padding: 25px;
+    border: 1px solid #888888;
+    border-radius: 6px;
+    background: var(--white);
+}
+
+.page_view h2 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+
+.page_view p {
+    margin-bottom: 20px;
+    color: var(--text-gray);
+}
+
+.page_view button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    background: var(--orange);
+    color: var(--white);
+    cursor: pointer;
+}
 }
