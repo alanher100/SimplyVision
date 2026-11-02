@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimplyVision | Statistics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <!-- SimplyVision logo at top-left -->
+        <div class="sidebar-brand">
+            <img src="../frontend/assets/simplyvision-logo.png" alt="SimplyVision Logo">
+        </div>
+
+        <p class="nav-heading">WORKSPACE</p>
+
+        <nav>
+            <a href="index.html" class="active">Dashboard</a>
+            <a href="../upload-footage-review/uploadfootage.html">Upload Footage</a>
+            <a href="ai-processing.html">AI Processing <span class="count">3</span></a>
+            <a href="../editor-review/editor-review.html">Editor Review <span class="count">5</span></a>
+            <a href="../frontend/candidate-clips/index.html">Candidate Clips <span class="count">12</span></a>
+            <a href="../video-library/index.html">Video Library</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="storage">
+                <p>Storage <span>68%</span></p>
+                <div class="storage-track"><div></div></div>
+                <small>34.2 GB of 50 GB used</small>
+            </div>
+            <button type="button" id="logoutButton" class="logout-btn">Log Out</button>
+            <p class="account">🟠 Simply Basketball</p>
+        </div>
+    </aside>
+
+    <div class="workspace">
+        <header class="top-header">
+            <div class="heading">
+                <h1>Statistics</h1>
+                <p>Points, rebounds, assists. Sample data for the Sprint 2 prototype.</p>
+            </div>
+            <button class="queue-btn" type="button">+ Upload Footage</button>
+        </header>
+
+        <main class="content">
+            <section class="panel">
+                <h2>Statistics</h2>
+                <div class="row"><span class="name">Points</span><span class="date">Hawks vs. Lions</span><span class="badge ">42</span></div>
+                <div class="row"><span class="name">Rebounds</span><span class="date">Hawks vs. Lions</span><span class="badge ">31</span></div>
+                <div class="row"><span class="name">Assists</span><span class="date">Hawks vs. Lions</span><span class="badge ">18</span></div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
