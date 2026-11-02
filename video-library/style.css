@@ -144,13 +144,6 @@ button {
   font-size: 10px;
 }
 
-.account-dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--orange);
-  flex-shrink: 0;
-}
 
 .account-name {
   flex: 1;
