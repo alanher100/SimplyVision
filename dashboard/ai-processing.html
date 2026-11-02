@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimplyVision | AI Processing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <!-- SimplyVision logo at top-left -->
+        <div class="sidebar-brand">
+            <img src="../frontend/assets/simplyvision-logo.png" alt="SimplyVision Logo">
+        </div>
+
+        <p class="nav-heading">WORKSPACE</p>
+
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="../upload-footage-review/uploadfootage.html">Upload Footage</a>
+            <a href="ai-processing.html" class="active">AI Processing <span class="count">3</span></a>
+            <a href="../editor-review/editor-review.html">Editor Review <span class="count">5</span></a>
+            <a href="../frontend/candidate-clips/index.html">Candidate Clips <span class="count">12</span></a>
+            <a href="../video-library/index.html">Video Library</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="storage">
+                <p>Storage <span>68%</span></p>
+                <div class="storage-track"><div></div></div>
+                <small>34.2 GB of 50 GB used</small>
+            </div>
+            <button type="button" id="logoutButton" class="logout-btn">Log Out</button>
+            <p class="account">🟠 Simply Basketball</p>
+        </div>
+    </aside>
+
+    <div class="workspace">
+        <header class="top-header">
+            <div class="heading">
+                <h1>AI Processing</h1>
+                <p>Videos currently being analyzed. Sample data for the Sprint 2 prototype.</p>
+            </div>
+            <button class="queue-btn" type="button">+ Upload Footage</button>
+        </header>
+
+        <main class="content">
+            <section class="panel">
+                <h2>AI Processing</h2>
+                <div class="row"><span class="name">Sac High vs. Elk Grove (Varsity)</span><span class="date">Started 6:10 PM</span><span class="badge processing">Processing</span></div>
+                <div class="row"><span class="name">Davis vs. Woodland</span><span class="date">Started 6:22 PM</span><span class="badge processing">Processing</span></div>
+                <div class="row"><span class="name">Folsom Summer League</span><span class="date">Queued</span><span class="badge review">Queued</span></div>
+            </section>
+        </main>
+    </div>
+<!-- SV-36: Logout functionality -->
+<script src="../frontend/logout.js" defer></script>
+</body>
+</html>
