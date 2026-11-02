@@ -1,3 +1,9 @@
+:root {
+  --orange: #df6939;
+  --dark: #222326;
+  --border: #d7d7d7;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,140 +11,189 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  color: #222;
   display: flex;
   min-height: 100vh;
   background: #FFFFFF;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 240px;
-  background: #222326;
-  color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-}
-
-.logo {
-  background: #FFFFFF;
-  padding: 16px 20px;
-  border-bottom: 1px solid #E5E5E5;
-}
-
-.logo img {
-  display: block;
-  width: 160px;
-  height: auto;
-}
-
-.nav-label {
-  margin: 20px 20px 8px;
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: #9A9CA2;
-}
-
-.sidebar nav a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  color: #FFFFFF;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.sidebar nav a.active {
-  background: #F75F26;
-}
-
-.badge-count {
-  background: #4A4B50;
-  color: #FFFFFF;
-  font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 10px;
-}
-
-/* Bottom of sidebar: storage and profile */
-.sidebar-footer {
-  margin-top: auto;
-  padding: 12px;
-}
-
-.storage {
-  background: #2C2D31;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
-}
-
-.storage-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-}
-
-.storage-track {
-  height: 6px;
-  background: #4A4B50;
-  border-radius: 3px;
-  margin: 8px 0;
-  overflow: hidden;
-}
-
-.storage-fill {
-  height: 100%;
-  width: 68%;
-  background: #F75F26;
-}
-
-.storage-detail {
-  margin: 0;
-  font-size: 11px;
-  color: #9A9CA2;
-}
-
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 4px;
-}
-
-.avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #F75F26;
-  flex-shrink: 0;
-}
-
-.profile-info {
-  flex: 1;
-}
-
-.profile-name {
-  margin: 0;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.profile-role {
-  margin: 2px 0 0;
-  font-size: 11px;
-  color: #9A9CA2;
-}
-
-.settings-icon {
-  font-size: 16px;
-  color: #9A9CA2;
+button {
+  font: inherit;
   cursor: pointer;
 }
 
-/* Page content */
+/*Sidebar ( Changed so it matches Dashboard and Candidate Clips) except added signoutfunctionality*/
+.sidebar {
+  width: 155px;
+  min-width: 155px;
+  min-height: 100vh;
+  background: var(--dark);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px 15px;
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.sidebar-brand {
+  width: calc(100% + 20px);
+  height: 115px;
+  margin: 0 -10px;
+  padding: 10px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sidebar-brand a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar-brand img {
+  width: 180px;
+  max-width: none;
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+}
+
+.nav-heading {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #888;
+  margin: 12px 8px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar nav a {
+  color: #ddd;
+  text-decoration: none;
+  padding: 12px 10px;
+  border-radius: 5px;
+  font-size: 11px;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: var(--orange);
+  color: white;
+}
+
+.count {
+  float: right;
+  background: #222;
+  padding: 2px 5px;
+  border-radius: 10px;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+.storage {
+  background: #303135;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+
+.storage p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 8px;
+}
+
+.storage-track {
+  height: 4px;
+  background: #555;
+  border-radius: 5px;
+}
+
+.storage-track div {
+  width: 68%;
+  height: 100%;
+  background: var(--orange);
+  border-radius: 5px;
+}
+
+.storage small {
+  display: block;
+  margin-top: 8px;
+  color: #aaa;
+  font-size: 9px;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 0 2px;
+  font-size: 10px;
+}
+
+.account-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.account-name {
+  flex: 1;
+}
+
+/* Log Out link, styled like the Dashboard's Log Out button */
+.logout-btn {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background: transparent;
+  color: #ddd;
+  font-size: 11px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.logout-btn:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: white;
+}
+
+/* Settings gear (placeholder button) */
+.settings-icon {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.settings-icon:hover {
+  color: white;
+}
+
+/*Page content */
 .content {
   flex: 1;
+  min-width: 0;
   padding: 32px 40px;
 }
 
@@ -148,7 +203,7 @@ h1 {
   margin: 0 0 24px;
 }
 
-/* Download error banner (SV-63) */
+/* Download banner (SV-63)*/
 .error-banner {
   display: flex;
   align-items: center;
@@ -161,6 +216,12 @@ h1 {
   margin-bottom: 24px;
 }
 
+/* display:flex above would otherwise ignore the hidden attribute */
+.error-banner[hidden],
+.retry-button[hidden] {
+  display: none;
+}
+
 .error-text {
   margin: 0;
   font-size: 13px;
@@ -171,6 +232,13 @@ h1 {
   font-weight: bold;
 }
 
+.banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
 .retry-button {
   flex-shrink: 0;
   background: #C53030;
@@ -179,14 +247,39 @@ h1 {
   border-radius: 6px;
   padding: 8px 20px;
   font-size: 14px;
-  cursor: pointer;
 }
 
 .retry-button:hover {
   background: #A32424;
 }
 
-/* Placeholder clip cards */
+.dismiss-button {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  color: #C53030;
+  padding: 0 6px;
+}
+
+.retry-button:disabled,
+.download-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Green success version of the banner */
+.error-banner.success {
+  background: #EDF7F0;
+  border-color: #B7DFC4;
+}
+
+.error-banner.success .error-text,
+.error-banner.success .dismiss-button {
+  color: #2F7D4F;
+}
+
+/* Clip cards */
 .clip-grid {
   display: flex;
   gap: 16px;
@@ -198,6 +291,11 @@ h1 {
   border: 1px solid #DDDDDD;
   border-radius: 8px;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.clip-placeholder:hover {
+  border-color: var(--orange);
 }
 
 .clip-thumb {
@@ -212,12 +310,48 @@ h1 {
 }
 
 .clip-meta {
-  margin: 0 12px 12px;
+  margin: 0 12px 10px;
   font-size: 11px;
   color: #888888;
 }
 
-/* Narrow screens: stack the sidebar above the content */
+.clip-actions {
+  padding: 0 12px 12px;
+}
+
+.download-button {
+  background: var(--orange);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.download-button.done {
+  background: #2F7D4F;
+}
+
+/* Toast message*/
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #222326;
+  color: #FFFFFF;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+/* Narrow screens: stack the sidebar above the content  */
 @media (max-width: 700px) {
   body {
     flex-direction: column;
@@ -225,6 +359,8 @@ h1 {
 
   .sidebar {
     width: 100%;
+    min-width: 0;
+    min-height: auto;
   }
 
   .content {
