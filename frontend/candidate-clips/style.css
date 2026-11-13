@@ -1,0 +1,818 @@
+:root {
+    --orange: #F75F26;
+    --dark: #222326;
+    --background: #f5f6f8;
+    --border: #d7d7d7;
+    --peach: #f0dfd5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #222;
+    background: var(--background);
+    display: flex;
+    min-height: 100vh;
+    font-size: 13px;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Sidebar */
+
+.sidebar {
+    width: 155px;
+    min-width: 155px;
+    min-height: 100vh;
+    background: var(--dark);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 15px;
+    flex-shrink: 0;
+}
+
+/* SimplyVision logo at top-left */
+
+.sidebar-brand {
+    width: calc(100% + 20px);
+    height: 115px;
+    margin: 0 -10px;
+    padding: 10px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sidebar-brand img {
+    /*display: block;*/
+    width: 180px;
+    max-width: none;
+    max-height: none;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Sidebar navigation */
+
+.nav-heading {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #888;
+    margin: 12px 8px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar nav a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 12px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: var(--orange);
+    color: white;
+}
+
+.count {
+    float: right;
+    background: #222;
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.storage {
+    background: #303135;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+.storage p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.storage-track {
+    height: 4px;
+    background: #555;
+    border-radius: 5px;
+}
+
+.storage-track div {
+    width: 68%;
+    height: 100%;
+    background: var(--orange);
+}
+
+.storage small {
+    display: block;
+    margin-top: 8px;
+    color: #aaa;
+    font-size: 9px;
+}
+
+.account {
+    font-size: 10px;
+}
+
+/* Main workspace */
+
+.workspace {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Top header */
+
+.top-header {
+    height: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-bottom: 1px solid #eee;
+    gap: 22px;
+    padding: 0 30px 0 25px;
+}
+
+.heading {
+    flex: 1;
+    min-width: 0;
+}
+
+.heading h1 {
+    margin: 0 0 7px;
+    font-size: 23px;
+}
+
+.heading p {
+    margin: 0;
+    color: #888;
+    font-size: 11px;
+}
+
+.queue-btn {
+    background: var(--orange);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 15px;
+    font-size: 11px;
+    flex-shrink: 0;
+}
+
+/* Toolbar */
+
+.content {
+    padding: 20px 25px;
+    max-width: 1250px;
+}
+
+.toolbar,
+.secondary-toolbar,
+.pagination {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.toolbar input,
+.toolbar select,
+.secondary-toolbar button,
+.pagination button {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 9px;
+    font-size: 11px;
+}
+
+.toolbar input {
+    width: 230px;
+    max-width: 100%;
+}
+
+.delete-btn {
+    color: #b33;
+    background: #fff0f0 !important;
+}
+
+.pagination .selected {
+    background: var(--orange);
+    color: white;
+    border-color: var(--orange);
+}
+
+/* Review area */
+
+.review-area {
+    border: 1px solid #888;
+    border-radius: 6px;
+    background: white;
+    padding: 28px;
+    min-height: 450px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 45px;
+    align-items: start;
+}
+
+/* Clip card */
+
+.clip-card {
+    width: 100%;
+    max-width: 320px;
+    border: 1px solid var(--orange);
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+.video-placeholder {
+    height: 155px;
+    background: #292929;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.video-placeholder small {
+    color: #aaa;
+}
+
+.clip-info {
+    padding: 12px;
+}
+
+.clip-info p {
+    margin: 0 0 7px;
+    font-size: 11px;
+}
+
+.clip-info small {
+    font-size: 10px;
+    color: #999;
+}
+
+.clip-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    font-size: 10px;
+    color: var(--orange);
+}
+
+/* Statistics panel */
+
+.review-panel {
+    border: 1px solid #bbb;
+    min-height: 390px;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-panel h2 {
+    background: var(--peach);
+    margin: 0;
+    padding: 12px 15px;
+    font-size: 17px;
+}
+
+.panel-body {
+    padding: 15px 12px 25px;
+}
+
+.section-caption {
+    font-weight: bold;
+    font-size: 11px;
+    margin: 0 0 12px;
+}
+
+.stat-row {
+    background: #dedede;
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 12px;
+    margin-bottom: 5px;
+    font-size: 11px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tags span,
+.add-btn {
+    background: #f0f0f4;
+    border: none;
+    border-radius: 18px;
+    padding: 8px 12px;
+    color: #777;
+    font-size: 11px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: auto;
+    padding: 25px;
+}
+
+.actions button {
+    border: none;
+    border-radius: 20px;
+    padding: 9px 18px;
+    background: #e8e8e8;
+    color: #888;
+    font-size: 11px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 850px) {
+    .review-area {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .review-panel {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+    }
+
+    .sidebar-brand {
+        height: 90px;
+    }
+
+    .sidebar-brand img {
+        width: 100px;
+        max-height: 75px;
+    }
+
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .top-header {
+        height: auto;
+        min-height: 100px;
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    .review-area {
+        padding: 15px;
+    }
+}
+
+/* Bigger SimplyVision logo */
+@media (min-width: 601px) {
+    .sidebar-brand {
+        height: 115px;
+        margin: 0 -10px;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+    }
+
+    .sidebar-brand img {
+        width: 180px;
+        max-width: none;
+        max-height: none;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+
+/* Confirm and Reject button interactions */
+
+.actions button {
+    transition: background 0.2s, color 0.2s;
+}
+
+
+.actions button:hover:not(:disabled) {
+    background: var(--orange);
+    color: white;
+}
+
+
+.actions button:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Add Event Label */
+
+.label-form[hidden] {
+    display: none;
+}
+
+.label-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.label-form input {
+    padding: 9px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 11px;
+    min-width: 0;
+    flex: 1;
+}
+
+.label-form button {
+    border: none;
+    border-radius: 5px;
+    padding: 9px 12px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+#save-label-btn {
+    background: var(--orange);
+    color: white;
+}
+
+#cancel-label-btn {
+    background: #eeeeee;
+    color: #555;
+}
+
+
+.add-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+
+/* Confirm and Reject notification banners */
+
+.review-message[hidden] {
+    display: none;
+}
+
+.review-message {
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 12px;
+    border-bottom: 1px solid #888;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.review-message strong {
+    font-size: 13px;
+}
+
+.review-message span {
+    font-style: italic;
+}
+
+.review-message.confirmed {
+    background: #bfe5bf;
+    color: #222;
+}
+
+.review-message.rejected {
+    background: #e5a59b;
+    color: #222;
+}
+
+
+/* All candidate clips reviewed - Soft Blue */
+.review-message.completed {
+    background-color: #E8F1FB;
+    border: 1px solid #8BB8E8;
+    color: #315A80;
+}
+
+.review-message.completed strong {
+    color: #2563A6;
+}
+
+
+/* Disabled Review Complete button */
+.actions .next-clip-btn:disabled {
+    background-color: #f0dfd5;
+    color: #D94F1D;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+
+/* Review Next Clip button */
+
+.actions .next-clip-btn {
+    background: #fff0db;
+    color: #F75F26;
+    border-radius: 20px;
+    padding: 9px 18px;
+}
+
+.actions .next-clip-btn:hover {
+    background: #F75F26;
+    color: white;
+}
+
+
+/* Add Event Label button hover effect */
+
+.add-btn {
+    transition: background 0.2s, color 0.2s;
+}
+
+.add-btn:hover:not(:disabled) {
+    background: var(--orange);
+    color: white;
+}
+
+
+/* Add Label and Cancel button interactions */
+
+#save-label-btn,
+#cancel-label-btn {
+    transition: background-color 0.2s ease,
+                transform 0.12s ease,
+                box-shadow 0.2s ease;
+}
+
+#save-label-btn:hover {
+    background: #D94F1D;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#cancel-label-btn:hover {
+    background: #d5d5d5;
+    color: #333;
+}
+
+/* Button press animation */
+#save-label-btn:active,
+#cancel-label-btn:active {
+    transform: scale(0.94);
+    box-shadow: none;
+}
+
+/* Keyboard focus indicator */
+#save-label-btn:focus-visible,
+#cancel-label-btn:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #save-label-btn,
+    #cancel-label-btn {
+        transition: none;
+    }
+}
+
+
+/* Confirm and Reject button animations */
+
+#confirmBtn,
+#rejectBtn {
+    transition: background-color 0.2s ease,
+                color 0.2s ease,
+                transform 0.12s ease,
+                box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+#confirmBtn:hover:not(:disabled),
+#rejectBtn:hover:not(:disabled) {
+    background: var(--orange);
+    color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Click animation */
+#confirmBtn:active:not(:disabled),
+#rejectBtn:active:not(:disabled) {
+    transform: scale(0.94);
+    box-shadow: none;
+}
+
+/* Keyboard focus */
+#confirmBtn:focus-visible,
+#rejectBtn:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+}
+
+/* Disabled buttons */
+#confirmBtn:disabled,
+#rejectBtn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #confirmBtn,
+    #rejectBtn {
+        transition: none;
+    }
+}
+
+
+/* Remove event label button */
+
+.remove-label {
+    border: none;
+    background: transparent;
+    color: #999;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 14px;
+    transition: color 0.2s, transform 0.12s;
+}
+
+.remove-label:hover {
+    color: #C53030;
+}
+
+.remove-label:active {
+    transform: scale(0.85);
+}
+
+.remove-label:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 2px;
+}
+
+
+/* Hide remove icons after clip review */
+
+.review-panel:has(.review-message:not([hidden])) .remove-label {
+    display: none;
+}
+
+
+/* Center event label contents */
+
+.tags span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.remove-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 14px;
+    height: 14px;
+    line-height: 1;
+}
+
+
+
+/* SimplyVision Delete Confirmation Modal */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.delete-modal-box {
+    width: 90%;
+    max-width: 420px;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.delete-modal-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #fff0e9;
+    color: #F75F26;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.delete-modal-box h2 {
+    color: #222326;
+    margin-bottom: 12px;
+    font-size: 22px;
+}
+
+.delete-modal-box p {
+    color: #666;
+    line-height: 1.5;
+}
+
+.delete-modal-note {
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.delete-modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.delete-modal-actions button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#cancel-delete {
+    background: #f3f4f6;
+    color: #222326;
+    border: 1px solid #ddd;
+}
+
+#confirm-delete {
+    background: #F75F26;
+    color: white;
+    border: none;
+}
+
+#confirm-delete:hover {
+    background: #df4d18;
+}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Upload Footage | Simply Basketball</title>
+        <link rel="stylesheet" href="uploadfootage.css">
+    </head>
+    <body>
+        <!-- SIDEBAR NAVIGATION; REFERENCED FROM DASHBOARD PAGE
+         We may make this a component at some point -->
+        <aside class="sidebar">
+            <!--retrieving the logo-->
+            <div class="logo">
+                <img src="../frontend/assets/simplyvision-logo.png"
+                     alt="SimplyVision logo">
+            </div>
+            <!--Workspace label on sidebar nav-->
+            <p class="sidebar_label">WORKSPACE</p>
+
+            <nav class="sidebar_nav">
+                <a href="../dashboard/index.html">Dashboard</a>
+                <a href="uploadfootage.html" class="active">Upload Footage</a>
+                <a href="../dashboard/ai-processing.html">AI Processing <span class="count">3</span></a>
+                <a href="../editor-review/editor-review.html">Editor Review <span class="count">5</span></a>
+                <a href="../frontend/candidate-clips/index.html">Candidate Clips <span class="count">12</span></a>
+                <a href="../video-library/index.html">Video Library</a>
+            </nav>
+
+            <!--mockup storage status bar-->
+            <div class="sidebar_bottom">
+                <div class="storage_heading">
+                    <span>Storage</span>
+                    <span>68%</span>
+                </div>
+
+                <div class="storage_bar">
+                    <div></div>
+                </div>
+
+                <small>34.2 GB of 50 GB used</small>
+            <!--end of mockup storage status bar-->
+
+            <!--mockup profile section-->
+                <div class="profile_section">
+                    <div class="profile_icon"></div>
+                    <div>
+                        <p class="profile">Simply Basketball</p>
+                        <small>Example Profile</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!--end of sidebar nav section-->
+
+
+<!--MAIN CONTENT FOR PAGE -->
+    
+        <main class="main_content">
+
+            <!--page heading-->
+            <header class="page_header">
+                <div class="page_heading">
+                    <h1>Upload Footage</h1>
+                    <p>Upload a game video and provide basic information so it can be processed by AI.</p>
+                </div>
+
+                <a href="#" class="review_queue_button"> + Review Queue · 11 </a>    
+            </header>
+
+            <!-- selecting the video file-->
+             <section class="upload_section">
+                <h2>Select Video File</h2>
+                <div class="file_drop_zone" id="fileDropZone">
+                    <div class="upload_icon" aria-hidden="true">
+                        &#9729; <!--unicode cloud symbol for now-->
+                    </div>
+                    <p>Drag and drop a video file here</p>
+                    <span class="upload_separator>">or</span>
+                    <label for ="videoFile" class="choose_file_button">
+                        Choose File
+                    </label>
+                    <input type="file" id="videoFile" name="videoFile"
+                        accept=".mp4,.mov,video/mp4,video/quicktime"
+                        form="uploadForm"
+                        hidden
+                    >
+                    <small class="file_requirements">
+                        Supported formats: MP4, MOV &bull;
+                        Maximum file size: 4 GB &bull;
+                        Recommended resolution: 720p or higher
+                    </small>
+                </div>
+             </section>
+             <!--end of selecting video file section-->
+
+             <!--Game Information Section-->
+             <section class="game_information_section">
+                <h2>Game Information</h2>
+                <p class="section_description">
+                    Provide basic details about the game to help with processing and organization.
+                </p>
+                <form id="uploadForm">
+                    <!--Game ID, Date, Sport (placeholder I guess)-->
+                    <div class="form_row form_row_one">
+                        <div class="form_group">
+                            <label for="gameID">
+                                Game id
+                                <span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <input 
+                                type="text"
+                                id="gameID"
+                                placeholder="e.g. GAME-001"
+                                required
+                            >
+                        </div>
+                        <div class="form_group">
+                            <label for="gameDate">
+                                Date
+                                <span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <input 
+                                type="date"
+                                id="gameDate"
+                                name="gameDate"
+                                required
+                            >
+                        </div>
+                        <div class="form_group">
+                            <label for="sport">
+                                Sport 
+                                <span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <select 
+                                id="sport"
+                                name="sport"
+                                required
+                            >
+                                <option value="basketball" selected>
+                                    Basketball
+                                </option>
+                            </select>
+                        </div>
+                    </div> <!--end of first row of form-->
+
+                    <!--Teams, Level, Gender-->
+                    <div class="form_row form_row_two">
+                        <div class="form_group">
+                            <label for="homeTeam">
+                                Home Team
+                                <span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <input
+                                type="text"
+                                id="homeTeam"
+                                name="homeTeam"
+                                placeholder="e.g. FHS Panthers"
+                                required
+                            >
+                        </div>
+                        <div class="form_group">
+                            <label for="awayTeam">
+                                Away Team
+                                <span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <input
+                                type="text"
+                                id="awayTeam"
+                                name="awayTeam"
+                                placeholder="e.g. LCHS Eagles"
+                                required
+                            >
+                        </div>
+                        <div class="form_group">
+                            <label for="gameLevel">
+                                Level
+                            </label>
+                            <select
+                                id="gameLevel"
+                                name="gameLevel"
+                            >
+                                <option value="high-school" selected>
+                                    High School
+                                </option>
+                                <option value="middle-school">
+                                    Middle School
+                                </option>
+                                <option value="college-uni">
+                                    College/University
+                                </option>
+                                <option value="professional">
+                                    Professional
+                                </option>
+                                <option value="other">
+                                    Other
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form_group">
+                            <label for="gender">
+                                Gender
+                            </label>
+                            <select id="gender" name="gender">
+                                <option value="boys" selected>
+                                    Boys
+                                </option>
+                                <option value="girls">
+                                    Girls
+                                </option>
+                                <option value="coed">
+                                    Co-ed
+                                </option>
+                                <option value="other">
+                                    Other
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--additional notes row-->
+                    <div class="form_group notes_group">
+                        <label for="additionalNotes">
+                            Additional Notes (Optional)
+                        </label>
+                        <textarea
+                            id="additionalNotes"
+                            name="additionalNotes"
+                            placeholder="Add any extra information about this footage."
+                            maxlength="500"
+                            rows="3"
+                        ></textarea>
+                        <small class="character_counter">
+                            <span id="notesCount">
+                                0
+                            </span>/500
+                        </small>
+                    </div>
+                    <!--buttons for form-->
+                    <div class="form_actions">
+                        <button type="reset"
+                        class="clear_button">
+                            Clear
+                        </button>
+                        <button type="submit"
+                        class="upload_video_button">
+                            &#8679; Upload Video <!--unicode for arrow box thing-->
+                        </button>
+                    </div>
+                </form>
+             </section>
+
+           
+        </main>
+    </body>
+</html>

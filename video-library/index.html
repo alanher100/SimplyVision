@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimplyVision | Video Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <!-- SimplyVision logo at top-left -->
+    <div class="sidebar-brand">
+      <a href="../dashboard/index.html">
+        <img src="images/logo.png" alt="SimplyVision Logo">
+      </a>
+    </div>
+
+    <p class="nav-heading">WORKSPACE</p>
+
+    <nav>
+      <a href="../dashboard/index.html">Dashboard</a>
+      <a href="../upload-footage-review/uploadfootage.html">Upload Footage</a>
+      <a href="../dashboard/ai-processing.html">AI Processing <span class="count">3</span></a>
+      <a href="../editor-review/editor-review.html">Editor Review <span class="count">5</span></a>
+      <a href="../frontend/candidate-clips/index.html">Candidate Clips <span class="count">12</span></a>
+      <a href="index.html" class="active">Video Library</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="storage">
+        <p>Storage <span id="storage-percent">68%</span></p>
+        <div class="storage-track"><div id="storage-fill"></div></div>
+        <small id="storage-detail">34.2 GB of 50 GB used</small>
+      </div>
+
+      <a class="logout-btn" href="../frontend/login.html">Log Out</a>
+
+      <div class="account">
+        <span class="account-name">🟠 Simply Basketball</span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <h1>Video Library</h1>
+
+    <div class="error-banner" id="download-banner" role="alert">
+      <p class="error-text" id="banner-text"></p>
+      <div class="banner-actions">
+        <button class="retry-button" id="retry-button" type="button">Retry</button>
+        <button class="dismiss-button" id="dismiss-button" type="button" aria-label="Dismiss message">&times;</button>
+      </div>
+    </div>
+
+    <!-- Clip cards are created by script.js -->
+    <div class="clip-grid" id="clip-grid"></div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

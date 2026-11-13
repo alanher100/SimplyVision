@@ -1,0 +1,405 @@
+/* Main colors used throughout the page */
+:root {
+    --orange: #F75F26;
+    --charcoal: #222326;
+    --white: #FFFFFF;
+    --light-gray: #F5F5F5;
+    --text-gray: #666666;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--white);
+    color: #111111;
+    min-height: 100vh;
+}
+
+/* Sidebar navigation styling */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 155px;
+    min-width: 155px;
+    height: 100vh;
+    background: var(--charcoal);
+    color: var(--white);
+    padding: 0 10px 15px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+/* SimplyVision logo styling */
+.logo {
+    width: calc(100% + 20px);
+    height: 90px;
+    min-height: 90px;
+    margin: 0 -10px;
+    padding: 0;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.logo img {
+    display: block;
+    width: 105%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+.sidebar_label {
+    color: #888;
+    font-size: 9px;
+    letter-spacing: 1px;
+    margin: 12px 8px;
+}
+
+/* SIDE BAR NAV STUFF */
+.sidebar_nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar_nav a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 12px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+.sidebar_nav a:hover,
+.sidebar_nav a.active {
+    background: var(--orange);
+}
+
+.count {
+    background: var(--charcoal);
+    color: var(--white);
+    border-radius: 12px;
+    font-size: 9px;
+    min-width: 18px;
+    padding: 3px 5px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.sidebar_bottom {
+    margin-top: auto;
+}
+
+.storage_heading {
+    background: #303135;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+.storage_bar {
+    height: 4px;
+    background: #555;
+    border-radius: 5px;
+}
+
+.storage_bar div {
+    height: 100%;
+    background: var(--orange);
+}
+
+.sidebar_bottom small {
+    color: #888;
+    font-size: 9px;
+}
+
+.profile_section {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.profile_icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+}
+
+.profile {
+    font-weight: bold;
+    font-size: 9px;
+    margin-bottom: 3px;
+}
+
+/* Main page layout */
+.main_content {
+    margin-left: 155px;
+    padding: 28px;
+    min-width: 0;
+}
+
+.page_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: var(--white);
+    margin: 0 -20px 16px;
+    padding: 22px 20px;
+    border-bottom: 1px solid #e9ebef;
+}
+
+.page_header h1 {
+    font-size: 26px;
+    margin-bottom: 4px;
+}
+
+.page_header p {
+    font-size: 13px;
+    color: var(--text-gray);
+}
+
+.page_heading {
+    flex: 1;
+    min-width: 0;
+}
+/* End Main Page Layout */
+
+/* Review Queue button */
+.review_queue_button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 12px 18px;
+    border-radius: 7px;
+    background: var(--orange);
+    color: var(--white);
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+
+}
+
+.upload_section, .game_information_section, .processing_queue_section {
+    background: var(--white);
+    border: 1px solid #eceef1;
+    border-radius: 9px;
+    padding: 18px;
+    margin-bottom: 14px;
+}
+
+.upload_section h2,
+.game_information_section h2,
+.processing_queue_section h2 {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.upload_separator {
+    color: #888;
+    font-size: 12px;
+}
+
+.choose_file_button {
+    background: var(--orange);
+    color: var(--white);
+    border-radius: 6px;
+    padding: 11px 35px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.file_drop_zone {
+    min-height: 170px;
+    border: 2px dashed #d2d6dc;
+    border-radius: 7px;
+    background: #fafbfc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    text-align: center;
+    gap: 7px;
+}
+
+.file_drop_zone p {
+    font-size: 13px;
+    font-weight: bold;
+    color: #303238;
+}
+
+.upload_icon {
+    font-size: 32px;
+    color: #626971;
+    line-height: 1;
+}
+
+.upload_separator {
+    color: #888;
+    font-size: 12px;
+}
+
+.file_requirements {
+    margin-top: 6px;
+    font-size: 10px;
+    color: #777;
+    line-height: 1.5;
+}
+
+.form_group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    position: relative;
+}
+
+.form_group label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #35383d;
+    margin-bottom: 7px;
+}
+
+.form_row {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form_row_one {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.form_row_two {
+    grid-template-columns: 1.2fr 1.35fr 1fr 0.8fr;
+}
+
+.upload_section, .game_information_section, .processing_queue_section {
+        padding: 14px;
+    }
+
+.queue_header {
+        flex-wrap: wrap;
+    }
+
+.required {
+    color: #ff3b30;
+}
+
+.form_group input,
+.form_group select,
+.form_group textarea {
+    width: 100%;
+    border: 1px solid #dce0e5;
+    border-radius: 6px;
+    background: var(--white);
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 12px;
+    color: #333;
+    outline: none;
+}
+
+.form_group input,
+.form_group select {
+    height: 37px;
+}
+
+.form_group input::placeholder,
+.form_group textarea::placeholder {
+    color: #9ca3af;
+}
+
+.form_group input:focus,
+.form_group select:focus,
+.form_group textarea:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 2px rgba(247, 95, 38, 0.1);
+}
+
+.form_group select {
+    cursor: pointer;
+}
+
+.notes_group {
+    margin-top: 2px;
+}
+
+.notes_group textarea {
+    min-height: 55px;
+    resize: vertical;
+    padding-bottom: 22px;
+}
+
+.character_counter {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    color: #858b94;
+    font-size: 11px;
+    background: var(--white);
+}
+
+/* form stuff for buttons */
+.form_actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.clear_button,
+.upload_video_button {
+    min-height: 38px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.clear_button {
+    background: var(--white);
+    border: 1px solid #dce0e5;
+    color: #444;
+    min-width: 100px;
+}
+
+.clear_button:hover {
+    background: #f4f4f4;
+}
+
+.upload_video_button {
+    background: var(--orange);
+    border: 1px solid var(--orange);
+    color: var(--white);
+    min-width: 145px;
+}
+
+.upload_video_button:hover {
+    background: #df4e19;
+}
+
