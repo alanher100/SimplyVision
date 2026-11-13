@@ -154,6 +154,28 @@ body {
     font-weight: bold;
 }
 
+.profile {
+    margin: 0 0 3px;
+    font-weight: bold;
+}
+
+.logout-button {
+    display: block;
+    margin-top: 14px;
+    padding: 9px 10px;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    color: #DDDDDD;
+    font-size: 10px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.logout-button:hover {
+    background: var(--orange);
+    color: var(--white);
+}
+
 /* Main workspace */
 
 .workspace {
@@ -389,6 +411,7 @@ a:focus-visible {
         padding: 8px 6px;
         font-size: 10px;
     }
+}
 
     .page_view {
     padding: 25px;
@@ -414,5 +437,4 @@ a:focus-visible {
     background: var(--orange);
     color: var(--white);
     cursor: pointer;
-}
 }
