@@ -816,3 +816,299 @@ button {
 #confirm-delete:hover {
     background: #df4d18;
 }
+
+
+/* Log Out button */
+
+.logout-btn {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background: transparent;
+    color: #ddd;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #F75F26;
+    border-color: #F75F26;
+    color: white;
+}
+
+/* New page */
+
+/* All Candidate Clips page */
+
+.all-clips-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+}
+
+.all-clips-page h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.clip-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.clip-summary > div {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+}
+
+.clip-summary h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.clip-summary p {
+    font-size: 32px;
+    font-weight: bold;
+    color: #df6634;
+}
+
+.all-clips-list {
+    margin-top: 30px;
+}
+
+.all-clip-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.all-clip-card h3 {
+    margin-bottom: 10px;
+}
+
+
+/* All Candidate Clips page */
+
+.all-clips-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+}
+
+.all-clips-page h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.clip-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.clip-summary > div {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+}
+
+.clip-summary h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.clip-summary p {
+    font-size: 32px;
+    font-weight: bold;
+    color: #df6634;
+}
+
+.all-clips-list {
+    margin-top: 30px;
+}
+
+.all-clip-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.all-clip-card h3 {
+    margin-bottom: 10px;
+}
+
+
+/* Candidate clip status badges */
+
+.clip-status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.clip-status-badge.pending {
+    background-color: #fff0d6;
+    color: #b86b00;
+}
+
+.clip-status-badge.confirmed {
+    background-color: #dff3df;
+    color: #228b22;
+}
+
+.clip-status-badge.rejected {
+    background-color: #fde2df;
+    color: #d93025;
+}
+
+
+/* Position All Candidate Clips beside the sidebar */
+.all-clips-page {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 30px 25px;
+}
+
+
+/* Rounded View All Clips button beside Review Complete */
+.actions .view-all-clips-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff0db;
+    color: #F75F26;
+    border-radius: 20px;
+    padding: 9px 18px;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.actions .view-all-clips-btn:hover {
+    background: #F75F26;
+    color: white;
+}
+
+
+
+/* SimplyVision Confirm popup - orange theme */
+#confirm-modal .delete-modal-box {
+    border-radius: 18px;
+    border-top: 5px solid #F75F26;
+    padding: 32px;
+}
+
+#confirm-modal .delete-modal-icon {
+    background: #FFF0E8;
+    color: #F75F26;
+    border-radius: 50%;
+}
+
+#confirm-modal h2 {
+    color: #292929;
+}
+
+#confirm-modal .delete-modal-actions button {
+    border-radius: 20px;
+    transition: 0.2s ease;
+}
+
+/* Cancel button */
+#confirm-modal #cancel-confirm {
+    background: #FFF0E8;
+    color: #D94F1D;
+    border: 1px solid #FAD5C5;
+}
+
+/* Yes, Confirm button */
+#confirm-modal #approve-confirm {
+    background: #F75F26;
+    color: white;
+    border: 1px solid #F75F26;
+}
+
+#confirm-modal #approve-confirm:hover {
+    background: #D94F1D;
+}
+
+
+
+/* SimplyVision Reject popup - orange theme */
+#reject-modal .delete-modal-box {
+    border-radius: 18px;
+    border-top: 5px solid #F75F26;
+    padding: 32px;
+}
+
+#reject-modal .delete-modal-icon {
+    background: #FFF0E8;
+    color: #F75F26;
+    border-radius: 50%;
+}
+
+#reject-modal h2 {
+    color: #292929;
+}
+
+#reject-modal .delete-modal-actions button {
+    border-radius: 20px;
+    transition: 0.2s ease;
+}
+
+/* Cancel button */
+#reject-modal #cancel-reject {
+    background: #FFF0E8;
+    color: #D94F1D;
+    border: 1px solid #FAD5C5;
+}
+
+/* Yes, Reject button */
+#reject-modal #approve-reject {
+    background: #F75F26;
+    color: white;
+    border: 1px solid #F75F26;
+}
+
+#reject-modal #approve-reject:hover {
+    background: #D94F1D;
+}
+
+
+
+/* All Candidate Clips completion banner */
+.all-clips-complete {
+    background: #EAF2FF;
+    border: 1px solid #8BB8E8;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #4169A1;
+}
+
+.all-clips-complete strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.all-clips-complete p {
+    margin: 0;
+    font-size: 13px;
+}

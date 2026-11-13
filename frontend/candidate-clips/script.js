@@ -41,7 +41,63 @@
      }
  ];
 
+
+const savedStatuses = JSON.parse(
+    localStorage.getItem("simplyvision-clip-statuses") || "null"
+);
+
+if (Array.isArray(savedStatuses)) {
+    candidateClips.forEach((clip, index) => {
+        if (["pending", "confirmed", "rejected"].includes(savedStatuses[index])) {
+            clip.status = savedStatuses[index];
+        }
+    });
+}
+
+
+
  let currentClipIndex = 0;
+
+
+ // Sprint 3: Populate the game filter
+const gameFilter = document.getElementById("game-filter");
+
+
+ // Sprint 3: Populate the player filter
+const playerFilter = document.getElementById("player-filter");
+
+const players = [...new Set(candidateClips.map(clip => clip.player))];
+
+players.forEach(player => {
+    const option = document.createElement("option");
+    option.value = player;
+    option.textContent = player;
+    playerFilter.appendChild(option);
+});
+
+
+
+playerFilter.addEventListener("change", applyFilters);
+
+
+
+
+// Get all unique games from the candidate clips
+const games = [...new Set(candidateClips.map(clip => clip.game))];
+
+// Add each game to the dropdown
+games.forEach(game => {
+    const option = document.createElement("option");
+    option.value = game;
+    option.textContent = game;
+    gameFilter.appendChild(option);
+});
+
+
+
+gameFilter.addEventListener("change", applyFilters);
+
+
 
  
     const reviewQueueBtn = document.getElementById("review-queue-btn");
@@ -62,40 +118,86 @@
 const statusFilter = document.getElementById("status-filter");
 
 
-statusFilter.addEventListener("change", function () {
-    const selectedStatus = statusFilter.value;
 
-    const matchingClips = candidateClips
-        .map((clip, index) => ({
-            index: index,
-            status: clip.status
-        }))
-        .filter(clip =>
-            selectedStatus === "all" ||
-            clip.status === selectedStatus
-        );
 
-    
+function applyFilters() {
+    const searchText = document
+        .getElementById("clip-search")
+        .value.trim().toLowerCase();
+
+    const matchingIndexes = candidateClips
+        .map((clip, index) => ({ clip, index }))
+        .filter(({ clip }) =>
+            (gameFilter.value === "all" ||
+             clip.game === gameFilter.value) &&
+            (playerFilter.value === "all" ||
+             clip.player === playerFilter.value) &&
+            
+            (statusFilter.value === "all" ||
+            clip.status === statusFilter.value) &&
+            (
+                clip.player.toLowerCase().includes(searchText) ||
+                clip.game.toLowerCase().includes(searchText) ||
+                clip.time.toLowerCase().includes(searchText)
+            )
+
+        )
         
-        // Show only pagination buttons matching the selected status
-        document.querySelectorAll(".pagination [data-clip-index]")
-            .forEach(button => {
-                const clipIndex = Number(button.dataset.clipIndex);
+        .map(({ index }) => index)
+        .sort((a, b) => {
+            const sortOrder = document.getElementById("sort-order").value;
 
-                const isMatch = matchingClips.some(
-                    clip => clip.index === clipIndex
-                );
-
-                button.hidden = !isMatch;
-            });
+            return sortOrder === "newest" ? b - a : a - b;
+        });
 
 
+   
 
-    if (matchingClips.length > 0) {
-        showClip(matchingClips[0].index);
+    const reviewArea = document.querySelector(".review-area");
+
+    if (matchingIndexes.length === 0) {
+        reviewArea.style.display = "none";
+    } else {
+        reviewArea.style.display = "";
+
+        const index = matchingIndexes[0];
+
+       
     }
 
-});
+     
+    
+    // Update pagination numbers to match the sorted order
+    const pageButtons = document.querySelectorAll(
+        ".pagination [data-clip-index]"
+    );
+
+    pageButtons.forEach((button, position) => {
+        const clipIndex = matchingIndexes[position];
+
+        button.hidden = clipIndex === undefined;
+
+        if (clipIndex !== undefined) {
+            button.dataset.clipIndex = clipIndex;
+            button.textContent = position + 1;
+        }
+    });
+
+    if (matchingIndexes.length > 0) {
+        showClip(matchingIndexes[0]);
+    }
+
+}
+
+statusFilter.addEventListener("change", applyFilters);
+
+
+document.getElementById("sort-order")
+    .addEventListener("change", applyFilters);
+
+
+document.getElementById("clip-search")
+    .addEventListener("input", applyFilters);
 
 
  
@@ -152,6 +254,12 @@ function updateClipStats(clip) {
 
             // Remember the decision for the current clip
             candidateClips[currentClipIndex].status = status;
+
+            localStorage.setItem(
+                "simplyvision-clip-statuses",
+                JSON.stringify(candidateClips.map(clip => clip.status))
+            );
+
 
             // Update the remaining review queue count
             updateReviewQueueCount();
@@ -233,10 +341,18 @@ function updateClipStats(clip) {
 
                     reviewMessage.hidden = false;
 
+                    
                     nextBtn.disabled = true;
                     nextBtn.textContent = "Review Complete ✓";
 
+                    const viewAllBtn = document.createElement("a");
+                    viewAllBtn.href = "all-clips.html";
+                    viewAllBtn.className = "view-all-clips-btn";
+                    viewAllBtn.textContent = "View All Clips →";
+                    actions.appendChild(viewAllBtn);
+
                     return;
+
                 }
 
 
@@ -270,13 +386,43 @@ function updateClipStats(clip) {
             });
         }
             
-            confirmBtn.addEventListener("click", function () {
-                updateClipStatus("confirmed");
-            });
+            
+        const confirmModal = document.getElementById("confirm-modal");
+        const cancelConfirmBtn = document.getElementById("cancel-confirm");
+        const approveConfirmBtn = document.getElementById("approve-confirm");
 
-            rejectBtn.addEventListener("click", function () {
-                updateClipStatus("rejected");
-            });
+        confirmBtn.addEventListener("click", function () {
+            confirmModal.hidden = false;
+        });
+
+        cancelConfirmBtn.addEventListener("click", function () {
+            confirmModal.hidden = true;
+        });
+
+        approveConfirmBtn.addEventListener("click", function () {
+            confirmModal.hidden = true;
+            updateClipStatus("confirmed");
+        });
+
+
+            
+        const rejectModal = document.getElementById("reject-modal");
+        const cancelRejectBtn = document.getElementById("cancel-reject");
+        const approveRejectBtn = document.getElementById("approve-reject");
+
+        rejectBtn.addEventListener("click", function () {
+            rejectModal.hidden = false;
+        });
+
+        cancelRejectBtn.addEventListener("click", function () {
+            rejectModal.hidden = true;
+        });
+
+        approveRejectBtn.addEventListener("click", function () {
+            rejectModal.hidden = true;
+            updateClipStatus("rejected");
+        });
+
             
 
         // Add Event Label functionality
@@ -389,6 +535,14 @@ function updateClipStats(clip) {
                         reviewMessage.hidden = false;
                         nextBtn.disabled = true;
                         nextBtn.textContent = "Review Complete ✓";
+                        
+                        
+                        const viewAllBtn = document.createElement("a");
+                        viewAllBtn.href = "all-clips.html";
+                        viewAllBtn.className = "view-all-clips-btn";
+                        viewAllBtn.textContent = "View All Clips →";
+                        actions.appendChild(viewAllBtn);
+                        
                         return;
                     }
 
@@ -423,22 +577,18 @@ function updateClipStats(clip) {
     updateClipLabels(clip);
 
     
-    // Update pagination after clips are removed
+    // Highlight the correct page number for the current clip
     document.querySelectorAll(".pagination [data-clip-index]")
         .forEach(button => {
-            const clipIndex = Number(button.dataset.clipIndex);
-
-            // Hide pages that no longer have a clip
-            button.hidden = clipIndex >= candidateClips.length;
-
-            // Highlight the current clip
             button.classList.toggle(
                 "selected",
-                clipIndex === currentClipIndex
+                Number(button.dataset.clipIndex) === currentClipIndex
             );
         });
-    }
 
+    
+    }
+    
 
             
     // Pagination: click a page number to view that clip
@@ -449,38 +599,54 @@ function updateClipStats(clip) {
                 });
             });
 
+            // Apply sorting after pagination buttons are ready
+            applyFilters();
+
             
-        // Previous clip: skip hidden pages
-        document.getElementById("prev-clip")
-            .addEventListener("click", () => {
-                const visibleIndexes = Array.from(
-                    document.querySelectorAll(
-                        ".pagination [data-clip-index]:not([hidden])"
-                    )
-                ).map(button => Number(button.dataset.clipIndex));
+        
+            
+            // Previous arrow: move backward through displayed page numbers
+            document.getElementById("prev-clip")
+                .addEventListener("click", () => {
+                    const pageButtons = Array.from(
+                        document.querySelectorAll(
+                            ".pagination [data-clip-index]:not([hidden])"
+                        )
+                    );
 
-                const position = visibleIndexes.indexOf(currentClipIndex);
+                    const currentPosition = pageButtons.findIndex(
+                        button => Number(button.dataset.clipIndex) === currentClipIndex
+                    );
 
-                if (position > 0) {
-                    showClip(visibleIndexes[position - 1]);
-                }
-            });
+                    if (currentPosition > 0) {
+                        pageButtons[currentPosition - 1].click();
+                    }
+                });
 
-        // Next clip: skip hidden pages
-        document.getElementById("next-clip")
-            .addEventListener("click", () => {
-                const visibleIndexes = Array.from(
-                    document.querySelectorAll(
-                        ".pagination [data-clip-index]:not([hidden])"
-                    )
-                ).map(button => Number(button.dataset.clipIndex));
 
-                const position = visibleIndexes.indexOf(currentClipIndex);
 
-                if (position !== -1 && position < visibleIndexes.length - 1) {
-                    showClip(visibleIndexes[position + 1]);
-                }
-            });
+        
+             
+                // Next arrow: move forward through displayed page numbers
+                document.getElementById("next-clip")
+                    .addEventListener("click", () => {
+                        const pageButtons = Array.from(
+                            document.querySelectorAll(
+                                ".pagination [data-clip-index]:not([hidden])"
+                            )
+                        );
+
+                        const currentPosition = pageButtons.findIndex(
+                            button => Number(button.dataset.clipIndex) === currentClipIndex
+                        );
+
+                        if (currentPosition !== -1 &&
+                            currentPosition < pageButtons.length - 1) {
+                            pageButtons[currentPosition + 1].click();
+                        }
+                    });
+
+
 
 
 
@@ -647,3 +813,14 @@ confirmDeleteBtn.addEventListener("click", function () {
     alert("Clip deletion will be available in Sprint 3.");
 });
 
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.getElementById("logoutButton");
+
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            window.location.href = "../login.html?logout=preview";
+        });
+    }
+});

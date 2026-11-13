@@ -31,17 +31,25 @@
 
 
 
-        <div class="sidebar-bottom">
-            <div class="storage">
-                <p>Storage <span>68%</span></p>
-                <div class="storage-track">
-                    <div></div>
-                </div>
-                <small>34.2 GB of 50 GB used</small>
-            </div>
-            <p class="account">🟠 Simply Basketball</p>
+        
+<div class="sidebar-bottom">
+    <div class="storage">
+        <p>Storage <span>68%</span></p>
+        <div class="storage-track">
+            <div></div>
         </div>
-    </aside>
+        <small>34.2 GB of 50 GB used</small>
+    </div>
+
+    <!-- Log Out button -->
+    <button type="button" id="logoutButton" class="logout-btn">
+        Log Out
+    </button>
+
+    <p class="account">🟠 Simply Basketball</p>
+</div>
+
+</aside>
 
     <div class="workspace">
         <header class="top-header">
@@ -59,22 +67,33 @@
             </button>
 
 
+            <a href="all-clips.html">View All Clips →</a>
+
+
+
         </header>
 
         <main class="content">
-            <section class="toolbar">
-                <input
-                    type="search"
-                    placeholder="Search clips, games, or players"
+            <section class="toolbar">  
+            <input
+                type="search"
+                id="clip-search"
+                placeholder="Search clips, games, or players"
+                aria-label="Search candidate clips"
                 >
 
-                <select aria-label="Game filter">
-                    <option>All games</option>
+                  
+
+                
+                <select id="game-filter" aria-label="Game filter">
+                    <option value="all">All games</option>
                 </select>
 
-                <select aria-label="Player filter">
-                    <option>All players</option>
+                <select id="player-filter" aria-label="Player filter">
+                    <option value="all">All players</option>
                 </select>
+
+
 
                 
                 <select id="status-filter" aria-label="Status filter">
@@ -85,9 +104,13 @@
                 </select>
 
 
-                <select aria-label="Sort order">
-                    <option>Newest first</option>
+                <select id="sort-order" aria-label="Sort order">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
                 </select>
+
+                
+
             </section>
 
             <div class="secondary-toolbar">
@@ -110,6 +133,9 @@
                 <button data-clip-index="2" type="button">3</button>
                 <button id="next-clip" type="button">›</button>
             </div>
+
+
+            
 
 
             <section class="review-area">
@@ -277,12 +303,58 @@
                     </button>
                 </div>
             </div>
+        
+    </div>
+
+
+    <!-- SimplyVision Confirm Clip popup -->
+    <div id="confirm-modal" class="modal-overlay" hidden>
+        <div class="delete-modal-box">
+            <div class="delete-modal-icon">?</div>
+
+            <h2>Confirm Candidate Clip?</h2>
+
+            <p>Are you sure you want to confirm this clip?</p>
+
+            <div class="delete-modal-actions">
+                <button type="button" id="cancel-confirm">
+                    Cancel
+                </button>
+
+                <button type="button" id="approve-confirm">
+                        Yes, Confirm
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
 
+    <!-- SimplyVision Reject Clip popup -->
+    <div id="reject-modal" class="modal-overlay" hidden>
+        <div class="delete-modal-box">
+            <div class="delete-modal-icon">?</div>
+
+            <h2>Reject Candidate Clip?</h2>
+
+            <p>Are you sure you want to reject this clip?</p>
+
+            <div class="delete-modal-actions">
+                <button type="button" id="cancel-reject">
+                    Cancel
+                </button>
+
+                <button type="button" id="approve-reject">
+                    Yes, Reject
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+    
     </body>
 </html>
-
 

@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Candidate Clips | SimplyVision</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<aside class="sidebar">
+    <div class="sidebar-brand">
+        <img src="../assets/simplyvision-logo.png" alt="SimplyVision Logo">
+    </div>
+
+    <p class="nav-heading">WORKSPACE</p>
+
+    <nav>
+        <a href="#">Dashboard</a>
+        <a href="#">Upload Footage</a>
+        <a href="#">AI Processing <span class="count">3</span></a>
+        <a href="#">Editor Review <span class="count">5</span></a>
+        <a href="index.html" class="active">Candidate Clips <span class="count">12</span></a>
+        <a href="#">Video Library</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="storage">
+            <p>Storage <span>68%</span></p>
+            <div class="storage-track">
+                <div></div>
+            </div>
+            <small>34.2 GB of 50 GB used</small>
+        </div>
+
+        <button type="button" id="logoutButton" class="logout-btn">
+            Log Out
+        </button>
+
+        <p class="account">🟠 Simply Basketball</p>
+    </div>
+</aside>
+
+
+    
+</aside>
+
+<div class="workspace">
+    <header class="top-header">
+        <div class="heading">
+            <h1>All Candidate Clips</h1>
+            <p>View and manage your candidate clip review queue.</p>
+        </div>
+
+        <a href="index.html">← Back to Review</a>
+    </header>
+
+    <main class="all-clips-page">
+
+    <!-- All Clips Reviewed banner -->
+        <div id="all-clips-complete" class="all-clips-complete" hidden>
+            <strong>✓ All Clips Reviewed!</strong>
+            <p>You've finished reviewing all candidate clips.</p>
+        </div>
+
+        <section class="clip-summary">
+            <div>
+                <h2>Pending</h2>
+                <p id="pending-count">0</p>
+            </div>
+
+            <div>
+                <h2>Confirmed</h2>
+                <p id="confirmed-count">0</p>
+            </div>
+
+            <div>
+                <h2>Rejected</h2>
+                <p id="rejected-count">0</p>
+            </div>
+        </section>
+
+        <section class="all-clips-list">
+            <h2>All Clips</h2>
+            <div id="all-clips-container"></div>
+        </section>
+    </main>
+</div>
+
+<script src="all-clips.js"></script>
+
+</body>
+</html>
