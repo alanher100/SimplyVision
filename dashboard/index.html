@@ -19,7 +19,7 @@
             <a href="index.html" class="active">Dashboard</a>
             <a href="../upload-footage-review/uploadfootage.html">Upload Footage</a>
             <a href="ai-processing.html">AI Processing <span class="count">3</span></a>
-            <a href="../editor-review/editor-review.html">Editor Review <span class="count">5</span></a>
+            <a href="../frontend/editor-review/editor-review.html">Editor Review <span class="count">5</span></a>
             <a href="../frontend/candidate-clips/index.html">Candidate Clips <span class="count">12</span></a>
             <a href="../video-library/index.html">Video Library</a>
         </nav>
@@ -41,24 +41,41 @@
                 <h1>Dashboard</h1>
                 <p>Overview of your footage and what needs review.</p>
             </div>
-            <button class="queue-btn" type="button">+ Upload Footage</button>
+            <div class="header-actions">
+                <button class="queue-btn" type="button" id="uploadButton">+ Upload Footage</button>
+                <div class="profile-menu">
+                    <button type="button" id="profileButton" class="avatar-btn" aria-haspopup="true" aria-expanded="false">AP</button>
+                    <ul id="profileDropdown" class="dropdown" hidden>
+                        <li><a href="#">My Profile</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="../frontend/login.html?logout=preview" class="danger">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
         </header>
 
         <main class="content">
             <section class="cards">
-                <div class="card"><span>Footage Uploaded</span><strong>24</strong></div>
-                <div class="card"><span>AI Processing</span><strong>3</strong></div>
-                <div class="card"><span>Awaiting Review</span><strong>9</strong></div>
-                <div class="card"><span>Approved</span><strong>14</strong></div>
+                <div class="card"><span>Footage Uploaded</span><strong id="countUploaded">24</strong></div>
+                <div class="card"><span>AI Processing</span><strong id="countProcessing">3</strong></div>
+                <div class="card"><span>Awaiting Review</span><strong id="countReview">9</strong></div>
+                <div class="card"><span>Approved</span><strong id="countApproved">14</strong></div>
             </section>
 
             <section class="panels">
                 <div class="panel">
                     <h2>Recent Footage</h2>
-                    <div class="row"><span class="name">Sac High vs. Elk Grove (Varsity)</span><span class="date">Oct 2, 2026</span><span class="badge processing">Processing</span></div>
-                    <div class="row"><span class="name">Summer League: Hawks vs. Lions</span><span class="date">Sep 28, 2026</span><span class="badge review">Needs Review</span></div>
-                    <div class="row"><span class="name">Rocklin vs. Folsom (JV)</span><span class="date">Sep 25, 2026</span><span class="badge approved">Approved</span></div>
-                    <div class="row"><span class="name">Tournament Game 3</span><span class="date">Sep 18, 2026</span><span class="badge failed">Failed</span></div>
+                    <div id="footageList">
+                    <div class="row" data-status="processing"><span class="name">Sac High vs. Elk Grove (Varsity)</span><span class="date">Oct 2, 2026</span><span class="badge processing">Processing</span><button type="button" class="delete-btn">Delete</button></div>
+                    <div class="row" data-status="review"><span class="name">Summer League: Hawks vs. Lions</span><span class="date">Sep 28, 2026</span><span class="badge review">Needs Review</span><button type="button" class="delete-btn">Delete</button></div>
+                    <div class="row" data-status="approved"><span class="name">Rocklin vs. Folsom (JV)</span><span class="date">Sep 25, 2026</span><span class="badge approved">Approved</span><button type="button" class="delete-btn">Delete</button></div>
+                    <div class="row" data-status="failed"><span class="name">Tournament Game 3</span><span class="date">Sep 18, 2026</span><span class="badge failed">Failed</span><button type="button" class="delete-btn">Delete</button></div>
+                    </div>
+                    <div class="empty-state" id="emptyState" hidden>
+                        <strong>No footage yet</strong>
+                        <p>Upload your first game to get started.</p>
+                        <a class="queue-btn" href="../upload-footage-review/uploadfootage.html">+ Upload Footage</a>
+                    </div>
                 </div>
 
                 <div class="panel">
@@ -78,8 +95,18 @@
         </main>
     </div>
     <!-- SV-36: Logout functionality -->
-    <script src="../frontend/logout.js" defer></script>
 <!-- SV-36: Logout functionality -->
-<script src="../frontend/logout.js" defer></script>
+<div class="modal-backdrop" id="deleteModal" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="deleteTitle">
+            <h2 id="deleteTitle">Delete this footage?</h2>
+            <p id="deleteMessage">This can't be undone.</p>
+            <div class="modal-actions">
+                <button type="button" id="cancelDelete" class="btn-outline">Cancel</button>
+                <button type="button" id="confirmDelete" class="btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+    <script src="../frontend/logout.js" defer></script>
+    <script src="dashboard.js" defer></script>
 </body>
 </html>
