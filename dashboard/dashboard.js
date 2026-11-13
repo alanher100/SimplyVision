@@ -23,6 +23,20 @@ document.addEventListener("DOMContentLoaded", function () {
     dropdown.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
     document.addEventListener("click", (e) => { if (!dropdown.contains(e.target)) setMenu(false); });
 
+    // Sign Out: use the same request as the sidebar Log Out button.
+    // logout.js sends POST /api/logout (ends the server session) and then opens the login page.
+    $("signOutLink").addEventListener("click", (e) => {
+        const sidebarLogout = $("logoutButton");
+        if (sidebarLogout) {
+            e.preventDefault();
+            sidebarLogout.click();
+        }
+    });
+
+    // If the browser restores this page from the Back button, reload it so the server
+    // can check the session again (a signed-out user is sent to the login page).
+    window.addEventListener("pageshow", (e) => { if (e.persisted) window.location.reload(); });
+
     // Delete confirmation dialog
     const modal = $("deleteModal");
     const list = $("footageList");
