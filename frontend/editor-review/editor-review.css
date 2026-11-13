@@ -263,8 +263,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: var(--white);
     font-size: 11px;
     text-align: left;
+    text-decoration: none;
 }
 
 .card_action .count {
@@ -321,7 +323,18 @@ body {
 .review_button {
     justify-self: end;
     padding: 9px 12px;
+    border: none;
+    border-radius: 5px;
+    background: var(--orange);
+    color: var(--white);
     font-size: 11px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.review_button:hover {
+    background: #D94F1D;
 }
 
 button:hover {
@@ -413,7 +426,7 @@ a:focus-visible {
     }
 }
 
-    .page_view {
+/*    .page_view {
     padding: 25px;
     border: 1px solid #888888;
     border-radius: 6px;
@@ -437,4 +450,4 @@ a:focus-visible {
     background: var(--orange);
     color: var(--white);
     cursor: pointer;
-}
+} */

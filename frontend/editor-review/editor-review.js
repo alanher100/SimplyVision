@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".content").appendChild(pageView);
 
     const pageInformation = {
-        pending: {
+        /*pending: {
             title: "Pending Clips",
             description: "These clips are waiting for editor review."
-        },
+        },*/
         correction: {
             title: "Needs Correction",
             description: "These clips need changes before they can be approved."

@@ -1,0 +1,138 @@
+@import url("editor-review.css");
+
+.review-content {
+    max-width: 1250px;
+    padding: 20px 25px;
+}
+
+.review-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+    gap: 30px;
+}
+
+.clip-review-card,
+.information-panel {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+}
+
+.clip-review-card {
+    padding: 20px;
+}
+
+.clip-review-card h2 {
+    margin: 0 0 15px;
+    font-size: 18px;
+}
+
+.review-video {
+    width: 100%;
+    min-height: 300px;
+    border-radius: 6px;
+    background: #292929;
+    object-fit: cover;
+}
+
+.clip-details {
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.clip-details p {
+    margin: 7px 0;
+}
+
+#clip-status {
+    color: var(--orange);
+    font-weight: bold;
+}
+
+.review-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.review-actions button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 20px;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.approve-button {
+    background: #2e7d32;
+}
+
+.correction-button {
+    background: var(--orange);
+}
+
+.reject-button {
+    background: var(--red);
+}
+
+.action-message {
+    min-height: 18px;
+    margin: 15px 0 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.information-panel {
+    overflow: hidden;
+}
+
+.info-section {
+    padding: 18px;
+}
+
+.info-section + .info-section {
+    border-top: 1px solid var(--border);
+}
+
+.info-section h2 {
+    margin: -18px -18px 15px;
+    padding: 12px 18px;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 17px;
+}
+
+.info-section p {
+    margin: 8px 0;
+    font-size: 12px;
+}
+
+.back-link {
+    text-decoration: none;
+}
+
+@media (max-width: 850px) {
+    .review-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .review-content {
+        padding: 15px;
+    }
+
+    .review-video {
+        min-height: 220px;
+    }
+
+    .review-actions {
+        flex-direction: column;
+    }
+
+    .review-actions button {
+        width: 100%;
+    }
+}

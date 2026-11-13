@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <title>Review Clip | SimplyVision</title>
+        <link rel="stylesheet" href="clip-review.css">
+    </head>
+
+    <body>
+        <aside class="sidebar">
+            <div class="logo">
+                <img
+                    src="../assets/simplyvision-logo.png"
+                    alt="SimplyVision logo"
+                >
+            </div>
+
+            <p class="sidebar_label">WORKSPACE</p>
+
+            <nav class="sidebar_nav">
+                <a href="../../dashboard/index.html">
+                    Dashboard
+                </a>
+
+                <a href="../../upload-footage-review/uploadfootage.html">
+                    Upload Footage
+                </a>
+
+                <a href="../../dashboard/ai-processing.html">
+                    AI Processing
+                    <span class="count">3</span>
+                </a>
+
+                <a href="editor-review.html" class="active">
+                    Editor Review
+                    <span class="count">5</span>
+                </a>
+
+                <a href="../candidate-clips/index.html">
+                    Candidate Clips
+                    <span class="count">12</span>
+                </a>
+
+                <a href="../../video-library/index.html">
+                    Video Library
+                </a>
+            </nav>
+
+            <div class="sidebar_bottom">
+                <div class="storage_heading">
+                    <span>Storage</span>
+                    <span>68%</span>
+                </div>
+
+                <div class="storage_bar">
+                    <div></div>
+                </div>
+
+                <small>34.2 GB of 50 GB used</small>
+
+                <a class="logout-button" href="../login.html">
+                    Log Out
+                </a>
+
+                <div class="profile_section">
+                    <div class="profile_icon"></div>
+
+                    <div>
+                        <p class="profile">Simply Basketball</p>
+                        <small>Media operations</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="workspace">
+            <header class="top-header">
+                <div class="heading">
+                    <h1>Review Clip</h1>
+                    <p>
+                        Review the clip before approving, correcting,
+                        or rejecting it.
+                    </p>
+                </div>
+
+                <a
+                    class="queue-btn back-link"
+                    href="pending-review.html"
+                >
+                    Back to Pending Review
+                </a>
+            </header>
+
+            <main class="review-content">
+                <section class="review-layout">
+                    <div class="clip-review-card">
+                        <h2 id="clip-title">Clip Review</h2>
+
+                        <video
+                            class="review-video"
+                            controls
+                            poster="../assets/basketball-banner.jpg"
+                        >
+                            <source
+                                src="../assets/demo-clip.mp4"
+                                type="video/mp4"
+                            >
+                            Your browser does not support video playback.
+                        </video>
+
+                        <div class="clip-details">
+                            <p>
+                                <strong>Player:</strong>
+                                Marcus Reed
+                            </p>
+
+                            <p>
+                                <strong>Team:</strong>
+                                Eagles
+                            </p>
+
+                            <p>
+                                <strong>Clip Type:</strong>
+                                Game Winning Shot
+                            </p>
+
+                            <p>
+                                <strong>Status:</strong>
+                                <span id="clip-status">
+                                    Pending Review
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="review-actions">
+                            <button
+                                class="approve-button"
+                                id="approve-button"
+                                type="button"
+                            >
+                                Approve
+                            </button>
+
+                            <button
+                                class="correction-button"
+                                id="correction-button"
+                                type="button"
+                            >
+                                Needs Correction
+                            </button>
+
+                            <button
+                                class="reject-button"
+                                id="reject-button"
+                                type="button"
+                            >
+                                Reject
+                            </button>
+                        </div>
+
+                        <p
+                            class="action-message"
+                            id="action-message"
+                            role="status"
+                        ></p>
+                    </div>
+
+                    <aside class="information-panel">
+                        <section class="info-section">
+                            <h2>Clip Information</h2>
+
+                            <p>
+                                <strong>Player:</strong>
+                                Marcus Reed
+                            </p>
+
+                            <p>
+                                <strong>Team:</strong>
+                                Eagles
+                            </p>
+
+                            <p>
+                                <strong>Clip Type:</strong>
+                                Game Winning Shot
+                            </p>
+
+                            <p>
+                                <strong>Description:</strong>
+                                Possible game-winning shot near the end
+                                of the fourth quarter.
+                            </p>
+                        </section>
+
+                        <section class="info-section">
+                            <h2>AI Suggestions</h2>
+
+                            <p>
+                                <strong>Suggested Title:</strong>
+                                Game Winning Shot
+                            </p>
+
+                            <p>
+                                <strong>Suggested Description:</strong>
+                                Player makes a potential game-winning shot.
+                            </p>
+                        </section>
+                    </aside>
+                </section>
+            </main>
+        </div>
+
+        <script src="clip-review.js"></script>
+    </body>
+</html>
