@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <title>Pending Review | SimplyVision</title>
+        <link rel="stylesheet" href="pending-review.css">
+    </head>
+
+    <body>
+        <aside class="sidebar">
+            <div class="logo">
+                <img
+                    src="../assets/simplyvision-logo.png"
+                    alt="SimplyVision logo"
+                >
+            </div>
+
+            <p class="sidebar_label">WORKSPACE</p>
+
+            <nav class="sidebar_nav">
+                <a href="../../dashboard/index.html">
+                    Dashboard
+                </a>
+
+                <a href="../../upload-footage-review/uploadfootage.html">
+                    Upload Footage
+                </a>
+
+                <a href="../../dashboard/ai-processing.html">
+                    AI Processing
+                    <span class="count">3</span>
+                </a>
+
+                <a href="editor-review.html" class="active">
+                    Editor Review
+                    <span class="count">5</span>
+                </a>
+
+                <a href="../candidate-clips/index.html">
+                    Candidate Clips
+                    <span class="count">12</span>
+                </a>
+
+                <a href="../../video-library/index.html">
+                    Video Library
+                </a>
+            </nav>
+
+            <div class="sidebar_bottom">
+                <div class="storage_heading">
+                    <span>Storage</span>
+                    <span>68%</span>
+                </div>
+
+                <div class="storage_bar">
+                    <div></div>
+                </div>
+
+                <small>34.2 GB of 50 GB used</small>
+
+                <a class="logout-button" href="../login.html">
+                    Log Out
+                </a>
+
+                <div class="profile_section">
+                    <div class="profile_icon"></div>
+
+                    <div>
+                        <p class="profile">Simply Basketball</p>
+                        <small>Media operations</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="workspace">
+            <header class="top-header">
+                <div class="heading">
+                    <h1>Pending Review</h1>
+                    <p>
+                        Review clips waiting for editor approval.
+                    </p>
+                </div>
+
+                <a
+                    class="queue-btn back-link"
+                    href="editor-review.html"
+                >
+                    Back to Editor Review
+                </a>
+            </header>
+
+            <main class="pending-content">
+                <section class="pending-page">
+                    <h2>Clips Waiting For Editor Review</h2>
+
+                    <div class="pending-clip-list">
+                        <article class="pending-clip-row" data-clip="1">
+                            <img
+                                class="pending-thumbnail"
+                                src="../assets/basketball-banner.jpg"
+                                alt="Basketball clip preview"
+                            >
+
+                            <span>Clip Name</span>
+                            <span>Team</span>
+                            <span>Date</span>
+                            <span class="status-pending">Pending</span>
+
+                            <a
+                                class="review_button"
+                                href="clip-review.html?clip=1"
+                            >
+                                Review
+                            </a>
+                        </article>
+
+                        <article class="pending-clip-row" data-clip="2">
+                            <img
+                                class="pending-thumbnail"
+                                src="../assets/basketball-banner.jpg"
+                                alt="Basketball clip preview"
+                            >
+
+                            <span>Clip Name</span>
+                            <span>Team</span>
+                            <span>Date</span>
+                            <span class="status-pending">Pending</span>
+
+                            <a
+                                class="review_button"
+                                href="clip-review.html?clip=2"
+                            >
+                                Review
+                            </a>
+                        </article>
+
+                        <article class="pending-clip-row" data-clip="3">
+                            <img
+                                class="pending-thumbnail"
+                                src="../assets/basketball-banner.jpg"
+                                alt="Basketball clip preview"
+                            >
+
+                            <span>Clip Name</span>
+                            <span>Team</span>
+                            <span>Date</span>
+                            <span class="status-pending">Pending</span>
+
+                            <a
+                                class="review_button"
+                                href="clip-review.html?clip=3"
+                            >
+                                Review
+                            </a>
+                        </article>
+
+                        <article class="pending-clip-row" data-clip="4">
+                            <img
+                                class="pending-thumbnail"
+                                src="../assets/basketball-banner.jpg"
+                                alt="Basketball clip preview"
+                            >
+
+                            <span>Clip Name</span>
+                            <span>Team</span>
+                            <span>Date</span>
+                            <span class="status-pending">Pending</span>
+
+                            <a
+                                class="review_button"
+                                href="clip-review.html?clip=4"
+                            >
+                                Review
+                            </a>
+                        </article>
+
+                        <article class="pending-clip-row" data-clip="5">
+                            <img
+                                class="pending-thumbnail"
+                                src="../assets/basketball-banner.jpg"
+                                alt="Basketball clip preview"
+                            >
+
+                            <span>Clip Name</span>
+                            <span>Team</span>
+                            <span>Date</span>
+                            <span class="status-pending">Pending</span>
+
+                            <a
+                                class="review_button"
+                                href="clip-review.html?clip=5"
+                            >
+                                Review
+                            </a>
+                        </article>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <script src="pending-review.js"></script>
+    </body>
+</html>

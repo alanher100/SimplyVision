@@ -1,0 +1,68 @@
+@import url("editor-review.css");
+
+.pending-content {
+    max-width: 1250px;
+    padding: 20px 25px;
+}
+
+.pending-page {
+    padding: 25px;
+    border: 1px solid #888888;
+    border-radius: 6px;
+    background: var(--white);
+}
+
+.pending-page h2 {
+    margin: 0 0 20px;
+    font-size: 17px;
+}
+
+.pending-clip-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.pending-clip-row {
+    min-height: 65px;
+    border: 1px solid var(--orange);
+    background: var(--white);
+    display: grid;
+    grid-template-columns:
+        128px
+        minmax(100px, 1.3fr)
+        minmax(80px, 1fr)
+        minmax(80px, 1fr)
+        minmax(80px, 1fr)
+        72px;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+}
+
+.pending-thumbnail {
+    width: 128px;
+    height: 64px;
+    object-fit: cover;
+}
+
+.status-pending {
+    color: var(--orange);
+    font-weight: bold;
+}
+
+.status-updated {
+    color: var(--orange);
+    font-weight: bold;
+}
+
+.pending-clip-row .review_button {
+    justify-self: center;
+    margin: 0;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.back-link {
+    text-decoration: none;
+}
