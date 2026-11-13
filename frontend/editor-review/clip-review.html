@@ -62,7 +62,7 @@
 
                 <small>34.2 GB of 50 GB used</small>
 
-                <a class="logout-button" href="../login.html">
+                <a class="logout-button" href="#" id="logoutButton">
                     Log Out
                 </a>
 
@@ -212,7 +212,27 @@
                 </section>
             </main>
         </div>
+<!-- SV-203: Logout Integration -->
+<script>
+    document.getElementById("logoutButton")?.addEventListener("click", async (event) => {
+        event.preventDefault();
 
-        <script src="clip-review.js"></script>
+        try {
+            const response = await fetch("/api/logout", {
+                method: "POST",
+                credentials: "same-origin"
+            });
+
+            if (!response.ok) {
+                throw new Error("Logout failed");
+            }
+
+            window.location.replace("/frontend/login.html");
+        } catch (error) {
+            console.error("Logout error:", error);
+            alert("Unable to log out. Please try again.");
+        }
+    });
+</script>
     </body>
 </html>
