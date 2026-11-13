@@ -66,3 +66,35 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+
+# ==========================================
+# SimplyVision - Node.js Backend (SV-203)
+# ==========================================
+
+# Node.js dependencies
+node_modules/
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+
+# Node.js coverage and temporary files
+coverage/
+.nyc_output/
+
+# Local database files
+*.sqlite
+*.sqlite3
+
+# Environment variables and secret credentials
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Local SQL setup scripts containing credentials
+simplyvision_setup.sql

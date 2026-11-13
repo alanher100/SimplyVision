@@ -1,33 +1,29 @@
-// SimplyVision - Login Form Validation
-// Sprint 2: Frontend JavaScript (SV-6)
+
+ // SimplyVision - Login Authentication
+ // Sprint 3: Backend Integration (SV-203)
 
 const loginForm = document.getElementById("loginForm");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const errorMessage = document.getElementById("errorMessage");
 
-// Listen for login form submission
-loginForm.addEventListener("submit", function (event) {
-
-    // Prevent page from refreshing
+// Handle login form submission
+loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    // Get user input
     const email = emailInput.value.trim();
     const password = passwordInput.value;
 
-    // Clear previous errors
+    // Clear previous messages
     errorMessage.textContent = "";
     errorMessage.className = "";
 
-    // Check if email is empty
     if (email === "") {
         errorMessage.textContent = "Please enter your email address.";
         errorMessage.className = "error";
         return;
     }
 
-    // Check email format
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailPattern.test(email)) {
@@ -36,28 +32,51 @@ loginForm.addEventListener("submit", function (event) {
         return;
     }
 
-    // Check if password is empty
     if (password === "") {
         errorMessage.textContent = "Please enter your password.";
         errorMessage.className = "error";
         return;
     }
 
-    // Frontend validation successful
-    errorMessage.textContent =
-        "Form validated! Authentication is not connected yet.";
+    // Authenticate with Express and MySQL
+    try {
+        const response = await fetch("/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "same-origin",
+            body: JSON.stringify({ email, password })
+        });
 
-    errorMessage.className = "success";
+        const result = await response.json();
 
-    console.log("Login form validation successful.");
+        if (!response.ok) {
+            errorMessage.textContent =
+                result.message || "Login failed.";
+            errorMessage.className = "error";
+            return;
+        }
+
+        errorMessage.textContent = "Login successful!";
+        errorMessage.className = "success";
+
+        // Redirect to dashboard after successful login
+        window.location.href = "/dashboard/index.html";
+
+    } catch (error) {
+        console.error("Login request failed:", error);
+
+        errorMessage.textContent =
+            "Unable to connect to the server.";
+        errorMessage.className = "error";
+    }
 });
 
 // Sprint 2 - Show/Hide Password
-
 const togglePassword = document.getElementById("togglePassword");
 
 togglePassword.addEventListener("click", function () {
-
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
         togglePassword.textContent = "Hide";
@@ -69,5 +88,4 @@ togglePassword.addEventListener("click", function () {
         togglePassword.setAttribute("aria-label", "Show password");
         togglePassword.setAttribute("aria-pressed", "false");
     }
-
 });
