@@ -48,8 +48,24 @@ app.use(session({
 // SV-203: Serve SimplyVision frontend
 const projectRoot = path.join(__dirname, "..");
 
-// Public login page and its assets
-app.use("/frontend", express.static(
+// Public login page
+app.get("/frontend/login.html", (req, res) => {
+    res.sendFile(path.join(projectRoot, "frontend", "login.html"));
+});
+
+// Public login authentication pages and assets
+app.use("/frontend", (req, res, next) => {
+    if (req.path === "/login.html" ||
+        req.path === "/login.js" ||
+        req.path === "/login.css" ||
+        req.path === "/forgot-password.html" ||
+        req.path === "/assets/simplyvision-logo.png" ||
+        req.path === "/assets/basketball-banner.jpg") {
+        return next();
+    }
+
+    return requireAuth(req, res, next);
+}, express.static(
     path.join(projectRoot, "frontend")
 ));
 
@@ -58,6 +74,10 @@ app.get("/", (req, res) => {
     res.redirect("/frontend/login.html");
 });
 
+// Shared image assets for authenticated pages: fixing image error
+app.use("/assets", requireAuth, express.static(
+    path.join(projectRoot, "frontend", "assets")
+));
 
  // SV-203: Protect dashboard from unauthenticated users
 function requireAuth(req, res, next) {
@@ -79,10 +99,13 @@ app.use("/dashboard", requireAuth, express.static(
 app.use("/upload-footage-review", requireAuth, express.static(
     path.join(projectRoot, "upload-footage-review")
 ));
-
+// Candidate Clips
+app.use("/candidate-clips", requireAuth, express.static(
+    path.join(projectRoot, "frontend", "candidate-clips")
+));
 // Editor Review
 app.use("/editor-review", requireAuth, express.static(
-    path.join(projectRoot, "editor-review")
+    path.join(projectRoot, "frontend", "editor-review")
 ));
 
 // Video Library
