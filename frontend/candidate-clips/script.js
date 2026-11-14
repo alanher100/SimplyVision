@@ -101,7 +101,7 @@ gameFilter.addEventListener("change", applyFilters);
 
  
     const reviewQueueBtn = document.getElementById("review-queue-btn");
-    const startingQueueCount = 12;
+    const startingQueueCount = candidateClips.length;
 
     function updateReviewQueueCount() {
         const reviewedCount = candidateClips.filter(
@@ -111,7 +111,24 @@ gameFilter.addEventListener("change", applyFilters);
         const remainingCount = Math.max(0, startingQueueCount - reviewedCount);
 
         reviewQueueBtn.textContent = `+ Review Queue · ${remainingCount}`;
+
+        
+        const sidebarClipCount = document.getElementById("sidebar-clip-count");
+
+        if (sidebarClipCount) {
+            sidebarClipCount.textContent = remainingCount;
+            sidebarClipCount.hidden = remainingCount === 0;
+        }
+
     }
+
+    // Show the correct review queue count when the page loads
+    updateReviewQueueCount();
+
+    // Update the sidebar count after the reusable sidebar loads
+    document.addEventListener("sidebar:loaded", () => {
+        updateReviewQueueCount();
+    });
 
 
  
@@ -815,12 +832,6 @@ confirmDeleteBtn.addEventListener("click", function () {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const logoutButton = document.getElementById("logoutButton");
 
-    if (logoutButton) {
-        logoutButton.addEventListener("click", function () {
-            window.location.href = "../login.html?logout=preview";
-        });
-    }
-});
+
+

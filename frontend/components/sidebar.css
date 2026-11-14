@@ -1,0 +1,184 @@
+
+/* SimplyVision reusable sidebar */
+
+.sidebar {
+    width: 155px;
+    min-width: 155px;
+    min-height: 100vh;
+    align-self: stretch;
+    background: #222326;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 15px;
+    flex-shrink: 0;
+}
+
+.sidebar-brand {
+    width: auto;
+    height: 115px;
+    margin: 0 -10px;
+    padding: 10px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sidebar-brand img {
+    width: 180px;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+}
+
+.nav-heading {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #888;
+    margin: 12px 8px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar nav a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 12px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #F75F26;
+    color: white;
+}
+
+.sidebar .count {
+    float: right;
+    background: #222;
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.sidebar .storage {
+    background: #303135;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+.sidebar .storage p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar .storage-track {
+    height: 4px;
+    background: #555;
+    border-radius: 5px;
+}
+
+.sidebar .storage-track div {
+    width: 68%;
+    height: 100%;
+    background: #F75F26;
+}
+
+.sidebar .storage small {
+    display: block;
+    margin-top: 8px;
+    color: #aaa;
+    font-size: 9px;
+}
+
+.sidebar .account {
+    font-size: 10px;
+}
+
+.sidebar .logout-btn {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background: transparent;
+    color: #ddd;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.sidebar .logout-btn:hover {
+    background: #F75F26;
+    border-color: #F75F26;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+    }
+
+    .sidebar-brand {
+        height: 90px;
+    }
+
+    .sidebar-brand img {
+        width: 100px;
+        max-height: 75px;
+    }
+
+    .sidebar-bottom {
+        display: none;
+    }
+}
+
+/* Keep the sidebar background full height on long pages */
+#sidebar-container {
+    display: flex;
+    flex-shrink: 0;
+}
+
+#sidebar-container .sidebar {
+    flex: 1;
+}
+
+/* Keep sidebar navigation visible while scrolling */
+#sidebar-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    align-self: flex-start;
+}
+
+#sidebar-container .sidebar {
+    height: 100vh;
+    min-height: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Keep the sticky sidebar from scrolling sideways */
+#sidebar-container {
+    overflow-x: hidden;
+    min-width: 0;
+}
+
+#sidebar-container .sidebar {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
