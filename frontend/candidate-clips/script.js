@@ -125,6 +125,11 @@ gameFilter.addEventListener("change", applyFilters);
     // Show the correct review queue count when the page loads
     updateReviewQueueCount();
 
+    // Update the sidebar count after the reusable sidebar loads
+    document.addEventListener("sidebar:loaded", () => {
+        updateReviewQueueCount();
+    });
+
 
  
 const statusFilter = document.getElementById("status-filter");
