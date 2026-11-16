@@ -21,7 +21,7 @@
       <a href="../dashboard/index.html">Dashboard</a>
       <a href="../upload-footage-review/uploadfootage.html">Upload Footage</a>
       <a href="../dashboard/ai-processing.html">AI Processing <span class="count">3</span></a>
-      <a href="../editor-review/editor-review.html">Editor Review <span class="count">5</span></a>
+      <a href="../frontend/editor-review/editor-review.html">Editor Review <span class="count">5</span></a>
       <a href="../frontend/candidate-clips/index.html">Candidate Clips <span class="count">12</span></a>
       <a href="index.html" class="active">Video Library</a>
     </nav>
@@ -41,20 +41,98 @@
     </div>
   </aside>
 
-  <main class="content">
-    <h1>Video Library</h1>
+  <div class="workspace">
+    <header class="top-header">
+      <div class="heading">
+        <h1>Save &amp; Manage Content</h1>
+        <p>Search, organize, and deliver approved basketball clips.</p>
+      </div>
+      <a class="upload-btn" href="../upload-footage-review/uploadfootage.html">+ Upload Footage</a>
+    </header>
 
-    <div class="error-banner" id="download-banner" role="alert">
-      <p class="error-text" id="banner-text"></p>
-      <div class="banner-actions">
-        <button class="retry-button" id="retry-button" type="button">Retry</button>
-        <button class="dismiss-button" id="dismiss-button" type="button" aria-label="Dismiss message">&times;</button>
+    <main class="content">
+      <!-- Download result banner (SV-63). Hidden until a download fails or succeeds. -->
+      <div class="error-banner" id="download-banner" role="alert" hidden>
+        <p class="error-text" id="banner-text"></p>
+        <div class="banner-actions">
+          <button class="retry-button" id="retry-button" type="button">Retry</button>
+          <button class="dismiss-button" id="dismiss-button" type="button" aria-label="Dismiss message">&times;</button>
+        </div>
+      </div>
+
+      <!-- Search, filters, sort, and view toggle (SV-48, SV-49) -->
+      <div class="toolbar">
+        <label class="search">
+          <span class="search-icon" aria-hidden="true">&#9906;</span>
+          <input type="search" id="search-input" placeholder="Search clips, games, or players" aria-label="Search clips">
+          <kbd>&#8984;K</kbd>
+        </label>
+
+        <select id="filter-game" aria-label="Filter by game">
+          <option value="">All games</option>
+        </select>
+        <select id="filter-player" aria-label="Filter by player">
+          <option value="">All players</option>
+        </select>
+        <select id="filter-status" aria-label="Filter by status">
+          <option value="">All statuses</option>
+          <option value="Processing">Processing</option>
+          <option value="Approved">Approved</option>
+          <option value="Pending Review">Pending Review</option>
+        </select>
+        <select id="sort-by" aria-label="Sort clips">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="title">Title A–Z</option>
+          <option value="longest">Longest first</option>
+        </select>
+
+        <div class="view-toggle" role="group" aria-label="View">
+          <button type="button" id="view-grid" class="active" aria-label="Grid view">&#9638;</button>
+          <button type="button" id="view-list" aria-label="List view">&#9776;</button>
+        </div>
+      </div>
+
+      <!-- Section heading with bulk actions (SV-59, SV-62) -->
+      <div class="library-header">
+        <div class="library-title">
+          <h2>Video Library</h2>
+          <span id="clip-count">0 clips</span>
+        </div>
+        <div class="bulk-actions">
+          <button type="button" id="export-button" class="btn btn-outline" disabled>&#8615; Export</button>
+          <button type="button" id="bulk-delete-button" class="btn btn-outline btn-danger" disabled>&#128465; Delete</button>
+        </div>
+      </div>
+
+      <!-- Clip cards are created by script.js (SV-47) -->
+      <div class="clip-grid" id="clip-grid"></div>
+
+      <!-- Empty state (SV-64) -->
+      <div class="empty-state" id="empty-state" hidden>
+        <div class="empty-icon">&#127916;</div>
+        <h3 id="empty-title">No footage yet</h3>
+        <p id="empty-text">Upload a game video and it will show up here.</p>
+        <a class="btn btn-primary" id="empty-upload" href="../upload-footage-review/uploadfootage.html">Upload Footage</a>
+        <button type="button" class="btn btn-outline" id="empty-clear" hidden>Clear filters</button>
+      </div>
+
+      <!-- Pagination (SV-50) -->
+      <nav class="pagination" id="pagination" aria-label="Pages"></nav>
+    </main>
+  </div>
+
+  <!-- Delete confirmation (SV-57) -->
+  <div class="modal-backdrop" id="delete-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h3 id="modal-title">Delete clip?</h3>
+      <p id="modal-text"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="modal-cancel">Cancel</button>
+        <button type="button" class="btn btn-delete" id="modal-confirm">Delete</button>
       </div>
     </div>
-
-    <!-- Clip cards are created by script.js -->
-    <div class="clip-grid" id="clip-grid"></div>
-  </main>
+  </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

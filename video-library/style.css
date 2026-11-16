@@ -1,7 +1,14 @@
 :root {
   --orange: #df6939;
+  --orange-dark: #c95a2f;
+  --orange-tint: #fdf3ee;
   --dark: #222326;
+  --background: #f5f6f8;
   --border: #d7d7d7;
+  --text-muted: #888;
+  --red: #c53030;
+  --green: #16a34a;
+  --amber: #d97706;
 }
 
 * {
@@ -14,7 +21,8 @@ body {
   color: #222;
   display: flex;
   min-height: 100vh;
-  background: #FFFFFF;
+  background: var(--background);
+  font-size: 13px;
 }
 
 button {
@@ -22,7 +30,7 @@ button {
   cursor: pointer;
 }
 
-/*Sidebar ( Changed so it matches Dashboard and Candidate Clips) except added signoutfunctionality*/
+/* ===== Sidebar (matches Dashboard and Candidate Clips) ===== */
 .sidebar {
   width: 155px;
   min-width: 155px;
@@ -135,20 +143,6 @@ button {
   font-size: 9px;
 }
 
-.account {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 12px;
-  padding: 0 2px;
-  font-size: 10px;
-}
-
-
-.account-name {
-  flex: 1;
-}
-
 /* Log Out link, styled like the Dashboard's Log Out button */
 .logout-btn {
   display: block;
@@ -170,46 +164,256 @@ button {
   color: white;
 }
 
-/* Settings gear (placeholder button) */
-.settings-icon {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 14px;
-  color: #aaa;
+.account {
+  font-size: 10px;
 }
 
-.settings-icon:hover {
+/* ===== Workspace and top header (same pattern as Dashboard) ===== */
+.workspace {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-header {
+  height: 115px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-bottom: 1px solid #eee;
+  gap: 22px;
+  padding: 0 30px 0 25px;
+}
+
+.heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.heading h1 {
+  margin: 0 0 7px;
+  font-size: 23px;
+}
+
+.heading p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.upload-btn {
+  background: var(--orange);
+  border-radius: 5px;
+  color: white;
+  padding: 12px 15px;
+  font-size: 11px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.upload-btn:hover {
+  background: var(--orange-dark);
+}
+
+.content {
+  padding: 20px 25px 30px;
+  max-width: 1250px;
+  width: 100%;
+}
+
+/* ===== Shared buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-size: 11px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: var(--orange);
   color: white;
 }
 
-/*Page content */
-.content {
+.btn-primary:hover {
+  background: var(--orange-dark);
+}
+
+.btn-outline {
+  background: white;
+  border-color: var(--border);
+  color: #333;
+}
+
+.btn-outline:hover {
+  border-color: #aaa;
+}
+
+.btn-danger {
+  color: var(--red);
+}
+
+.btn-danger:hover {
+  border-color: var(--red);
+  background: #fff5f5;
+}
+
+.btn-delete {
+  background: var(--red);
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #a32424;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn[hidden] {
+  display: none;
+}
+
+/* ===== Toolbar: search, filters, sort, view toggle (SV-48, SV-49) ===== */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.search {
   flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0 10px;
+  height: 34px;
+}
+
+.search:focus-within {
+  border-color: var(--orange);
+}
+
+.search-icon {
+  color: var(--text-muted);
+  font-size: 14px;
+  transform: rotate(-45deg);
+}
+
+.search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font: inherit;
+  font-size: 11px;
+  background: transparent;
   min-width: 0;
-  padding: 32px 40px;
 }
 
-h1 {
-  font-size: 28px;
-  color: #000000;
-  margin: 0 0 24px;
+.search kbd {
+  font-family: inherit;
+  font-size: 9px;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 5px;
 }
 
-/* Download banner (SV-63)*/
+.toolbar select {
+  height: 34px;
+  padding: 0 28px 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: white;
+  font: inherit;
+  font-size: 11px;
+  color: #333;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23666' stroke-width='1.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.view-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: white;
+}
+
+.view-toggle button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 14px;
+}
+
+.view-toggle button.active {
+  background: var(--orange);
+  color: white;
+}
+
+/* ===== Library header with count and bulk actions ===== */
+.library-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.library-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.library-title h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+#clip-count {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.bulk-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ===== Download banner (SV-63) ===== */
 .error-banner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  background: #FCEDED;
-  border: 1px solid #F3C4C4;
+  background: #fcedec;
+  border: 1px solid #f3c4c4;
   border-radius: 6px;
-  padding: 12px 16px;
-  margin-bottom: 24px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
 }
 
-/* display:flex above would otherwise ignore the hidden attribute */
 .error-banner[hidden],
 .retry-button[hidden] {
   display: none;
@@ -217,12 +421,8 @@ h1 {
 
 .error-text {
   margin: 0;
-  font-size: 13px;
-  color: #C53030;
-}
-
-.error-text strong {
-  font-weight: bold;
+  font-size: 11px;
+  color: var(--red);
 }
 
 .banner-actions {
@@ -233,26 +433,25 @@ h1 {
 }
 
 .retry-button {
-  flex-shrink: 0;
-  background: #C53030;
-  color: #FFFFFF;
+  background: var(--red);
+  color: white;
   border: none;
-  border-radius: 6px;
-  padding: 8px 20px;
-  font-size: 14px;
+  border-radius: 5px;
+  padding: 7px 16px;
+  font-size: 11px;
 }
 
 .retry-button:hover {
-  background: #A32424;
+  background: #a32424;
 }
 
 .dismiss-button {
   background: transparent;
   border: none;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1;
-  color: #C53030;
-  padding: 0 6px;
+  color: var(--red);
+  padding: 0 4px;
 }
 
 .retry-button:disabled,
@@ -261,90 +460,400 @@ h1 {
   cursor: not-allowed;
 }
 
-/* Green success version of the banner */
 .error-banner.success {
-  background: #EDF7F0;
-  border-color: #B7DFC4;
+  background: #edf7f0;
+  border-color: #b7dfc4;
 }
 
 .error-banner.success .error-text,
 .error-banner.success .dismiss-button {
-  color: #2F7D4F;
+  color: #2f7d4f;
 }
 
-/* Clip cards */
+/* ===== Clip cards (SV-47) ===== */
 .clip-grid {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
-.clip-placeholder {
-  width: 260px;
-  border: 1px solid #DDDDDD;
+.clip-card {
+  background: white;
+  border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.clip-placeholder:hover {
-  border-color: var(--orange);
+.clip-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.clip-card.selected {
+  border: 2px solid var(--orange);
+  background: var(--orange-tint);
 }
 
 .clip-thumb {
-  height: 110px;
-  background: #35363A;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #3a3b40, #1f2023);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.clip-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.clip-thumb .court {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 120%, rgba(223, 105, 57, 0.35), transparent 55%),
+    repeating-linear-gradient(90deg, transparent 0 38px, rgba(255, 255, 255, 0.04) 38px 40px);
+}
+
+.clip-check {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid white;
+  background: rgba(0, 0, 0, 0.35);
+  color: white;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  padding: 0;
+}
+
+.clip-card.selected .clip-check {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+.clip-badge {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+  font-size: 9px;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.clip-duration {
+  top: 8px;
+  right: 8px;
+}
+
+.clip-res {
+  bottom: 8px;
+  left: 8px;
+}
+
+.clip-body {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.clip-player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #555;
+}
+
+.clip-player strong {
+  font-weight: normal;
+  color: #333;
+}
+
+.clip-menu {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 0 2px;
+  line-height: 1;
 }
 
 .clip-title {
-  margin: 10px 12px 2px;
-  font-size: 14px;
-  color: #222326;
+  margin: 0;
+  font-size: 11px;
+  color: #222;
+  cursor: pointer;
 }
 
-.clip-meta {
-  margin: 0 12px 10px;
-  font-size: 11px;
-  color: #888888;
+.clip-title:hover {
+  color: var(--orange);
+}
+
+.clip-date {
+  margin: 0;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.clip-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-approved {
+  background: #dcfce7;
+  color: var(--green);
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: var(--amber);
+}
+
+.status-processing {
+  background: #dbeafe;
+  color: #1d4ed8;
 }
 
 .clip-actions {
-  padding: 0 12px 12px;
+  display: flex;
+  gap: 6px;
 }
 
 .download-button {
   background: var(--orange);
-  color: #FFFFFF;
+  color: white;
   border: none;
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-size: 13px;
+  border-radius: 5px;
+  padding: 7px 12px;
+  font-size: 10px;
+}
+
+.download-button:hover {
+  background: var(--orange-dark);
 }
 
 .download-button.done {
-  background: #2F7D4F;
+  background: #2f7d4f;
 }
 
-/* Toast message*/
+.delete-button {
+  background: white;
+  color: #333;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 7px 10px;
+  font-size: 10px;
+}
+
+.delete-button:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* List view (SV-49) */
+.clip-grid.list-view {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.clip-grid.list-view .clip-card {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.clip-grid.list-view .clip-thumb {
+  width: 170px;
+  flex-shrink: 0;
+  aspect-ratio: auto;
+  min-height: 96px;
+}
+
+.clip-grid.list-view .clip-body {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.clip-grid.list-view .clip-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.clip-grid.list-view .clip-footer {
+  margin-top: 0;
+  padding-top: 0;
+  gap: 14px;
+}
+
+/* ===== Empty state (SV-64) ===== */
+.empty-state {
+  background: white;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
+.empty-icon {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.empty-state h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.empty-state p {
+  margin: 0 0 16px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.empty-state .btn + .btn {
+  margin-left: 8px;
+}
+
+/* ===== Pagination (SV-50) ===== */
+.pagination {
+  display: flex;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.pagination:empty {
+  display: none;
+}
+
+.pagination button {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: white;
+  color: #333;
+  font-size: 11px;
+}
+
+.pagination button.active {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: white;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ===== Delete confirmation modal (SV-57) ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+.modal {
+  background: white;
+  border-radius: 8px;
+  padding: 20px 22px;
+  width: 340px;
+  max-width: calc(100% - 32px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.modal p {
+  margin: 0 0 18px;
+  font-size: 11px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ===== Toast ===== */
 .toast {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  background: #222326;
-  color: #FFFFFF;
+  background: var(--dark);
+  color: white;
   padding: 12px 18px;
   border-radius: 6px;
-  font-size: 13px;
+  font-size: 12px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s;
+  z-index: 30;
 }
 
 .toast.show {
   opacity: 1;
 }
 
-/* Narrow screens: stack the sidebar above the content  */
+/* ===== Responsive ===== */
+@media (max-width: 1000px) {
+  .clip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 700px) {
   body {
     flex-direction: column;
@@ -356,7 +865,16 @@ h1 {
     min-height: auto;
   }
 
+  .top-header {
+    height: auto;
+    padding: 16px 20px;
+  }
+
   .content {
-    padding: 20px;
+    padding: 16px;
+  }
+
+  .clip-grid {
+    grid-template-columns: 1fr;
   }
 }
