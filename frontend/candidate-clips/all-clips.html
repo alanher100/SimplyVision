@@ -17,14 +17,16 @@
 
     <p class="nav-heading">WORKSPACE</p>
 
+    
     <nav>
-        <a href="#">Dashboard</a>
-        <a href="#">Upload Footage</a>
-        <a href="#">AI Processing <span class="count">3</span></a>
-        <a href="#">Editor Review <span class="count">5</span></a>
-        <a href="index.html" class="active">Candidate Clips <span class="count">12</span></a>
-        <a href="#">Video Library</a>
+        <a href="../../dashboard/index.html">Dashboard</a>
+        <a href="../../upload-footage-review/uploadfootage.html">Upload Footage</a>
+        <a href="../../dashboard/ai-processing.html">AI Processing <span class="count">3</span></a>
+        <a href="../editor-review/editor-review.html">Editor Review <span class="count">5</span></a>
+        <a href="index.html" class="active">Candidate Clips <span class="count" id="sidebar-clip-count" hidden>0</span></a>
+        <a href="../../video-library/index.html">Video Library</a>
     </nav>
+
 
     <div class="sidebar-bottom">
         <div class="storage">
@@ -45,7 +47,7 @@
 
 
     
-</aside>
+
 
 <div class="workspace">
     <header class="top-header">
@@ -90,6 +92,8 @@
 </div>
 
 <script src="all-clips.js"></script>
+
+<script src="../logout.js"></script>
 
 </body>
 </html>

@@ -66,8 +66,19 @@ if (Array.isArray(savedStatuses)) {
     });
 
 
-    document.getElementById("pending-count").textContent =
-        candidateClips.filter(clip => clip.status === "pending").length;
+    
+    const pendingCount = candidateClips.filter(
+        clip => clip.status === "pending" ).length;
+
+    document.getElementById("pending-count").textContent = pendingCount;
+
+    // Update the Candidate Clips sidebar counter
+    const sidebarClipCount = document.getElementById("sidebar-clip-count");
+
+    if (sidebarClipCount) {
+        sidebarClipCount.textContent = pendingCount;
+        sidebarClipCount.hidden = pendingCount === 0;
+    }
 
     document.getElementById("confirmed-count").textContent =
         candidateClips.filter(clip => clip.status === "confirmed").length;
@@ -88,12 +99,5 @@ if (Array.isArray(savedStatuses)) {
     allClipsComplete.hidden = !allReviewed;
 
 
-    // SimplyVision Log Out button
-    const logoutButton = document.getElementById("logoutButton");
-
-    if (logoutButton) {
-        logoutButton.addEventListener("click", function () {
-            window.location.href = "../login.html?logout=preview";
-        });
-    }
+   
 
