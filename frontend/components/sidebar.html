@@ -1,0 +1,44 @@
+
+<aside class="sidebar">
+    <div class="sidebar-brand">
+    <img
+        src="/frontend/assets/simplyvision-logo.png"
+        alt="SimplyVision Logo"
+    >
+</div>
+
+    <p class="nav-heading">WORKSPACE</p>
+
+    <nav aria-label="Main navigation">
+        <a href="/dashboard/index.html" data-page="dashboard">Dashboard</a>
+        <a href="/upload-footage-review/uploadfootage.html" data-page="upload">Upload Footage</a>
+        <a href="/dashboard/ai-processing.html" data-page="ai-processing">
+            AI Processing <span class="count">3</span>
+        </a>
+        <a href="/frontend/editor-review/editor-review.html" data-page="editor-review">
+            Editor Review <span class="count">5</span>
+        </a>
+        <a href="/frontend/candidate-clips/index.html" data-page="candidate-clips">
+            Candidate Clips <span class="count" id="sidebar-clip-count">12</span>
+        </a>
+        <a href="/video-library/index.html" data-page="video-library">Video Library</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="storage">
+            <p><span>Storage</span><span>68%</span></p>
+            <div class="storage-track">
+                <div></div>
+            </div>
+            <small>Storage usage</small>
+        </div>
+
+        <div class="account">
+            <button type="button" id="logoutButton" class="logout-btn">
+                Log Out
+            </button>
+
+            <p>🟠 Simply Basketball</p>
+        </div>
+    </div>
+</aside>

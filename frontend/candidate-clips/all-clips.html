@@ -6,47 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Candidate Clips | SimplyVision</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../components/sidebar.css">
 </head>
 <body>
 
 
-<aside class="sidebar">
-    <div class="sidebar-brand">
-        <img src="../assets/simplyvision-logo.png" alt="SimplyVision Logo">
-    </div>
-
-    <p class="nav-heading">WORKSPACE</p>
-
-    
-    <nav>
-        <a href="../../dashboard/index.html">Dashboard</a>
-        <a href="../../upload-footage-review/uploadfootage.html">Upload Footage</a>
-        <a href="../../dashboard/ai-processing.html">AI Processing <span class="count">3</span></a>
-        <a href="../editor-review/editor-review.html">Editor Review <span class="count">5</span></a>
-        <a href="index.html" class="active">Candidate Clips <span class="count" id="sidebar-clip-count" hidden>0</span></a>
-        <a href="../../video-library/index.html">Video Library</a>
-    </nav>
-
-
-    <div class="sidebar-bottom">
-        <div class="storage">
-            <p>Storage <span>68%</span></p>
-            <div class="storage-track">
-                <div></div>
-            </div>
-            <small>34.2 GB of 50 GB used</small>
-        </div>
-
-        <button type="button" id="logoutButton" class="logout-btn">
-            Log Out
-        </button>
-
-        <p class="account">🟠 Simply Basketball</p>
-    </div>
-</aside>
-
-
-    
+<!-- Shared reusable sidebar -->
+<div id="sidebar-container"></div>
 
 
 <div class="workspace">
@@ -90,6 +56,8 @@
         </section>
     </main>
 </div>
+
+<script src="../components/sidebar.js"></script>
 
 <script src="all-clips.js"></script>
 

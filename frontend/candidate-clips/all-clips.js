@@ -73,12 +73,18 @@ if (Array.isArray(savedStatuses)) {
     document.getElementById("pending-count").textContent = pendingCount;
 
     // Update the Candidate Clips sidebar counter
-    const sidebarClipCount = document.getElementById("sidebar-clip-count");
+    function updateSidebarCount() {
+        const sidebarClipCount = document.getElementById("sidebar-clip-count");
 
-    if (sidebarClipCount) {
-        sidebarClipCount.textContent = pendingCount;
-        sidebarClipCount.hidden = pendingCount === 0;
+        if (sidebarClipCount) {
+            sidebarClipCount.textContent = pendingCount;
+            sidebarClipCount.hidden = pendingCount === 0;
+        }
     }
+
+
+updateSidebarCount();
+document.addEventListener("sidebar:loaded", updateSidebarCount);
 
     document.getElementById("confirmed-count").textContent =
         candidateClips.filter(clip => clip.status === "confirmed").length;
