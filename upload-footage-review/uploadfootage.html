@@ -1,3 +1,5 @@
+
+<!--DOCUMENT SETUP-->
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Upload Footage | Simply Basketball</title>
         <link rel="stylesheet" href="uploadfootage.css">
+        <script src="uploadfootage.js" defer></script>
     </head>
     <body>
         <!-- SIDEBAR NAVIGATION; REFERENCED FROM DASHBOARD PAGE
@@ -64,38 +67,45 @@
                     <h1>Upload Footage</h1>
                     <p>Upload a game video and provide basic information so it can be processed by AI.</p>
                 </div>
-
+                <!--UPDATE REVIEW QUEUE BUTTON LATER-->
                 <a href="#" class="review_queue_button"> + Review Queue · 11 </a>    
             </header>
 
             <!-- selecting the video file-->
-             <section class="upload_section">
+             <section class="upload_section" id="uploadSection">
                 <h2>Select Video File</h2>
                 <div class="file_drop_zone" id="fileDropZone">
                     <div class="upload_icon" aria-hidden="true">
                         &#9729; <!--unicode cloud symbol for now-->
                     </div>
                     <p>Drag and drop a video file here</p>
-                    <span class="upload_separator>">or</span>
+                    <span class="upload_separator">or</span>
                     <label for ="videoFile" class="choose_file_button">
                         Choose File
-                    </label>
+                    </label> <!--"form="uploadForm" this line technically not needed rn bc of js, keeping for explicitness-->
                     <input type="file" id="videoFile" name="videoFile"
                         accept=".mp4,.mov,video/mp4,video/quicktime"
-                        form="uploadForm"
+                        form="uploadForm" 
                         hidden
                     >
                     <small class="file_requirements">
-                        Supported formats: MP4, MOV &bull;
+                        Supported formats: MP4, MOV &bull; <!--&bull puts the bullet point in-->
                         Maximum file size: 4 GB &bull;
                         Recommended resolution: 720p or higher
                     </small>
                 </div>
+                <!--this section for displaying info about the video file the user selects-->
+                <div class="selected_file_info" id="selectedFileInfo" hidden>
+                    <span id="selectedFileName"></span>
+                    <!--button to remove the file selected-->
+                    <button type="button" id="removeFileButton">Remove</button>
+                </div>
+                <p id="fileError" class="file_error" role="alert" hidden></p>
              </section>
              <!--end of selecting video file section-->
 
              <!--Game Information Section-->
-             <section class="game_information_section">
+             <section class="game_information_section" id="gameInformationSection">
                 <h2>Game Information</h2>
                 <p class="section_description">
                     Provide basic details about the game to help with processing and organization.
@@ -259,6 +269,21 @@
                 </form>
              </section>
 
+             <!--FOR TESTING WITHOUT ACTUALLY UPLOADING A VIDEO-->
+             <!--METADATA SECTION, ONLY DISPLAYED AFTER VIDEO METADA IS LOCALLY SAVED-->
+             <section id="uploadSuccess" class="upload_success" aria-live="polite" hidden>
+                <div class="success_icon" aria-hidden="true">&#10003;</div>
+                <h2> Demo Upload Completed</h2>
+                <p id="successDetails">Video details are saved in this browser.</p>
+                <p class="demo_notice">Demo mode: no video file uploaded or stored.</p>
+                <p>What do you want to do next?</p>
+                <div class="success_actions">
+                    <button type="button" id="uploadAnotherButton">+ Upload Another Video</button>
+                    <a href="../video-library/index.html" class="video_library_button">
+                        Got to Video Library
+                    </a>
+                </div>
+             </section>
            
         </main>
     </body>

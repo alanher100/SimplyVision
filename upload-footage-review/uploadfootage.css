@@ -12,6 +12,11 @@
     margin: 0;
     padding: 0;
 }
+/* For elements that have the hidden attribute. They don't appear when page initially loads.
+Used by javascript fileInfo.hidden = false. State is changed by JavaScript*/
+[hidden] {
+    display: none !important;
+}
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -67,7 +72,7 @@ body {
     margin: 12px 8px;
 }
 
-/* SIDE BAR NAV STUFF */
+
 .sidebar_nav {
     display: flex;
     flex-direction: column;
@@ -214,10 +219,14 @@ body {
     margin-bottom: 8px;
 }
 
-.upload_separator {
-    color: #888;
+/*for the description below Game Info heading */
+.section_description {
     font-size: 12px;
+    color: var(--text-gray);
+    margin-bottom: 16px;
 }
+
+/* FILE DROP ZONE STUFF */
 
 .choose_file_button {
     background: var(--orange);
@@ -228,6 +237,9 @@ body {
     font-weight: bold;
     cursor: pointer;
     display: inline-block;
+}
+.choose_file_button:hover {
+    background: #df4e19; /*slightly darker orange for hover effect*/
 }
 
 .file_drop_zone {
@@ -242,6 +254,13 @@ body {
     padding: 15px;
     text-align: center;
     gap: 7px;
+    transition: border-color .15s, background .15s;
+}
+
+/*this part for js. Drop zone feedback. drag_over is removed when file leaves area*/
+.file_drop_zone.drag_over {
+    border-color: var(--orange);
+    background: #fff2ed;
 }
 
 .file_drop_zone p {
@@ -268,6 +287,39 @@ body {
     line-height: 1.5;
 }
 
+/*to display selected file name*/
+.selected_file_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid #dce0e5;
+    border-radius: 6px;
+    font-size: 12px;
+}
+#selectedFileName { /* # is id selector */
+    overflow-wrap: anywhere; /*so that long name will fit */
+    min-width: 0;
+}
+
+#removeFileButton {
+    background: transparent;
+    border: none;
+    color: var(--orange);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* styles file error message */
+.file_error {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* GAME INFO FORM SECTION */
 .form_group {
     display: flex;
     flex-direction: column;
@@ -296,14 +348,6 @@ body {
     grid-template-columns: 1.2fr 1.35fr 1fr 0.8fr;
 }
 
-.upload_section, .game_information_section, .processing_queue_section {
-        padding: 14px;
-    }
-
-.queue_header {
-        flex-wrap: wrap;
-    }
-
 .required {
     color: #ff3b30;
 }
@@ -322,6 +366,13 @@ body {
     outline: none;
 }
 
+.form_group input:focus,
+.form_group select:focus,
+.form_group textarea:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 2px rgba(247, 95, 38, 0.1);
+}
+
 .form_group input,
 .form_group select {
     height: 37px;
@@ -330,13 +381,6 @@ body {
 .form_group input::placeholder,
 .form_group textarea::placeholder {
     color: #9ca3af;
-}
-
-.form_group input:focus,
-.form_group select:focus,
-.form_group textarea:focus {
-    border-color: var(--orange);
-    box-shadow: 0 0 0 2px rgba(247, 95, 38, 0.1);
 }
 
 .form_group select {
@@ -403,3 +447,86 @@ body {
     background: #df4e19;
 }
 
+/*UPLOAD CONFIRMATION SECTION*/
+.upload_success {
+    background: var(--white); 
+    border: 1px solid #eceef1;
+    border-radius: 9px; 
+    padding: 35px; 
+    text-align: center;
+}
+
+.success_icon { /*displays after simulated upload*/
+    width: 52px; 
+    height: 52px; 
+    margin: 0 auto 14px; 
+    border-radius: 50%;
+    background: #e8f7ec; 
+    color: #248c4d; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    font-size: 28px; 
+    font-weight: bold;
+}
+
+.upload_success h2 { 
+    font-size: 22px; 
+    margin-bottom: 15px; }
+
+.upload_success p { 
+    font-size: 13px; 
+    color: var(--text-gray); 
+    margin-bottom: 15px; }
+
+.upload_success .demo_notice { /*video did not upload message, for demo purposes*/
+    font-size: 12px; 
+    color: #a34b18; }
+
+.success_actions { /*completion buttons*/
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 12px; 
+    margin-top: 25px; }
+
+#uploadAnotherButton, .video_library_button {
+    display: inline-block; 
+    background: var(--orange); 
+    color: var(--white);
+    border: 1px solid var(--orange); 
+    border-radius: 6px;
+    padding: 12px 20px; 
+    font-family: inherit; 
+    font-size: 12px;
+    font-weight: bold; 
+    text-decoration: none; 
+    cursor: pointer;
+}
+
+#uploadAnotherButton:hover { 
+    background: #df4e19; 
+}
+
+/*button to video library*/
+.video_library_button { 
+    background: var(--white); 
+    color: var(--orange);
+}
+.video_library_button:hover { 
+    background: #fff3ed; 
+}
+
+/*Responsive layout section*/
+/*for when screen is less than 850px, two columns instead of three*/
+@media (max-width: 850px) {
+    .form_row_one, .form_row_two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .page_header { flex-wrap: wrap; }
+}
+/*for when screen is less than 520px, one column instead of two*/
+@media (max-width: 520px) {
+    .main_content { padding: 16px; }
+    .form_row_one, .form_row_two { grid-template-columns: 1fr; }
+    .page_header { margin: 0 -8px 16px; padding: 18px 8px; }
+    .success_actions { flex-direction: column; }
+}
