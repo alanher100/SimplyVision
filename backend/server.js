@@ -64,7 +64,14 @@ app.use("/frontend", (req, res, next) => {
         return next();
     }
 
-    return requireAuth(req, res, next);
+    // Sprint 4: SV-208: Restrict Editor Review to Manager and Editor
+    if (req.path === "/editor-review" ||
+        req.path.startsWith("/editor-review/")) {
+        return requireRole("manager", "editor")(req, res, next);
+    }
+        return requireAuth(req, res, next);
+
+        
 }, express.static(
     path.join(projectRoot, "frontend")
 ));
@@ -87,13 +94,42 @@ function requireAuth(req, res, next) {
 
     next();
 }
+// SV-203: Protect dashboard from unauthenticated users
+function requireAuth(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect("/frontend/login.html");
+    }
+
+    next();
+}
+
+// Sprint 4: SV-208: Role-Based Access Control
+function requireRole(...allowedRoles) {
+    return (req, res, next) => {
+        if (!req.session.user) {
+            return res.redirect("/frontend/login.html");
+        }
+
+        if (!allowedRoles.includes(req.session.user.role)) {
+            return res.status(403).send(
+                "Access denied: You do not have permission to view this page."
+            );
+        }
+
+        next();
+    };
+}
 
 // Serve dashboard files only after login
 app.use("/dashboard", requireAuth, express.static(
     path.join(projectRoot, "dashboard")
 ));
+// Serve dashboard files only after login
+app.use("/dashboard", requireAuth, express.static(
+    path.join(projectRoot, "dashboard")
+));
 
- // SV-203: Serve additional protected SimplyVision pages
+ // Sprint 3 SV-203: Serve additional protected SimplyVision pages
 
 // Upload Footage & Review
 app.use("/upload-footage-review", requireAuth, express.static(
@@ -103,8 +139,8 @@ app.use("/upload-footage-review", requireAuth, express.static(
 app.use("/candidate-clips", requireAuth, express.static(
     path.join(projectRoot, "frontend", "candidate-clips")
 ));
-// Editor Review
-app.use("/editor-review", requireAuth, express.static(
+// Sprint 4: SV-208: Editor Review - Manager and Editor access only
+app.use("/editor-review", requireRole("manager", "editor"), express.static(
     path.join(projectRoot, "frontend", "editor-review")
 ));
 
