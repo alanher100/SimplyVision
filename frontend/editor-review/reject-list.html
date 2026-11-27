@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <title>Rejected Clips | SimplyVision</title>
+        <link rel="stylesheet" href="reject-list.css">
+    </head>
+
+    <body>
+        <aside class="sidebar">
+            <div class="logo">
+                <img
+                    src="../assets/simplyvision-logo.png"
+                    alt="SimplyVision logo"
+                >
+            </div>
+
+            <p class="sidebar_label">WORKSPACE</p>
+
+            <nav class="sidebar_nav">
+                <a href="../../dashboard/index.html">
+                    Dashboard
+                </a>
+
+                <a href="../../upload-footage-review/uploadfootage.html">
+                    Upload Footage
+                </a>
+
+                <a href="../../dashboard/ai-processing.html">
+                    AI Processing
+                    <span class="count">3</span>
+                </a>
+
+                <a href="editor-review.html" class="active">
+                    Editor Review
+                    <span class="count">5</span>
+                </a>
+
+                <a href="../candidate-clips/index.html">
+                    Candidate Clips
+                    <span class="count">12</span>
+                </a>
+
+                <a href="../../video-library/index.html">
+                    Video Library
+                </a>
+            </nav>
+
+            <div class="sidebar_bottom">
+                <div class="storage_heading">
+                    <span>Storage</span>
+                    <span>68%</span>
+                </div>
+
+                <div class="storage_bar">
+                    <div></div>
+                </div>
+
+                <small>34.2 GB of 50 GB used</small>
+
+                <a
+                    class="logout-button"
+                    href="#"
+                    id="logoutButton"
+                >
+                    Log Out
+                </a>
+
+                <div class="profile_section">
+                    <div class="profile_icon"></div>
+
+                    <div>
+                        <p class="profile">Simply Basketball</p>
+                        <small>Media operations</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="workspace">
+            <header class="top-header">
+                <div class="heading">
+                    <h1>Rejected Clips</h1>
+                    <p>
+                        Clips that were rejected and need review.
+                    </p>
+                </div>
+
+                <a
+                    class="queue-btn back-link"
+                    href="editor-review.html"
+                >
+                    Back to Editor Review
+                </a>
+
+                <a
+                    class="queue-btn delete-list-link"
+                    href="delete-list.html?clip=1"
+                >
+                    View Delete List
+                </a>
+            </header>
+
+            <main class="rejected-content">
+                <section class="rejected-page">
+                    <h2>Clips Rejected</h2>
+
+                    <p class="rejected-description">
+                        These clips have been rejected by the editor.
+                    </p>
+
+                    <div
+                        class="rejected-list"
+                        id="rejected-list"
+                    ></div>
+                </section>
+            </main>
+        </div>
+
+        <script src="reject-list.js"></script>
+
+        <!-- SV-203: Logout Integration -->
+        <script>
+            document
+                .getElementById("logoutButton")
+                ?.addEventListener(
+                    "click",
+                    async function (event) {
+                        event.preventDefault();
+
+                        try {
+                            const response = await fetch(
+                                "/api/logout",
+                                {
+                                    method: "POST",
+                                    credentials: "same-origin"
+                                }
+                            );
+
+                            if (!response.ok) {
+                                throw new Error("Logout failed");
+                            }
+
+                            window.location.replace(
+                                "/frontend/login.html"
+                            );
+                        } catch (error) {
+                            console.error(
+                                "Logout error:",
+                                error
+                            );
+
+                            alert(
+                                "Unable to log out. Please try again."
+                            );
+                        }
+                    }
+                );
+        </script>
+    </body>
+</html>
