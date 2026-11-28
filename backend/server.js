@@ -64,7 +64,22 @@ app.use("/frontend", (req, res, next) => {
         return next();
     }
 
-    return requireAuth(req, res, next);
+// Sprint 4: SV-208: Restrict Editor Review to Manager and Editor
+if (req.path === "/editor-review" ||
+    req.path.startsWith("/editor-review/")) {
+    return requireRole("manager", "editor")(req, res, next);
+}
+
+// Sprint 4 SV-213: Protect alternate Candidate Clips URL
+if (req.path === "/candidate-clips" ||
+    req.path.startsWith("/candidate-clips/")) {
+    return requireRole("manager", "editor")(req, res, next);
+}
+
+// Sprint 4 SV-213: Restrict remaining frontend pages
+return requireRole("manager", "editor")(req, res, next);
+
+
 }, express.static(
     path.join(projectRoot, "frontend")
 ));
@@ -79,7 +94,7 @@ app.use("/assets", requireAuth, express.static(
     path.join(projectRoot, "frontend", "assets")
 ));
 
- // SV-203: Protect dashboard from unauthenticated users
+// SV-203: Protect dashboard from unauthenticated users
 function requireAuth(req, res, next) {
     if (!req.session.user) {
         return res.redirect("/frontend/login.html");
@@ -88,28 +103,45 @@ function requireAuth(req, res, next) {
     next();
 }
 
-// Serve dashboard files only after login
-app.use("/dashboard", requireAuth, express.static(
+// Sprint 4: SV-208: Role-Based Access Control
+function requireRole(...allowedRoles) {
+    return (req, res, next) => {
+        if (!req.session.user) {
+            return res.redirect("/frontend/login.html");
+        }
+
+        if (!allowedRoles.includes(req.session.user.role)) {
+            return res.status(403).send(
+                "Access denied: You do not have permission to view this page."
+            );
+        }
+
+        next();
+    };
+}
+
+// Sprint 4 SV-213: Dashboard access for Manager and Editor
+app.use("/dashboard", requireRole("manager", "editor"), express.static(
     path.join(projectRoot, "dashboard")
 ));
 
- // SV-203: Serve additional protected SimplyVision pages
+ // Sprint 3 SV-203: Serve additional protected SimplyVision pages
 
-// Upload Footage & Review
-app.use("/upload-footage-review", requireAuth, express.static(
+// Sprint 4 SV-213: Upload Footage access for Manager and Editor
+app.use("/upload-footage-review", requireRole("manager", "editor"), express.static(
     path.join(projectRoot, "upload-footage-review")
 ));
-// Candidate Clips
-app.use("/candidate-clips", requireAuth, express.static(
+// Sprint 4 SV-213: Candidate Clips access for Manager and Editor
+app.use("/candidate-clips", requireRole("manager", "editor"), express.static(
     path.join(projectRoot, "frontend", "candidate-clips")
 ));
-// Editor Review
-app.use("/editor-review", requireAuth, express.static(
+// Sprint 4: SV-208: Editor Review - Manager and Editor access only
+app.use("/editor-review", requireRole("manager", "editor"), express.static(
     path.join(projectRoot, "frontend", "editor-review")
 ));
 
-// Video Library
-app.use("/video-library", requireAuth, express.static(
+// Sprint 4 SV-213: Video Library access for Manager and Editor
+app.use("/video-library", requireRole("manager", "editor"), express.static(
     path.join(projectRoot, "video-library")
 ));
 
