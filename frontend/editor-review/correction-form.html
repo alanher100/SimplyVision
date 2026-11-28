@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <title>Review Correction | SimplyVision</title>
+        <link rel="stylesheet" href="correction-form.css">
+    </head>
+
+    <body>
+        <aside class="sidebar">
+            <div class="logo">
+                <img
+                    src="../assets/simplyvision-logo.png"
+                    alt="SimplyVision logo"
+                >
+            </div>
+
+            <p class="sidebar_label">WORKSPACE</p>
+
+            <nav class="sidebar_nav">
+                <a href="../../dashboard/index.html">
+                    Dashboard
+                </a>
+
+                <a href="../../upload-footage-review/uploadfootage.html">
+                    Upload Footage
+                </a>
+
+                <a href="../../dashboard/ai-processing.html">
+                    AI Processing
+                    <span class="count">3</span>
+                </a>
+
+                <a href="editor-review.html" class="active">
+                    Editor Review
+                    <span class="count">5</span>
+                </a>
+
+                <a href="../candidate-clips/index.html">
+                    Candidate Clips
+                    <span class="count">12</span>
+                </a>
+
+                <a href="../../video-library/index.html">
+                    Video Library
+                </a>
+            </nav>
+
+            <div class="sidebar_bottom">
+                <div class="storage_heading">
+                    <span>Storage</span>
+                    <span>68%</span>
+                </div>
+
+                <div class="storage_bar">
+                    <div></div>
+                </div>
+
+                <small>34.2 GB of 50 GB used</small>
+
+                <a
+                    class="logout-button"
+                    href="#"
+                    id="logoutButton"
+                >
+                    Log Out
+                </a>
+
+                <div class="profile_section">
+                    <div class="profile_icon"></div>
+
+                    <div>
+                        <p class="profile">Simply Basketball</p>
+                        <small>Media operations</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="workspace">
+            <header class="top-header">
+                <div class="heading">
+                    <h1>Review Correction</h1>
+
+                    <p>
+                        Update the clip information before sending it
+                        back for review.
+                    </p>
+                </div>
+
+                <a
+                    class="queue-btn back-link"
+                    href="correction-list.html"
+                >
+                    Back to Corrections
+                </a>
+            </header>
+
+            <main class="correction-form-content">
+                <section class="correction-form-page">
+                    <h2>Correct Clip Information</h2>
+
+                    <form id="correction-form">
+                        <div class="form-layout">
+                            <div class="video-section">
+                                <video
+                                    class="correction-video"
+                                    controls
+                                    poster="../assets/basketball-banner.jpg"
+                                >
+                                    <source
+                                        src="../assets/demo-clip.mp4"
+                                        type="video/mp4"
+                                    >
+                                    Your browser does not support video
+                                    playback.
+                                </video>
+
+                                <p class="current-status">
+                                    <strong>Current Status:</strong>
+                                    <span id="current-status">
+                                        Needs Correction
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div class="form-fields">
+                                <label for="clip-title">
+                                    Clip Title
+                                </label>
+
+                                <input
+                                    id="clip-title"
+                                    name="clipTitle"
+                                    type="text"
+                                    required
+                                >
+
+                                <label for="player">
+                                    Player
+                                </label>
+
+                                <input
+                                    id="player"
+                                    name="player"
+                                    type="text"
+                                    required
+                                >
+
+                                <label for="player-number">
+                                    Player Number
+                                </label>
+
+                                <input
+                                    id="player-number"
+                                    name="playerNumber"
+                                    type="text"
+                                    required
+                                >
+
+                                <label for="team">
+                                    Team
+                                </label>
+
+                                <input
+                                    id="team"
+                                    name="team"
+                                    type="text"
+                                    required
+                                >
+
+                                <label for="clip-description">
+                                    Description
+                                </label>
+
+                                <textarea
+                                    id="clip-description"
+                                    name="description"
+                                    rows="4"
+                                    required
+                                ></textarea>
+
+                                <label for="suggested-statistics">
+                                    Suggested Statistics
+                                </label>
+
+                                <textarea
+                                    id="suggested-statistics"
+                                    name="suggestedStatistics"
+                                    rows="3"
+                                ></textarea>
+
+                                <label for="event-labels">
+                                    Event Labels
+                                </label>
+
+                                <input
+                                    id="event-labels"
+                                    name="eventLabels"
+                                    type="text"
+                                    placeholder="Example: Shot, Fourth Quarter"
+                                >
+                            </div>
+                        </div>
+
+                        <p
+                            id="form-message"
+                            class="form-message"
+                            role="status"
+                        ></p>
+
+                        <div class="form-actions">
+                            <button
+                                class="save-corrections-button"
+                                type="submit"
+                            >
+                                Save Corrections
+                            </button>
+
+                            <button
+                                class="cancel-button"
+                                id="cancel-button"
+                                type="button"
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                class="resubmit-button"
+                                id="resubmit-button"
+                                type="button"
+                            >
+                                Send for Re-Review
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </main>
+        </div>
+
+        <script src="correction-form.js"></script>
+
+        <script>
+            document
+                .getElementById("logoutButton")
+                .addEventListener("click", async function (event) {
+                    event.preventDefault();
+
+                    try {
+                        const response = await fetch("/api/logout", {
+                            method: "POST",
+                            credentials: "same-origin"
+                        });
+
+                        if (!response.ok) {
+                            throw new Error("Logout failed");
+                        }
+
+                        window.location.replace(
+                            "/frontend/login.html"
+                        );
+                    } catch (error) {
+                        console.error("Logout error:", error);
+                        alert(
+                            "Unable to log out. Please try again."
+                        );
+                    }
+                });
+        </script>
+    </body>
+</html>

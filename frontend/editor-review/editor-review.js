@@ -1,79 +1,163 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const summaryCards = document.querySelector(".summary_cards");
-    const pendingSection = document.querySelector(".pending_section");
-    const content = document.querySelector(".content");
+    const reviewQueueButton = document.querySelector(
+        "#reviewQueueButton"
+    );
 
-    const pageView = document.createElement("section");
+    const pendingSection = document.querySelector(
+        ".pending_section"
+    );
 
-    pageView.className = "page_view";
-    pageView.hidden = true;
+    const pendingList = document.querySelector(
+        ".clip_list"
+    );
 
-    pageView.innerHTML = `
-        <h2 id="page_title"></h2>
-        <p id="page_description"></p>
-        <button id="back_button" type="button">
-            Back to Dashboard
-        </button>
-    `;
+    const allowedPendingStatuses = [
+        "Pending",
+        "Awaiting Re-review"
+    ];
 
-    content.appendChild(pageView);
+    const clipNumbers = [1, 2, 3, 4, 5];
 
-    const pageInformation = {
-        correction: {
-            title: "Needs Correction",
-            description:
-                "These clips need changes before they can be approved."
-        },
-        reject: {
-            title: "Rejected Clips",
-            description: "These clips have been rejected."
-        }
+    const counts = {
+        pending: 0,
+        approved: 0,
+        correction: 0,
+        rejected: 0
     };
 
-    function showPage(pageName) {
-        const selectedPage = pageInformation[pageName];
+    clipNumbers.forEach(function (clipNumber) {
+        const statusKey = `clip-${clipNumber}-status`;
+        const correctionsKey =
+            `clip-${clipNumber}-corrections`;
 
-        if (!selectedPage) {
+        const savedStatus =
+            localStorage.getItem(statusKey) || "Pending";
+
+        const savedCorrections = localStorage.getItem(
+            correctionsKey
+        );
+
+        if (
+            savedStatus === "Pending" ||
+            savedStatus === "Awaiting Re-review"
+        ) {
+            counts.pending++;
+        } else if (
+            savedStatus === "Approved" ||
+            savedStatus === "Published"
+        ) {
+            counts.approved++;
+        } else if (savedStatus === "Needs Correction") {
+            counts.correction++;
+        } else if (savedStatus === "Rejected") {
+            counts.rejected++;
+        }
+
+        const row = document.querySelector(
+            `.clip_row[data-clip="${clipNumber}"]`
+        );
+
+        if (!row) {
             return;
         }
 
-        pageView.querySelector("#page_title").textContent =
-            selectedPage.title;
+        if (!allowedPendingStatuses.includes(savedStatus)) {
+            row.remove();
+            return;
+        }
 
-        pageView.querySelector("#page_description").textContent =
-            selectedPage.description;
+        const rowFields = row.querySelectorAll(
+            ":scope > span"
+        );
 
-        summaryCards.hidden = true;
-        pendingSection.hidden = true;
-        pageView.hidden = false;
-    }
+        const titleElement = rowFields[0];
+        const teamElement = rowFields[1];
+        const statusElement = row.querySelector(
+            ".clip-status"
+        );
 
-    function showDashboard() {
-        summaryCards.hidden = false;
-        pendingSection.hidden = false;
-        pageView.hidden = true;
+        if (savedCorrections) {
+            const correctedInformation =
+                JSON.parse(savedCorrections);
+
+            if (
+                correctedInformation.title &&
+                titleElement
+            ) {
+                titleElement.textContent =
+                    correctedInformation.title;
+            }
+
+            if (
+                correctedInformation.team &&
+                teamElement
+            ) {
+                teamElement.textContent =
+                    correctedInformation.team;
+            }
+        }
+
+        if (statusElement) {
+            statusElement.textContent = savedStatus;
+
+            statusElement.classList.remove(
+                "status-pending"
+            );
+
+            statusElement.classList.add(
+                "status-updated"
+            );
+        }
+    });
+
+    if (reviewQueueButton) {
+        reviewQueueButton.addEventListener(
+            "click",
+            function () {
+                window.location.href =
+                    "pending-review.html";
+            }
+        );
     }
 
     document
-        .querySelectorAll("button.card_action")
-        .forEach(function (button) {
-            button.addEventListener("click", function () {
-                const buttonText = button
-                    .querySelector("span")
-                    .textContent
-                    .trim();
+        .querySelectorAll(".card_action")
+        .forEach(function (card) {
+            const label = card
+                .querySelector("span")
+                .textContent
+                .trim();
 
-                if (buttonText === "Needs Correction") {
-                    showPage("correction");
-                } else if (buttonText === "Reject") {
-                    showPage("reject");
-                }
-            });
+            const countElement = card.querySelector(
+                ".count"
+            );
+
+            if (label === "Pending") {
+                countElement.textContent =
+                    counts.pending;
+            } else if (label === "Approve") {
+                countElement.textContent =
+                    counts.approved;
+            } else if (
+                label === "Needs Correction"
+            ) {
+                countElement.textContent =
+                    counts.correction;
+            } else if (label === "Reject") {
+                countElement.textContent =
+                    counts.rejected;
+            }
         });
 
-    document
-        .querySelector("#back_button")
-        .addEventListener("click", function () {
-            showDashboard();
-        });
+    if (
+        pendingList &&
+        pendingList.children.length === 0
+    ) {
+        pendingList.innerHTML = `
+            <p class="no-pending-message">
+                There are currently no clips waiting
+                for review.
+            </p>
+        `;
+    }
 });

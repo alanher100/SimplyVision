@@ -2,7 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
         <title>Editor Review | SimplyVision</title>
         <link rel="stylesheet" href="editor-review.css">
     </head>
@@ -32,7 +35,10 @@
                     <span class="count">3</span>
                 </a>
 
-                <a href="editor-review.html" class="active">
+                <a
+                    href="editor-review.html"
+                    class="active"
+                >
                     Editor Review
                     <span class="count">5</span>
                 </a>
@@ -59,16 +65,25 @@
 
                 <small>34.2 GB of 50 GB used</small>
 
-                <a class="logout-button" href="#" id="logoutButton">
+                <a
+                    class="logout-button"
+                    href="#"
+                    id="logoutButton"
+                >
                     Log Out
-                </a>            
-                
+                </a>
+
                 <div class="profile_section">
                     <div class="profile_icon"></div>
 
                     <div>
-                        <p class="profile">Simply Basketball</p>
-                        <small>Media operations</small>
+                        <p class="profile">
+                            Simply Basketball
+                        </p>
+
+                        <small>
+                            Media operations
+                        </small>
                     </div>
                 </div>
             </div>
@@ -78,12 +93,17 @@
             <header class="top-header">
                 <div class="heading">
                     <h1>Editor Review</h1>
+
                     <p>
                         Overview of your footage and what needs review.
                     </p>
                 </div>
 
-                <button class="queue-btn" type="button">
+                <button
+                    class="queue-btn"
+                    id="reviewQueueButton"
+                    type="button"
+                >
                     Review Queue
                 </button>
             </header>
@@ -102,7 +122,7 @@
                             href="pending-review.html"
                         >
                             <span>Pending</span>
-                            <span class="count">12</span>
+                            <span class="count">0</span>
                         </a>
                     </article>
 
@@ -118,21 +138,8 @@
                             href="approve-list.html"
                         >
                             <span>Approve</span>
-                            <span class="count">8</span>
+                            <span class="count">0</span>
                         </a>
-                    </article>
-
-                    <article class="summary_card">
-                        <img
-                            class="card_image"
-                            src="../assets/basketball-banner.jpg"
-                            alt="Basketball footage preview"
-                        >
-
-                        <button class="card_action" type="button">
-                            <span>Needs Correction</span>
-                            <span class="count">3</span>
-                        </button>
                     </article>
 
                     <article class="summary_card">
@@ -144,10 +151,26 @@
 
                         <a
                             class="card_action"
-                            href="reject-list.html?clip=1"
+                            href="correction-list.html"
+                        >
+                            <span>Needs Correction</span>
+                            <span class="count">0</span>
+                        </a>
+                    </article>
+
+                    <article class="summary_card">
+                        <img
+                            class="card_image"
+                            src="../assets/basketball-banner.jpg"
+                            alt="Basketball footage preview"
+                        >
+
+                        <a
+                            class="card_action"
+                            href="reject-list.html"
                         >
                             <span>Reject</span>
-                            <span class="count">1</span>
+                            <span class="count">0</span>
                         </a>
                     </article>
                 </section>
@@ -156,13 +179,25 @@
                     <h2>Clips Pending Review</h2>
 
                     <div class="clip_list">
-                        <article class="clip_row">
-                            <div class="clip_thumbnail"></div>
+                        <article
+                            class="clip_row"
+                            data-clip="1"
+                        >
+                            <img
+                                class="clip_thumbnail"
+                                src="../assets/basketball-banner.jpg"
+                                alt="Game Winning Shot preview"
+                            >
 
-                            <span>Clip Name</span>
-                            <span>Team</span>
-                            <span>Date</span>
-                            <span>Status</span>
+                            <span>Game Winning Shot</span>
+                            <span>Eagles</span>
+                            <span>November 28, 2026</span>
+
+                            <span
+                                class="clip-status status-pending"
+                            >
+                                Pending
+                            </span>
 
                             <a
                                 class="review_button"
@@ -172,13 +207,25 @@
                             </a>
                         </article>
 
-                        <article class="clip_row">
-                            <div class="clip_thumbnail"></div>
+                        <article
+                            class="clip_row"
+                            data-clip="2"
+                        >
+                            <img
+                                class="clip_thumbnail"
+                                src="../assets/basketball-banner.jpg"
+                                alt="Defensive Highlight preview"
+                            >
 
-                            <span>Clip Name</span>
-                            <span>Team</span>
-                            <span>Date</span>
-                            <span>Status</span>
+                            <span>Defensive Highlight</span>
+                            <span>Falcons</span>
+                            <span>November 28, 2026</span>
+
+                            <span
+                                class="clip-status status-pending"
+                            >
+                                Pending
+                            </span>
 
                             <a
                                 class="review_button"
@@ -188,13 +235,25 @@
                             </a>
                         </article>
 
-                        <article class="clip_row">
-                            <div class="clip_thumbnail"></div>
+                        <article
+                            class="clip_row"
+                            data-clip="3"
+                        >
+                            <img
+                                class="clip_thumbnail"
+                                src="../assets/basketball-banner.jpg"
+                                alt="Winning Shot preview"
+                            >
 
-                            <span>Clip Name</span>
-                            <span>Team</span>
-                            <span>Date</span>
-                            <span>Status</span>
+                            <span>Winning Shot</span>
+                            <span>Eagles</span>
+                            <span>November 28, 2026</span>
+
+                            <span
+                                class="clip-status status-pending"
+                            >
+                                Pending
+                            </span>
 
                             <a
                                 class="review_button"
@@ -204,13 +263,25 @@
                             </a>
                         </article>
 
-                        <article class="clip_row">
-                            <div class="clip_thumbnail"></div>
+                        <article
+                            class="clip_row"
+                            data-clip="4"
+                        >
+                            <img
+                                class="clip_thumbnail"
+                                src="../assets/basketball-banner.jpg"
+                                alt="Basketball Highlight preview"
+                            >
 
-                            <span>Clip Name</span>
-                            <span>Team</span>
-                            <span>Date</span>
-                            <span>Status</span>
+                            <span>Basketball Highlight</span>
+                            <span>Cougars</span>
+                            <span>November 28, 2026</span>
+
+                            <span
+                                class="clip-status status-pending"
+                            >
+                                Pending
+                            </span>
 
                             <a
                                 class="review_button"
@@ -219,32 +290,79 @@
                                 Review
                             </a>
                         </article>
+
+                        <article
+                            class="clip_row"
+                            data-clip="5"
+                        >
+                            <img
+                                class="clip_thumbnail"
+                                src="../assets/basketball-banner.jpg"
+                                alt="Final Quarter Play preview"
+                            >
+
+                            <span>Final Quarter Play</span>
+                            <span>Tigers</span>
+                            <span>November 28, 2026</span>
+
+                            <span
+                                class="clip-status status-pending"
+                            >
+                                Pending
+                            </span>
+
+                            <a
+                                class="review_button"
+                                href="clip-review.html?clip=5"
+                            >
+                                Review
+                            </a>
+                        </article>
                     </div>
                 </section>
             </main>
         </div>
+
         <script src="editor-review.js"></script>
-        <!-- SV-203: Logout Integration -->
-         <script>
-            document.getElementById("logoutButton").addEventListener("click", async (event) => {
-                event.preventDefault();
 
-                try {
-                    const response = await fetch("/api/logout", {
-                    method: "POST",
-                    credentials: "same-origin"
-                    });
+        <script>
+            document
+                .getElementById("logoutButton")
+                .addEventListener(
+                    "click",
+                    async function (event) {
+                        event.preventDefault();
 
-                    if (!response.ok) {
-                        throw new Error("Logout failed");
+                        try {
+                            const response = await fetch(
+                                "/api/logout",
+                                {
+                                    method: "POST",
+                                    credentials: "same-origin"
+                                }
+                            );
+
+                            if (!response.ok) {
+                                throw new Error(
+                                    "Logout failed"
+                                );
+                            }
+
+                            window.location.replace(
+                                "/frontend/login.html"
+                            );
+                        } catch (error) {
+                            console.error(
+                                "Logout error:",
+                                error
+                            );
+
+                            alert(
+                                "Unable to log out. Please try again."
+                            );
+                        }
                     }
-
-                    window.location.replace("/frontend/login.html");
-                } catch (error) {
-                    console.error("Logout error:", error);
-                    alert("Unable to log out. Please try again.");
-                }
-            });
+                );
         </script>
     </body>
 </html>

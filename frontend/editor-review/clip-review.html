@@ -62,7 +62,11 @@
 
                 <small>34.2 GB of 50 GB used</small>
 
-                <a class="logout-button" href="#" id="logoutButton">
+                <a
+                    class="logout-button"
+                    href="#"
+                    id="logoutButton"
+                >
                     Log Out
                 </a>
 
@@ -81,6 +85,7 @@
             <header class="top-header">
                 <div class="heading">
                     <h1>Review Clip</h1>
+
                     <p>
                         Review the clip before approving, correcting,
                         or rejecting it.
@@ -98,7 +103,9 @@
             <main class="review-content">
                 <section class="review-layout">
                     <div class="clip-review-card">
-                        <h2 id="clip-title">Clip Review</h2>
+                        <h2 id="clip-title">
+                            Clip Review
+                        </h2>
 
                         <video
                             class="review-video"
@@ -106,26 +113,34 @@
                             poster="../assets/basketball-banner.jpg"
                         >
                             <source
+                                id="clip-video-source"
                                 src="../assets/demo-clip.mp4"
                                 type="video/mp4"
                             >
+
                             Your browser does not support video playback.
                         </video>
 
                         <div class="clip-details">
                             <p>
                                 <strong>Player:</strong>
-                                Marcus Reed
+                                <span id="clip-player">
+                                    Marcus Reed
+                                </span>
                             </p>
 
                             <p>
                                 <strong>Team:</strong>
-                                Eagles
+                                <span id="clip-team">
+                                    Eagles
+                                </span>
                             </p>
 
                             <p>
                                 <strong>Clip Type:</strong>
-                                Game Winning Shot
+                                <span id="clip-type">
+                                    Game Winning Shot
+                                </span>
                             </p>
 
                             <p>
@@ -175,23 +190,31 @@
 
                             <p>
                                 <strong>Player:</strong>
-                                Marcus Reed
+                                <span id="information-player">
+                                    Marcus Reed
+                                </span>
                             </p>
 
                             <p>
                                 <strong>Team:</strong>
-                                Eagles
+                                <span id="information-team">
+                                    Eagles
+                                </span>
                             </p>
 
                             <p>
                                 <strong>Clip Type:</strong>
-                                Game Winning Shot
+                                <span id="information-type">
+                                    Game Winning Shot
+                                </span>
                             </p>
 
                             <p>
                                 <strong>Description:</strong>
-                                Possible game-winning shot near the end
-                                of the fourth quarter.
+                                <span id="information-description">
+                                    Possible game-winning shot near the end
+                                    of the fourth quarter.
+                                </span>
                             </p>
                         </section>
 
@@ -200,12 +223,16 @@
 
                             <p>
                                 <strong>Suggested Title:</strong>
-                                Game Winning Shot
+                                <span id="suggested-title">
+                                    Game Winning Shot
+                                </span>
                             </p>
 
                             <p>
                                 <strong>Suggested Description:</strong>
-                                Player makes a potential game-winning shot.
+                                <span id="suggested-description">
+                                    Player makes a potential game-winning shot.
+                                </span>
                             </p>
                         </section>
                     </aside>
@@ -215,27 +242,32 @@
 
         <script src="clip-review.js"></script>
 
-<!-- SV-203: Logout Integration -->
-<script>
-    document.getElementById("logoutButton")?.addEventListener("click", async (event) => {
-        event.preventDefault();
+        <script>
+            document
+                .getElementById("logoutButton")
+                ?.addEventListener("click", async function (event) {
+                    event.preventDefault();
 
-        try {
-            const response = await fetch("/api/logout", {
-                method: "POST",
-                credentials: "same-origin"
-            });
+                    try {
+                        const response = await fetch("/api/logout", {
+                            method: "POST",
+                            credentials: "same-origin"
+                        });
 
-            if (!response.ok) {
-                throw new Error("Logout failed");
-            }
+                        if (!response.ok) {
+                            throw new Error("Logout failed");
+                        }
 
-            window.location.replace("/frontend/login.html");
-        } catch (error) {
-            console.error("Logout error:", error);
-            alert("Unable to log out. Please try again.");
-        }
-    });
-</script>
+                        window.location.replace(
+                            "/frontend/login.html"
+                        );
+                    } catch (error) {
+                        console.error("Logout error:", error);
+                        alert(
+                            "Unable to log out. Please try again."
+                        );
+                    }
+                });
+        </script>
     </body>
 </html>

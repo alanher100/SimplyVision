@@ -1,68 +1,124 @@
 @import url("editor-review.css");
 
 .pending-content {
+    width: 100%;
     max-width: 1250px;
-    padding: 20px 25px;
+    padding: 12px 16px;
 }
 
 .pending-page {
-    padding: 25px;
-    border: 1px solid #888888;
-    border-radius: 6px;
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--orange);
     background: var(--white);
 }
 
 .pending-page h2 {
-    margin: 0 0 20px;
+    margin: 0;
+    padding: 8px 10px;
+    background: var(--orange);
+    color: var(--charcoal);
     font-size: 17px;
+}
+
+.pending-description {
+    margin: 0 0 12px;
+    padding: 9px 10px;
+    border: 1px solid var(--orange);
+    font-size: 10px;
+    font-weight: bold;
 }
 
 .pending-clip-list {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 10px;
 }
 
-.pending-clip-row {
-    min-height: 65px;
+.pending-clip-card {
+    min-height: 120px;
     border: 1px solid var(--orange);
-    background: var(--white);
     display: grid;
-    grid-template-columns:
-        128px
-        minmax(100px, 1.3fr)
-        minmax(80px, 1fr)
-        minmax(80px, 1fr)
-        minmax(80px, 1fr)
-        72px;
-    align-items: center;
-    gap: 12px;
-    font-size: 11px;
+    grid-template-columns: 135px minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: stretch;
 }
 
 .pending-thumbnail {
-    width: 128px;
-    height: 64px;
+    width: 135px;
+    height: 120px;
     object-fit: cover;
 }
 
-.status-pending {
+.pending-details {
+    padding: 4px 0;
+}
+
+.pending-details h3 {
+    margin: 0 0 6px;
+    padding: 5px 8px;
+    background: var(--orange);
+    color: var(--charcoal);
+    font-size: 13px;
+}
+
+.pending-details p {
+    margin: 3px 0;
+    font-size: 10px;
+}
+
+.pending-status {
     color: var(--orange);
     font-weight: bold;
 }
 
-.status-updated {
-    color: var(--orange);
-    font-weight: bold;
+.pending-actions {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    padding: 0 8px 8px 0;
 }
 
-.pending-clip-row .review_button {
-    justify-self: center;
-    margin: 0;
+.review-pending-button {
+    padding: 6px 9px;
+    border: none;
+    border-radius: 20px;
+    background: var(--orange);
     color: var(--white);
+    font-size: 9px;
     text-decoration: none;
+}
+
+.review-pending-button:hover {
+    background: #D94F1D;
+}
+
+.no-pending-message {
+    padding: 16px;
+    color: var(--text-gray);
+    font-size: 11px;
+    font-weight: bold;
 }
 
 .back-link {
     text-decoration: none;
+}
+
+@media (max-width: 800px) {
+    .pending-clip-card {
+        grid-template-columns: 1fr;
+    }
+
+    .pending-thumbnail {
+        width: 100%;
+        height: 170px;
+    }
+
+    .pending-details {
+        padding: 8px;
+    }
+
+    .pending-actions {
+        padding: 0 8px 10px;
+    }
 }
