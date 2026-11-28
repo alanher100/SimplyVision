@@ -10,64 +10,132 @@ document.addEventListener("DOMContentLoaded", function () {
         ".rejected-clip-card"
     );
 
-    const rejectedList = document.querySelector(".rejected-list");
+    const rejectedList = document.querySelector(
+        ".rejected-list"
+    );
+
     const confirmDeleteButton = document.querySelector(
         "#confirm-delete-button"
     );
+
     const keepClipButton = document.querySelector(
         "#keep-clip-button"
     );
-    const keepOptions = document.querySelector("#keep-options");
 
-    confirmDeleteButton.addEventListener("click", function () {
-        const confirmed = window.confirm(
-            "This will permanently delete the clip. Continue?"
-        );
+    const keepOptions = document.querySelector(
+        "#keep-options"
+    );
 
-        if (!confirmed) {
-            return;
-        }
+    const savedStatus = localStorage.getItem(storageKey);
 
-        localStorage.setItem(storageKey, "Deleted");
+    if (
+        !clipCard ||
+        !rejectedList ||
+        !confirmDeleteButton ||
+        !keepClipButton ||
+        !keepOptions
+    ) {
+        return;
+    }
+
+    if (savedStatus !== "Pending Deletion") {
         clipCard.remove();
 
-        const message = document.createElement("p");
-        message.textContent =
-            "The clip was permanently deleted.";
-        message.className = "delete-message";
+        rejectedList.innerHTML = `
+            <p class="removed-message">
+                This clip is no longer pending deletion.
+            </p>
+        `;
 
-        rejectedList.appendChild(message);
-    });
+        return;
+    }
 
-    keepClipButton.addEventListener("click", function () {
-        keepOptions.hidden = false;
-    });
-
-    document
-        .querySelector("#approve-clip-button")
-        .addEventListener("click", function () {
-            localStorage.setItem(storageKey, "Approved");
-            window.location.href =
-                `approve-list.html?clip=${clipNumber}`;
-        });
-
-    document
-        .querySelector("#correction-clip-button")
-        .addEventListener("click", function () {
-            localStorage.setItem(
-                storageKey,
-                "Needs Correction"
+    confirmDeleteButton.addEventListener(
+        "click",
+        function () {
+            const confirmed = window.confirm(
+                "This will permanently delete the clip. Continue?"
             );
 
-            window.location.href =
-                `clip-review.html?clip=${clipNumber}`;
-        });
+            if (!confirmed) {
+                return;
+            }
 
-    document
-        .querySelector("#reject-clip-button")
-        .addEventListener("click", function () {
-            localStorage.setItem(storageKey, "Rejected");
-            window.location.href =
-                `reject-list.html?clip=${clipNumber}`;
-        });
+            localStorage.setItem(storageKey, "Deleted");
+            clipCard.remove();
+
+            const message = document.createElement("p");
+
+            message.textContent =
+                "The clip was permanently deleted.";
+
+            message.className = "delete-message";
+
+            rejectedList.appendChild(message);
+        }
+    );
+
+    keepClipButton.addEventListener(
+        "click",
+        function () {
+            keepOptions.hidden = false;
+        }
+    );
+
+    const approveClipButton = document.querySelector(
+        "#approve-clip-button"
+    );
+
+    if (approveClipButton) {
+        approveClipButton.addEventListener(
+            "click",
+            function () {
+                localStorage.setItem(
+                    storageKey,
+                    "Approved"
+                );
+
+                window.location.href =
+                    `approve-list.html?clip=${clipNumber}`;
+            }
+        );
+    }
+
+    const correctionClipButton = document.querySelector(
+        "#correction-clip-button"
+    );
+
+    if (correctionClipButton) {
+        correctionClipButton.addEventListener(
+            "click",
+            function () {
+                localStorage.setItem(
+                    storageKey,
+                    "Needs Correction"
+                );
+
+                window.location.href =
+                    `correction-list.html?clip=${clipNumber}`;
+            }
+        );
+    }
+
+    const rejectClipButton = document.querySelector(
+        "#reject-clip-button"
+    );
+
+    if (rejectClipButton) {
+        rejectClipButton.addEventListener(
+            "click",
+            function () {
+                localStorage.setItem(
+                    storageKey,
+                    "Rejected"
+                );
+
+                window.location.href =
+                    `reject-list.html?clip=${clipNumber}`;
+            }
+        );
+    }
 });

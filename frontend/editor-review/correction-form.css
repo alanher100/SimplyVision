@@ -1,0 +1,185 @@
+@import url("editor-review.css");
+
+.correction-form-content {
+    width: 100%;
+    max-width: 1250px;
+    padding: 16px 20px;
+    overflow-x: hidden;
+}
+
+.correction-form-page {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #888888;
+    border-radius: 6px;
+    background: var(--white);
+}
+
+.correction-form-page h2 {
+    margin: 0 0 18px;
+    padding: 10px;
+    background: var(--orange);
+    color: var(--charcoal);
+    font-size: 19px;
+}
+
+.form-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.video-section,
+.form-fields {
+    min-width: 0;
+    width: 100%;
+}
+
+.correction-video {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 5px;
+    background: #292929;
+}
+
+.current-status {
+    margin: 12px 0 0;
+    font-size: 12px;
+}
+
+.current-status span {
+    color: var(--orange);
+    font-weight: bold;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-fields label {
+    margin: 0 0 5px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.form-fields input,
+.form-fields textarea {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 12px;
+    padding: 9px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--white);
+    color: var(--charcoal);
+    font: inherit;
+    font-size: 11px;
+}
+
+.form-fields textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.form-fields input:focus,
+.form-fields textarea:focus {
+    border-color: var(--orange);
+    outline: 2px solid rgba(247, 95, 38, 0.2);
+}
+
+.form-message {
+    min-height: 18px;
+    margin: 16px 0 0;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.form-message.success {
+    color: #2e7d32;
+}
+
+.form-message.error {
+    color: var(--red);
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.form-actions button {
+    padding: 9px 13px;
+    border: none;
+    border-radius: 20px;
+    color: var(--white);
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.save-corrections-button {
+    background: var(--orange);
+}
+
+.cancel-button {
+    background: #777777;
+}
+
+.resubmit-button {
+    background: #2e7d32;
+}
+
+.form-actions button:hover {
+    opacity: 0.85;
+}
+
+.back-link {
+    text-decoration: none;
+}
+
+.workspace {
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+@media (max-width: 1000px) {
+    .form-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .correction-video {
+        max-height: 360px;
+    }
+
+    .form-actions {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .correction-form-content {
+        padding: 15px;
+    }
+
+    .correction-form-page {
+        padding: 15px;
+    }
+
+    .correction-form-page h2 {
+        font-size: 17px;
+    }
+
+    .correction-video {
+        aspect-ratio: 16 / 9;
+        max-height: 260px;
+    }
+}
