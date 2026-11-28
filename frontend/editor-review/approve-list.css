@@ -1,0 +1,133 @@
+@import url("editor-review.css");
+
+.approved-content {
+    width: 100%;
+    max-width: 1250px;
+    padding: 12px 16px;
+}
+
+.approved-page {
+    padding: 14px;
+    border: 1px solid var(--orange);
+    background: var(--white);
+}
+
+.approved-page h2 {
+    margin: 0;
+    padding: 8px 10px;
+    background: var(--orange);
+    color: var(--charcoal);
+    font-size: 17px;
+}
+
+.approved-description {
+    margin: 0 0 12px;
+    padding: 9px 10px;
+    border: 1px solid var(--orange);
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.approved-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.approved-clip-card {
+    min-height: 120px;
+    border: 1px solid var(--orange);
+    display: grid;
+    grid-template-columns: 135px minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.approved-thumbnail {
+    width: 135px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.approved-details {
+    padding: 4px 0;
+}
+
+.approved-details h3 {
+    margin: 0 0 6px;
+    padding: 5px 8px;
+    background: var(--orange);
+    color: var(--charcoal);
+    font-size: 13px;
+}
+
+.approved-details p {
+    margin: 3px 0;
+    font-size: 10px;
+}
+
+.approved-status {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.publish-message {
+    color: #2e7d32;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.approved-actions {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    padding: 0 8px 8px 0;
+}
+
+.removed-message {
+    padding: 16px;
+    color: var(--text-gray);
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.back-review-button,
+.publish-button {
+    padding: 6px 9px;
+    border: none;
+    border-radius: 20px;
+    background: var(--orange);
+    color: var(--white);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 9px;
+}
+
+.back-review-button:hover,
+.publish-button:hover {
+    background: #D94F1D;
+}
+
+.publish-button:disabled {
+    background: #999999;
+    cursor: not-allowed;
+}
+
+@media (max-width: 800px) {
+    .approved-clip-card {
+        grid-template-columns: 1fr;
+    }
+
+    .approved-thumbnail {
+        width: 100%;
+        height: 170px;
+    }
+
+    .approved-details {
+        padding: 8px;
+    }
+
+    .approved-actions {
+        padding: 0 8px 10px;
+    }
+}

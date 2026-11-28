@@ -1,17 +1,14 @@
-document
-    .querySelectorAll(".pending-clip-row")
-    .forEach(function (row) {
-        const clipNumber = row.dataset.clip;
-        const savedStatus = localStorage.getItem(
-            `clip-${clipNumber}-status`
-        );
+document.querySelectorAll(".pending-clip-row").forEach(function (row) {
+    const clipNumber = row.dataset.clip;
+    const statusElement = row.querySelector(".clip-status");
 
-        if (savedStatus) {
-            const statusElement = row.querySelector(
-                ".status-pending"
-            );
+    const savedStatus = localStorage.getItem(
+        `clip-${clipNumber}-status`
+    );
 
-            statusElement.textContent = savedStatus;
-            statusElement.classList.add("status-updated");
-        }
-    });
+    if (savedStatus && statusElement) {
+        statusElement.textContent = savedStatus;
+        statusElement.classList.remove("status-pending");
+        statusElement.classList.add("status-updated");
+    }
+});

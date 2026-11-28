@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const summaryCards = document.querySelector(".summary_cards");
     const pendingSection = document.querySelector(".pending_section");
+    const content = document.querySelector(".content");
 
     const pageView = document.createElement("section");
 
@@ -15,20 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
         </button>
     `;
 
-    document.querySelector(".content").appendChild(pageView);
+    content.appendChild(pageView);
 
     const pageInformation = {
-        /*pending: {
-            title: "Pending Clips",
-            description: "These clips are waiting for editor review."
-        },*/
         correction: {
             title: "Needs Correction",
-            description: "These clips need changes before they can be approved."
-        },
-        approve: {
-            title: "Approved Clips",
-            description: "These clips have been approved."
+            description:
+                "These clips need changes before they can be approved."
         },
         reject: {
             title: "Rejected Clips",
@@ -60,32 +54,24 @@ document.addEventListener("DOMContentLoaded", function () {
         pageView.hidden = true;
     }
 
-    document.querySelectorAll(".card_action").forEach(function (button) {
-        button.addEventListener("click", function () {
-            const buttonText = button
-                .querySelector("span")
-                .textContent
-                .trim();
+    document
+        .querySelectorAll("button.card_action")
+        .forEach(function (button) {
+            button.addEventListener("click", function () {
+                const buttonText = button
+                    .querySelector("span")
+                    .textContent
+                    .trim();
 
-            if (buttonText === "Pending") {
-                showPage("pending");
-            } else if (buttonText === "Approve") {
-                showPage("approve");
-            } else if (buttonText === "Needs Correction") {
-                showPage("correction");
-            } else if (buttonText === "Reject") {
-                showPage("reject");
-            }
+                if (buttonText === "Needs Correction") {
+                    showPage("correction");
+                } else if (buttonText === "Reject") {
+                    showPage("reject");
+                }
+            });
         });
-    });
 
-    document.querySelectorAll(".review_button").forEach(function (button) {
-        button.addEventListener("click", function () {
-            showPage("pending");
-        });
-    });
-
-    pageView
+    document
         .querySelector("#back_button")
         .addEventListener("click", function () {
             showDashboard();

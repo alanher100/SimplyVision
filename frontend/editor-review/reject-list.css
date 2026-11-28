@@ -1,0 +1,139 @@
+@import url("editor-review.css");
+
+.rejected-content {
+    width: 100%;
+    max-width: 1250px;
+    padding: 12px 16px;
+}
+
+.rejected-page {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--orange);
+    background: var(--white);
+}
+
+.rejected-page h2 {
+    margin: 0;
+    padding: 8px 10px;
+    background: var(--orange);
+    color: var(--charcoal);
+    font-size: 17px;
+}
+
+.rejected-description {
+    margin: 0 0 12px;
+    padding: 9px 10px;
+    border: 1px solid var(--orange);
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.rejected-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rejected-clip-card {
+    min-height: 120px;
+    border: 1px solid var(--orange);
+    display: grid;
+    grid-template-columns: 135px minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.rejected-thumbnail {
+    width: 135px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.rejected-details {
+    padding: 4px 0;
+}
+
+.rejected-details h3 {
+    margin: 0 0 6px;
+    padding: 5px 8px;
+    background: var(--orange);
+    color: var(--charcoal);
+    font-size: 13px;
+}
+
+.rejected-details p {
+    margin: 3px 0;
+    font-size: 10px;
+}
+
+.rejected-status {
+    color: var(--red);
+    font-weight: bold;
+}
+
+.delete-message {
+    color: var(--red);
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.delete-list-link {
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.rejected-actions {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    padding: 0 8px 8px 0;
+}
+
+.review-rejection-button,
+.delete-button {
+    padding: 6px 9px;
+    border: none;
+    border-radius: 20px;
+    background: var(--orange);
+    color: var(--white);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 9px;
+}
+
+.delete-button {
+    background: var(--red);
+}
+
+.review-rejection-button:hover,
+.delete-button:hover {
+    opacity: 0.85;
+}
+
+.back-link {
+    text-decoration: none;
+}
+
+@media (max-width: 800px) {
+    .rejected-clip-card {
+        grid-template-columns: 1fr;
+    }
+
+    .rejected-thumbnail {
+        width: 100%;
+        height: 170px;
+    }
+
+    .rejected-details {
+        padding: 8px;
+    }
+
+    .rejected-actions {
+        padding: 0 8px 10px;
+    }
+
+    .delete-list-link {
+        margin-left: 0;
+    }
+}
